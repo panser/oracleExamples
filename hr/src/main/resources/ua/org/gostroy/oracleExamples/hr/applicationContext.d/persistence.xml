@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+                                 http://java.sun.com/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+    <persistence-unit name="db_gostroy_oracle">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>ua.org.gostroy.oracleExamples.hr.model.entity.Location</class>
+        <class>ua.org.gostroy.oracleExamples.hr.model.entity.Country</class>
+        <class>ua.org.gostroy.oracleExamples.hr.model.entity.Region</class>
+        <!--<mapping-file>orm.xml</mapping-file>-->
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+            <!--<property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>-->
+            <property name="jadira.usertype.autoRegisterUserTypes" value="true"/>
+            <property name="jadira.usertype.databaseZone" value="jvm"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>
