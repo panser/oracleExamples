@@ -8,9 +8,14 @@
     <persistence-unit name="db_gostroy_oracle">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>ua.org.gostroy.oracleExamples.hr.model.entity.Location</class>
         <class>ua.org.gostroy.oracleExamples.hr.model.entity.Country</class>
+        <class>ua.org.gostroy.oracleExamples.hr.model.entity.Department</class>
+        <class>ua.org.gostroy.oracleExamples.hr.model.entity.Employee</class>
+        <class>ua.org.gostroy.oracleExamples.hr.model.entity.Job</class>
+        <class>ua.org.gostroy.oracleExamples.hr.model.entity.JobHistory</class>
+        <class>ua.org.gostroy.oracleExamples.hr.model.entity.Location</class>
         <class>ua.org.gostroy.oracleExamples.hr.model.entity.Region</class>
+        <!--<class>ua.org.gostroy.oracleExamples.hr.model.entity</class>-->
         <!--<mapping-file>orm.xml</mapping-file>-->
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>

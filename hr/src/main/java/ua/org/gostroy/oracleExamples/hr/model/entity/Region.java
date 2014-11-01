@@ -18,6 +18,9 @@ public class Region {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "region")
     private Set<Country> countries;
 
+    public Region() {
+    }
+
     public Integer getId() {
         return id;
     }

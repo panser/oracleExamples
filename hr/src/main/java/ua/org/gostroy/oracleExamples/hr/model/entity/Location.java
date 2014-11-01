@@ -1,6 +1,7 @@
 package ua.org.gostroy.oracleExamples.hr.model.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by Panov Sergey on 10/31/2014.
@@ -8,8 +9,8 @@ import javax.persistence.*;
 @Entity(name = "LOCATIONS")
 public class Location {
     @Id
-    @Column(name = "LOCATION_ID", length = 4)
-    private Long id;
+    @Column(name = "LOCATION_ID", precision = 4)
+    private Integer id;
     @Column(name = "STREET_ADDRESS", length = 40)
     private String streetAddress;
     @Column(name = "POSTAL_CODE", length = 12)
@@ -21,12 +22,18 @@ public class Location {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "COUNTRY_ID", referencedColumnName = "COUNTRY_ID")
     private Country country;
+    @ElementCollection(fetch= FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "location")
+    private Set<Department> departments;
 
-    public Long getId() {
+    public Location() {
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -68,6 +75,14 @@ public class Location {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    public Set<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(Set<Department> departments) {
+        this.departments = departments;
     }
 
     @Override

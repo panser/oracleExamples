@@ -20,6 +20,9 @@ public class Country {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "country")
     private Set<Location> locations;
 
+    public Country() {
+    }
+
     public String getId() {
         return id;
     }
