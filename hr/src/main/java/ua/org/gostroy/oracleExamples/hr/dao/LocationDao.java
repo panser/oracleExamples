@@ -1,5 +1,6 @@
 package ua.org.gostroy.oracleExamples.hr.dao;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Location;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Location;
 
@@ -11,7 +12,7 @@ import java.util.List;
 public interface LocationDao {
     Location findById(Integer id);
     List<Location> findAll();
-    Location save(Location entity);
-    Location update(Location entity);
-    void delete(Location entity);
+    Location save(Location entity) throws DataIntegrityViolationException;
+    Location update(Location entity) throws DataIntegrityViolationException;
+    void delete(Location entity) throws DataIntegrityViolationException;
 }

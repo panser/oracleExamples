@@ -19,13 +19,17 @@ public class Job {
     private Integer maxSalary;
 
     @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "job")
+    @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "job")
     private Set<Employee> employees;
     @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "job")
+    @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "job")
     private Set<JobHistory> jobHistories;
 
     public Job() {
+    }
+
+    public Job(String id) {
+        this.id = id;
     }
 
     public String getId() {

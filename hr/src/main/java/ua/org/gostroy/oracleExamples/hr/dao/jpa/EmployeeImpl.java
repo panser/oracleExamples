@@ -1,15 +1,20 @@
 package ua.org.gostroy.oracleExamples.hr.dao.jpa;
 
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Repository;
 import ua.org.gostroy.oracleExamples.hr.dao.EmployeeDao;
+import ua.org.gostroy.oracleExamples.hr.model.entity.Employee;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Employee;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
  * Created by Panov Sergey on 11/1/2014.
  */
+@Repository
 public class EmployeeImpl implements EmployeeDao{
 
     @PersistenceContext
@@ -17,26 +22,32 @@ public class EmployeeImpl implements EmployeeDao{
 
     @Override
     public Employee findById(Integer id) {
-        return null;
+        Employee employee = em.find(Employee.class, id);
+        return employee;
     }
 
     @Override
     public List<Employee> findAll() {
-        return null;
+        Query query = em.createQuery("SELECT e FROM EMPLOYEES e");
+//        Query query = em.createQuery("SELECT e FROM Employee e");
+        List employees = (List<Employee>) query.getResultList();
+        return employees;
     }
 
     @Override
-    public Employee save(Employee entity) {
-        return null;
+    public Employee save(Employee entity) throws DataIntegrityViolationException {
+        Employee newEmployee = em.merge(entity);
+        return newEmployee;
     }
 
     @Override
-    public Employee update(Employee entity) {
-        return null;
+    public Employee update(Employee entity) throws DataIntegrityViolationException {
+        Employee newEmployee = em.merge(entity);
+        return newEmployee;
     }
 
     @Override
-    public void delete(Employee entity) {
-
+    public void delete(Employee entity) throws DataIntegrityViolationException {
+        em.remove(em.contains(entity) ? entity : em.merge(entity));
     }
 }

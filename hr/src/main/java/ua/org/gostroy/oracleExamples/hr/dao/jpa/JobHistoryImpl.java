@@ -1,16 +1,21 @@
 package ua.org.gostroy.oracleExamples.hr.dao.jpa;
 
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Repository;
 import ua.org.gostroy.oracleExamples.hr.dao.JobHistoryDao;
+import ua.org.gostroy.oracleExamples.hr.model.entity.JobHistory;
 import ua.org.gostroy.oracleExamples.hr.model.entity.JobHistory;
 import ua.org.gostroy.oracleExamples.hr.model.entity.JobHistoryPk;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
  * Created by Panov Sergey on 11/1/2014.
  */
+@Repository
 public class JobHistoryImpl implements JobHistoryDao {
 
     @PersistenceContext
@@ -18,26 +23,32 @@ public class JobHistoryImpl implements JobHistoryDao {
 
     @Override
     public JobHistory findById(JobHistoryPk id) {
-        return null;
+        JobHistory jobHistory = em.find(JobHistory.class, id);
+        return jobHistory;
     }
 
     @Override
     public List<JobHistory> findAll() {
-        return null;
+        Query query = em.createQuery("SELECT e FROM JOB_HISTORY e");
+//        Query query = em.createQuery("SELECT e FROM JobHistory e");
+        List jobHistories = (List<JobHistory>) query.getResultList();
+        return jobHistories;
     }
 
     @Override
-    public JobHistory save(JobHistory entity) {
-        return null;
+    public JobHistory save(JobHistory entity) throws DataIntegrityViolationException {
+        JobHistory newJobHistory = em.merge(entity);
+        return newJobHistory;
     }
 
     @Override
-    public JobHistory update(JobHistory entity) {
-        return null;
+    public JobHistory update(JobHistory entity) throws DataIntegrityViolationException {
+        JobHistory newJobHistory = em.merge(entity);
+        return newJobHistory;
     }
 
     @Override
-    public void delete(JobHistory entity) {
-
+    public void delete(JobHistory entity) throws DataIntegrityViolationException {
+        em.remove(em.contains(entity) ? entity : em.merge(entity));
     }
 }

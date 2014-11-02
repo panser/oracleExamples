@@ -1,5 +1,6 @@
 package ua.org.gostroy.oracleExamples.hr.dao;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Country;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public interface CountryDao {
     Country findById(String id);
     List<Country> findAll();
-    Country save(Country entity);
-    Country update(Country entity);
-    void delete(Country entity);
+    Country save(Country entity) throws DataIntegrityViolationException;
+    Country update(Country entity) throws DataIntegrityViolationException;
+    void delete(Country entity) throws DataIntegrityViolationException;
 }

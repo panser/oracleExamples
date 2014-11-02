@@ -13,21 +13,26 @@ public class Department {
     private Integer id;
     @Column(name = "DEPARTMENT_NAME", length = 30, nullable = false)
     private String name;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
     @JoinColumn(name = "MANAGER_ID")
     private Employee manager;
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
     @JoinColumn(name = "LOCATION_ID", referencedColumnName = "LOCATION_ID")
     private Location location;
 
     @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
+    @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "department")
     private Set<Employee> employees;
     @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
+    @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "department")
     private Set<JobHistory> jobHistories;
 
     public Department() {
+    }
+
+    public Department(Integer id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public Integer getId() {

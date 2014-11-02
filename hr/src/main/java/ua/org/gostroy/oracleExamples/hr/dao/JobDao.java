@@ -1,5 +1,6 @@
 package ua.org.gostroy.oracleExamples.hr.dao;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Job;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public interface JobDao {
     Job findById(String id);
     List<Job> findAll();
-    Job save(Job entity);
-    Job update(Job entity);
-    void delete(Job entity);
+    Job save(Job entity) throws DataIntegrityViolationException;
+    Job update(Job entity) throws DataIntegrityViolationException;
+    void delete(Job entity) throws DataIntegrityViolationException;
 }

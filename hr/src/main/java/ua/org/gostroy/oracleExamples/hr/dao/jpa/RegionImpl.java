@@ -1,15 +1,20 @@
 package ua.org.gostroy.oracleExamples.hr.dao.jpa;
 
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Repository;
 import ua.org.gostroy.oracleExamples.hr.dao.RegionDao;
+import ua.org.gostroy.oracleExamples.hr.model.entity.Region;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Region;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
  * Created by Panov Sergey on 11/1/2014.
  */
+@Repository
 public class RegionImpl implements RegionDao {
 
     @PersistenceContext
@@ -17,26 +22,32 @@ public class RegionImpl implements RegionDao {
 
     @Override
     public Region findById(Integer id) {
-        return null;
+        Region region = em.find(Region.class, id);
+        return region;
     }
 
     @Override
     public List<Region> findAll() {
-        return null;
+        Query query = em.createQuery("SELECT e FROM REGIONS e");
+//        Query query = em.createQuery("SELECT e FROM Region e");
+        List regions = (List<Region>) query.getResultList();
+        return regions;
     }
 
     @Override
-    public Region save(Region entity) {
-        return null;
+    public Region save(Region entity) throws DataIntegrityViolationException {
+        Region newRegion = em.merge(entity);
+        return newRegion;
     }
 
     @Override
-    public Region update(Region entity) {
-        return null;
+    public Region update(Region entity) throws DataIntegrityViolationException {
+        Region newRegion = em.merge(entity);
+        return newRegion;
     }
 
     @Override
-    public void delete(Region entity) {
-
+    public void delete(Region entity) throws DataIntegrityViolationException {
+        em.remove(em.contains(entity) ? entity : em.merge(entity));
     }
 }

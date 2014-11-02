@@ -13,14 +13,18 @@ public class Country {
     private String id;
     @Column(name = "COUNTRY_NAME", length = 40)
     private String name;
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
     @JoinColumn(name = "REGION_ID", referencedColumnName = "REGION_ID")
     private Region region;
     @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "country")
+    @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "country")
     private Set<Location> locations;
 
     public Country() {
+    }
+
+    public Country(String id) {
+        this.id = id;
     }
 
     public String getId() {

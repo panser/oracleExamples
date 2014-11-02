@@ -11,7 +11,7 @@ import java.util.Date;
 @IdClass(value = JobHistoryPk.class)
 public class JobHistory implements Serializable {
     @Id
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "EMPLOYEE_ID", nullable = false)
     private Employee employee;
     @Id
@@ -21,14 +21,21 @@ public class JobHistory implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "END_DATE", nullable = false)
     private Date endDate;
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
     @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = false)
     private Job job;
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
     @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID")
     private Department department;
 
     public JobHistory() {
+    }
+
+    public JobHistory(Employee employee, Date startDate, Date endDate, Job job) {
+        this.employee = employee;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.job = job;
     }
 
     public Employee getEmployee() {

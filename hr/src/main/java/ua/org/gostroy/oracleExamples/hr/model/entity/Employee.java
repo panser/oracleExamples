@@ -25,27 +25,34 @@ public class Employee {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "HIRE_DATE", nullable = false)
     private Date hireDate;
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = false)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
+    @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = true)
     private Job job;
     @Column(name = "SALARY", precision = 8, scale = 2)
     private BigDecimal salary;
     @Column(name = "COMMISSION_PCT", precision = 2, scale = 2)
     private BigDecimal commissionPct;
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
     @JoinColumn(name = "MANAGER_ID", referencedColumnName = "EMPLOYEE_ID")
     private Employee manager;
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
     @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID")
     private Department department;
 
-    @OneToOne(mappedBy = "manager", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "manager", cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
     private Department managerOfDepartment;
     @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
+    @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "employee")
     private Set<JobHistory> jobHistories;
 
     public Employee() {
+    }
+
+    public Employee(Integer id, String lastName, String email, Date hireDate) {
+        this.id = id;
+        this.lastName = lastName;
+        this.email = email;
+        this.hireDate = hireDate;
     }
 
     public Integer getId() {

@@ -19,14 +19,19 @@ public class Location {
     private String city;
     @Column(name = "STATE_PROVINCE", length = 25)
     private String stateProvince;
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
     @JoinColumn(name = "COUNTRY_ID", referencedColumnName = "COUNTRY_ID")
     private Country country;
     @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "location")
+    @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "location")
     private Set<Department> departments;
 
     public Location() {
+    }
+
+    public Location(Integer id, String city) {
+        this.id = id;
+        this.city = city;
     }
 
     public Integer getId() {

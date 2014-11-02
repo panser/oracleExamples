@@ -24,7 +24,6 @@ public class ContextTest {
     @PersistenceContext
     private EntityManager em;
 
-
     @Test
     public void testDataSourceContext(){
         Assert.assertNotNull(dataSource);

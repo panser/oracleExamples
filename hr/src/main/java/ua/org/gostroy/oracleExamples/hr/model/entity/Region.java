@@ -15,10 +15,14 @@ public class Region {
     private String name;
 
     @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "region")
+    @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "region")
     private Set<Country> countries;
 
     public Region() {
+    }
+
+    public Region(Integer id) {
+        this.id = id;
     }
 
     public Integer getId() {
