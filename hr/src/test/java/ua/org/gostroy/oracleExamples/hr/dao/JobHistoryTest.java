@@ -37,7 +37,6 @@ public class JobHistoryTest {
     @Before
     public void setup(){
         Integer testEmployeeId = 102;
-//        Integer testEmployeeId = 198;
         testEmployee = employeeDao.findById(testEmployeeId);
 
         testJobHistoryId = new JobHistoryPk(testEmployee,testEmployee.getHireDate());
