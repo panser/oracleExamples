@@ -12,16 +12,15 @@ import java.util.Date;
 })
 @Entity
 @Table(name = "JOB_HISTORY")
-@IdClass(value = JobHistoryPk.class)
-public class JobHistory implements Serializable {
-    @Id
+public class JobHistory {
+    @EmbeddedId
+    protected JobHistoryPk jobHistoryPK;
+
+    @MapsId("employeeId")
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "EMPLOYEE_ID", nullable = false)
     private Employee employee;
-    @Id
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "START_DATE", nullable = false)
-    private Date startDate;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "END_DATE", nullable = false)
     private Date endDate;
@@ -35,34 +34,17 @@ public class JobHistory implements Serializable {
     public JobHistory() {
     }
 
-    public JobHistory(Employee employee, Date startDate, Date endDate, Job job) {
+    public JobHistory(JobHistoryPk jobHistoryPK, Employee employee, Date endDate, Job job) {
+        this.jobHistoryPK = jobHistoryPK;
         this.employee = employee;
-        this.startDate = startDate;
         this.endDate = endDate;
         this.job = job;
     }
 
     @PreRemove
     private void preRemove() {
-        employee = null;
         job = null;
         department = null;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
     }
 
     public Date getEndDate() {
@@ -89,10 +71,25 @@ public class JobHistory implements Serializable {
         this.department = department;
     }
 
+    public JobHistoryPk getJobHistoryPK() {
+        return jobHistoryPK;
+    }
+
+    public void setJobHistoryPK(JobHistoryPk jobHistoryPK) {
+        this.jobHistoryPK = jobHistoryPK;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
     @Override
     public String toString() {
         return "JobHistory{" +
-                "startDate=" + startDate +
                 ", endDate=" + endDate +
                 '}';
     }

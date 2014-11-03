@@ -27,8 +27,9 @@ import java.util.List;
 @Transactional
 public class JobHistoryTest {
 
-    JobHistoryPk testJobHistoryId;
+    Integer testEmployeeId = 102;
     Employee testEmployee;
+    JobHistoryPk testJobHistoryId;
     @Autowired
     EmployeeDao employeeDao;
     @Autowired
@@ -36,16 +37,14 @@ public class JobHistoryTest {
 
     @Before
     public void setup(){
-        Integer testEmployeeId = 102;
         testEmployee = employeeDao.findById(testEmployeeId);
-
-        testJobHistoryId = new JobHistoryPk(testEmployee,testEmployee.getHireDate());
+        testJobHistoryId = new JobHistoryPk(testEmployeeId,testEmployee.getHireDate());
     }
 
     @Test
     public void findById(){
         JobHistory test = jobHistoryDao.findById(testJobHistoryId);
-        Assert.assertEquals(testJobHistoryId.getEmployee(), test.getEmployee());
+        Assert.assertEquals(testJobHistoryId.getEmployeeId(), test.getEmployee().getId());
     }
 
     @Test
@@ -56,7 +55,8 @@ public class JobHistoryTest {
 
     @Test
     public void save(){
-        JobHistory test = new JobHistory(testEmployee,new Date(), new Date(),testEmployee.getJob());
+        JobHistoryPk jobHistoryPk = new JobHistoryPk(testEmployeeId, new Date());
+        JobHistory test = new JobHistory(jobHistoryPk, testEmployee, new Date(),testEmployee.getJob());
         JobHistory testNew = jobHistoryDao.save(test);
         Assert.assertNotNull(testNew.getEmployee());
     }
