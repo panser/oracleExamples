@@ -3,6 +3,7 @@ package ua.org.gostroy.oracleExamples.hr.model.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -28,7 +29,7 @@ public class Employee {
     private Department department;
 
     private Department managerOfDepartment;
-    private Set<JobHistory> jobHistories;
+    private Set<JobHistory> jobHistories = new HashSet<>(0);
 
     public Employee() {
     }

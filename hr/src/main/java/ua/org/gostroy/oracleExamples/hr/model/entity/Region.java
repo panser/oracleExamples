@@ -1,6 +1,7 @@
 package ua.org.gostroy.oracleExamples.hr.model.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -15,7 +16,7 @@ public class Region {
     private Integer id;
     private String name;
 
-    private Set<Country> countries;
+    private Set<Country> countries = new HashSet<>(0);
 
     public Region() {
     }

@@ -1,6 +1,7 @@
 package ua.org.gostroy.oracleExamples.hr.model.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -18,7 +19,7 @@ public class Location {
     private String city;
     private String stateProvince;
     private Country country;
-    private Set<Department> departments;
+    private Set<Department> departments = new HashSet<>(0);
 
     public Location() {
     }
