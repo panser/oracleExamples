@@ -48,8 +48,8 @@ public class Employee {
         manager = null;
         department = null;
         managerOfDepartment = null;
-        for(JobHistory jobHistory : jobHistories){
-            jobHistories = null;
+        for(Employee employee : employeesesOfThisManager){
+            employee = null;
         }
     }
 
@@ -159,7 +159,7 @@ public class Employee {
         this.department = department;
     }
 
-    @OneToOne(mappedBy = "manager", cascade={})
+    @OneToOne(mappedBy = "manager")
     public Department getManagerOfDepartment() {
         return managerOfDepartment;
     }
@@ -177,7 +177,7 @@ public class Employee {
         this.employeesesOfThisManager = employeesesOfThisManager;
     }
 
-    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "employee")
+    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "employee", orphanRemoval = true)
     public Set<JobHistory> getJobHistories() {
         return jobHistories;
     }

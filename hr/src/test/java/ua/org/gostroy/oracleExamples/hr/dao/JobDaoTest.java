@@ -22,7 +22,7 @@ import java.util.List;
 @Transactional
 public class JobDaoTest {
 
-    private String testJobId = "AD_PRES";
+    private String testJobId = "IT_PROG";
     @Autowired
     JobDao jobDao;
 
@@ -54,7 +54,6 @@ public class JobDaoTest {
     }
 
     @Test
-//    @Ignore
     public void delete(){
         Job test = jobDao.findById(testJobId);
         Integer sizeBeforeDelete = jobDao.findAll().size();

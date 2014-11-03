@@ -30,9 +30,6 @@ public class Job {
 
     @PreRemove
     private void preRemove() {
-        for(JobHistory jobHistory : jobHistories){
-            jobHistories = null;
-        }
     }
 
     @Id
@@ -81,7 +78,7 @@ public class Job {
         this.employees = employees;
     }
 
-    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "job")
+    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "job", orphanRemoval = true)
     public Set<JobHistory> getJobHistories() {
         return jobHistories;
     }

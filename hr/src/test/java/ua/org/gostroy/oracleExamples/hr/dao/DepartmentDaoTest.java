@@ -54,7 +54,6 @@ public class DepartmentDaoTest {
     }
 
     @Test
-    @Ignore
     public void delete(){
         Department test = departmentDao.findById(testDepartmentId);
         Integer sizeBeforeDelete = departmentDao.findAll().size();

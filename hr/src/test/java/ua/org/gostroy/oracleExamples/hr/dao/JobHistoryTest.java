@@ -70,7 +70,6 @@ public class JobHistoryTest {
     }
 
     @Test
-    @Ignore
     public void delete(){
         JobHistory test = jobHistoryDao.findById(testJobHistoryId);
         Integer sizeBeforeDelete = jobHistoryDao.findAll().size();
