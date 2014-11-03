@@ -7,9 +7,10 @@ import java.util.Set;
  * Created by Panov Sergey on 11/1/2014.
  */
 @NamedQueries({
-        @NamedQuery(name = "Department.findAll", query = "select o from DEPARTMENTS o")
+        @NamedQuery(name = "Department.findAll", query = "select o from Department o")
 })
-@Entity(name = "DEPARTMENTS")
+@Entity
+@Table(name = "DEPARTMENTS")
 public class Department {
     @Id
     @Column(name = "DEPARTMENT_ID", precision = 4)

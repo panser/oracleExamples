@@ -8,9 +8,10 @@ import java.util.Date;
  * Created by Panov Sergey on 11/1/2014.
  */
 @NamedQueries({
-        @NamedQuery(name = "JobHistory.findAll", query = "select o from JOB_HISTORY o")
+        @NamedQuery(name = "JobHistory.findAll", query = "select o from JobHistory o")
 })
-@Entity(name = "JOB_HISTORY")
+@Entity
+@Table(name = "JOB_HISTORY")
 @IdClass(value = JobHistoryPk.class)
 public class JobHistory implements Serializable {
     @Id

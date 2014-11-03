@@ -7,9 +7,10 @@ import java.util.Set;
  * Created by Panov Sergey on 10/31/2014.
  */
 @NamedQueries({
-        @NamedQuery(name = "Region.findAll", query = "select o from REGIONS o")
+        @NamedQuery(name = "Region.findAll", query = "select o from Region o")
 })
-@Entity(name = "REGIONS")
+@Entity
+@Table(name = "REGIONS")
 public class Region {
     @Id
     @Column(name = "REGION_ID")
