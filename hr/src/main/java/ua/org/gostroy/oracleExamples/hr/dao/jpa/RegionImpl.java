@@ -28,8 +28,7 @@ public class RegionImpl implements RegionDao {
 
     @Override
     public List<Region> findAll() {
-        Query query = em.createQuery("SELECT e FROM REGIONS e");
-//        Query query = em.createQuery("SELECT e FROM Region e");
+        Query query = em.createNamedQuery("Region.findAll");
         List regions = (List<Region>) query.getResultList();
         return regions;
     }

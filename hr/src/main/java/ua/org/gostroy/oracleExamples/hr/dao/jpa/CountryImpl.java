@@ -30,8 +30,8 @@ public class CountryImpl implements CountryDao {
 
     @Override
     public List<Country> findAll() {
-        Query query = em.createQuery("SELECT e FROM COUNTRIES e");
-//        Query query = em.createQuery("SELECT e FROM Country e");
+        Query query = em.createNamedQuery("Country.findAll");
+//        Query query = em.createNamedQuery("Country.findAll2");
         List countries = (List<Country>) query.getResultList();
         return countries;
     }

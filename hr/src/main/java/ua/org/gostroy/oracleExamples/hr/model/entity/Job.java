@@ -6,6 +6,9 @@ import java.util.Set;
 /**
  * Created by Panov Sergey on 11/1/2014.
  */
+@NamedQueries({
+        @NamedQuery(name = "Job.findAll", query = "select o from JOBS o")
+})
 @Entity(name = "JOBS")
 public class Job {
     @Id

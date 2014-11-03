@@ -28,8 +28,7 @@ public class EmployeeImpl implements EmployeeDao{
 
     @Override
     public List<Employee> findAll() {
-        Query query = em.createQuery("SELECT e FROM EMPLOYEES e");
-//        Query query = em.createQuery("SELECT e FROM Employee e");
+        Query query = em.createNamedQuery("Employee.findAll");
         List employees = (List<Employee>) query.getResultList();
         return employees;
     }

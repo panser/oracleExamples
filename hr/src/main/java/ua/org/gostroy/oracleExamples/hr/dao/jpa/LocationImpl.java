@@ -28,8 +28,7 @@ public class LocationImpl implements LocationDao {
 
     @Override
     public List<Location> findAll() {
-        Query query = em.createQuery("SELECT e FROM LOCATIONS e");
-//        Query query = em.createQuery("SELECT e FROM Location e");
+        Query query = em.createNamedQuery("Location.findAll");
         List locations = (List<Location>) query.getResultList();
         return locations;
     }

@@ -29,8 +29,7 @@ public class JobHistoryImpl implements JobHistoryDao {
 
     @Override
     public List<JobHistory> findAll() {
-        Query query = em.createQuery("SELECT e FROM JOB_HISTORY e");
-//        Query query = em.createQuery("SELECT e FROM JobHistory e");
+        Query query = em.createNamedQuery("JobHistory.findAll");
         List jobHistories = (List<JobHistory>) query.getResultList();
         return jobHistories;
     }

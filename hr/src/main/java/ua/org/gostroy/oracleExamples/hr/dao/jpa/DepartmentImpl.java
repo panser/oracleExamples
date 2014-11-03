@@ -27,8 +27,7 @@ public class DepartmentImpl implements DepartmentDao {
 
     @Override
     public List<Department> findAll() {
-        Query query = em.createQuery("SELECT e FROM DEPARTMENTS e");
-//        Query query = em.createQuery("SELECT e FROM Department e");
+        Query query = em.createNamedQuery("Department.findAll");
         List departments = (List<Department>) query.getResultList();
         return departments;
     }

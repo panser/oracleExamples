@@ -6,6 +6,13 @@ import java.util.Set;
 /**
  * Created by Panov Sergey on 10/31/2014.
  */
+@NamedQueries({
+        @NamedQuery(name = "Country.findAll", query = "select o from COUNTRIES o")
+//        @NamedQuery(name = "Country.findAll", query = "select o from Country o")
+})
+@NamedNativeQueries({
+        @NamedNativeQuery(name = "Country.findAll2", query = "select * from COUNTRIES")
+})
 @Entity(name = "COUNTRIES")
 public class Country {
     @Id
