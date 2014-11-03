@@ -21,11 +21,11 @@ public class Location {
     private String city;
     @Column(name = "STATE_PROVINCE", length = 25)
     private String stateProvince;
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
     @JoinColumn(name = "COUNTRY_ID", referencedColumnName = "COUNTRY_ID")
     private Country country;
     @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "location")
+    @OneToMany(cascade={}, mappedBy = "location")
     private Set<Department> departments;
 
     public Location() {

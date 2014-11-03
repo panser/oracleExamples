@@ -21,10 +21,10 @@ public class JobHistory implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "END_DATE", nullable = false)
     private Date endDate;
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
     @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = false)
     private Job job;
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
     @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID")
     private Department department;
 

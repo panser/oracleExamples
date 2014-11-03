@@ -27,24 +27,24 @@ public class Employee {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "HIRE_DATE", nullable = false)
     private Date hireDate;
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
     @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = false)
     private Job job;
     @Column(name = "SALARY", precision = 8, scale = 2)
     private BigDecimal salary;
     @Column(name = "COMMISSION_PCT", precision = 2, scale = 2)
     private BigDecimal commissionPct;
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
     @JoinColumn(name = "MANAGER_ID", referencedColumnName = "EMPLOYEE_ID")
     private Employee manager;
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
     @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID")
     private Department department;
 
-    @OneToOne(mappedBy = "manager", cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
+    @OneToOne(mappedBy = "manager", cascade={})
     private Department managerOfDepartment;
     @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "employee")
+    @OneToMany(cascade={}, mappedBy = "employee")
     private Set<JobHistory> jobHistories;
 
     public Employee() {

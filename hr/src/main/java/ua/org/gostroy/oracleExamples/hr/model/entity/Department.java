@@ -15,18 +15,18 @@ public class Department {
     private Integer id;
     @Column(name = "DEPARTMENT_NAME", length = 30, nullable = false)
     private String name;
-    @OneToOne(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, orphanRemoval = true)
+    @OneToOne(cascade={}, orphanRemoval = true)
     @JoinColumn(name = "MANAGER_ID")
     private Employee manager;
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
     @JoinColumn(name = "LOCATION_ID", referencedColumnName = "LOCATION_ID")
     private Location location;
 
     @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "department", orphanRemoval = true)
+    @OneToMany(cascade={}, mappedBy = "department", orphanRemoval = true)
     private Set<Employee> employees;
     @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "department")
+    @OneToMany(cascade={}, mappedBy = "department")
     private Set<JobHistory> jobHistories;
 
     public Department() {
