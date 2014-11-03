@@ -23,6 +23,7 @@ import java.util.List;
 public class CountryDaoTest {
 
     private String testCountryId = "UK";
+    private String testCountryName = "United Kingdom";
     @Autowired
     CountryDao countryDao;
 
@@ -61,4 +62,11 @@ public class CountryDaoTest {
         Integer sizeAfterDelete = countryDao.findAll().size();
         Assert.assertTrue(sizeBeforeDelete == sizeAfterDelete + 1);
     }
+
+    @Test
+    public void findByName(){
+        Country test = countryDao.findByName(testCountryName);
+        Assert.assertEquals(testCountryName, test.getName());
+    }
+
 }

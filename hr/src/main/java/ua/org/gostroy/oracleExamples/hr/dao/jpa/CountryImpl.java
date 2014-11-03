@@ -52,4 +52,12 @@ public class CountryImpl implements CountryDao {
     public void delete(Country entity) throws DataIntegrityViolationException {
         em.remove(em.contains(entity) ? entity : em.merge(entity));
     }
+
+    @Override
+    public Country findByName(String name) {
+        Query query = em.createNamedQuery("Country.findByName");
+        query.setParameter("name", name);
+        Country country = (Country)query.getSingleResult();
+        return country;
+    }
 }

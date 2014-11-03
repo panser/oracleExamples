@@ -7,7 +7,8 @@ import java.util.Set;
  * Created by Panov Sergey on 10/31/2014.
  */
 @NamedQueries({
-        @NamedQuery(name = "Country.findAll", query = "select o from Country o")
+        @NamedQuery(name = "Country.findAll", query = "select o from Country o"),
+        @NamedQuery(name = "Country.findByName", query = "SELECT o FROM Country o WHERE o.name = :name"),
 })
 @NamedNativeQueries({
         @NamedNativeQuery(name = "Country.findAll2", query = "select * from COUNTRIES")
