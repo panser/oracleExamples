@@ -26,7 +26,7 @@ public class Region {
     }
 
     @Id
-    @Column(name = "REGION_ID")
+    @Column(name = "REGION_ID", unique = true, nullable = false)
     public Integer getId() {
         return id;
     }
@@ -44,8 +44,7 @@ public class Region {
         this.name = name;
     }
 
-    @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={}, mappedBy = "region", orphanRemoval = true)
+    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "region", orphanRemoval = true)
     public Set<Country> getCountries() {
         return countries;
     }

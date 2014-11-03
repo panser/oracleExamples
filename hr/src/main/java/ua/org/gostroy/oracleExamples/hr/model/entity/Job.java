@@ -36,7 +36,7 @@ public class Job {
     }
 
     @Id
-    @Column(name = "JOB_ID", length = 10)
+    @Column(name = "JOB_ID", length = 10, unique = true, nullable = false)
     public String getId() {
         return id;
     }
@@ -72,8 +72,7 @@ public class Job {
         this.maxSalary = maxSalary;
     }
 
-    @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={}, mappedBy = "job", orphanRemoval = true)
+    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "job", orphanRemoval = true)
     public Set<Employee> getEmployees() {
         return employees;
     }
@@ -82,8 +81,7 @@ public class Job {
         this.employees = employees;
     }
 
-    @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={}, mappedBy = "job")
+    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "job")
     public Set<JobHistory> getJobHistories() {
         return jobHistories;
     }

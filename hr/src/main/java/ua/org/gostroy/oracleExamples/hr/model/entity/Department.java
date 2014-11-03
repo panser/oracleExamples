@@ -37,7 +37,7 @@ public class Department {
     }
 
     @Id
-    @Column(name = "DEPARTMENT_ID", precision = 4)
+    @Column(name = "DEPARTMENT_ID", precision = 4, unique = true, nullable = false)
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="DEP_SEQ")
     @SequenceGenerator(name="DEP_SEQ", sequenceName="DEPARTMENTS_SEQ")
     public Integer getId() {
@@ -77,8 +77,7 @@ public class Department {
         this.location = location;
     }
 
-    @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={}, mappedBy = "department", orphanRemoval = true)
+    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "department", orphanRemoval = true)
     public Set<Employee> getEmployees() {
         return employees;
     }
@@ -87,8 +86,7 @@ public class Department {
         this.employees = employees;
     }
 
-    @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={}, mappedBy = "department")
+    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "department")
     public Set<JobHistory> getJobHistories() {
         return jobHistories;
     }

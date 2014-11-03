@@ -29,6 +29,7 @@ public class Employee {
     private Department department;
 
     private Department managerOfDepartment;
+    private Set<Employee> employeesesOfThisManager = new HashSet<>(0);
     private Set<JobHistory> jobHistories = new HashSet<>(0);
 
     public Employee() {
@@ -53,7 +54,7 @@ public class Employee {
     }
 
     @Id
-    @Column(name = "EMPLOYEE_ID", precision = 6)
+    @Column(name = "EMPLOYEE_ID", precision = 6, unique = true, nullable = false)
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EMP_SEQ")
     @SequenceGenerator(name="EMP_SEQ", allocationSize=10, sequenceName="EMPLOYEES_SEQ")
     public Integer getId() {
@@ -167,8 +168,16 @@ public class Employee {
         this.managerOfDepartment = managerOfDepartment;
     }
 
-    @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={}, mappedBy = "employee")
+    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "manager")
+    public Set<Employee> getEmployeesesOfThisManager() {
+        return employeesesOfThisManager;
+    }
+
+    public void setEmployeesesOfThisManager(Set<Employee> employeesesOfThisManager) {
+        this.employeesesOfThisManager = employeesesOfThisManager;
+    }
+
+    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "employee")
     public Set<JobHistory> getJobHistories() {
         return jobHistories;
     }

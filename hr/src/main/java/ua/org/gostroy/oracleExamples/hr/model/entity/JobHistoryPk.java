@@ -10,8 +10,6 @@ import java.util.Date;
 @Embeddable
 public class JobHistoryPk implements Serializable {
     private Integer employeeId;
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "START_DATE", nullable = false)
     private Date startDate;
 
     public JobHistoryPk() {
@@ -30,6 +28,7 @@ public class JobHistoryPk implements Serializable {
         this.employeeId = employeeId;
     }
 
+    @Temporal(TemporalType.TIMESTAMP)
     public Date getStartDate() {
         return startDate;
     }

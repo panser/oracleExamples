@@ -13,22 +13,12 @@ import java.util.Date;
 @Entity
 @Table(name = "JOB_HISTORY")
 public class JobHistory {
-    @EmbeddedId
     protected JobHistoryPk jobHistoryPK;
 
-    @MapsId("employeeId")
-    @ManyToOne(optional = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "EMPLOYEE_ID", nullable = false)
     private Employee employee;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "END_DATE", nullable = false)
     private Date endDate;
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
-    @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = false)
     private Job job;
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
-    @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID")
     private Department department;
 
     public JobHistory() {
@@ -48,6 +38,8 @@ public class JobHistory {
         department = null;
     }
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "END_DATE", nullable = false)
     public Date getEndDate() {
         return endDate;
     }
@@ -56,6 +48,8 @@ public class JobHistory {
         this.endDate = endDate;
     }
 
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
+    @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = false)
     public Job getJob() {
         return job;
     }
@@ -64,6 +58,8 @@ public class JobHistory {
         this.job = job;
     }
 
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
+    @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID")
     public Department getDepartment() {
         return department;
     }
@@ -72,6 +68,10 @@ public class JobHistory {
         this.department = department;
     }
 
+    @EmbeddedId
+    @AttributeOverrides({
+            @AttributeOverride(name = "employeeId", column = @Column(name = "EMPLOYEE_ID", nullable = false, precision = 6, scale = 0)),
+            @AttributeOverride(name = "startDate", column = @Column(name = "START_DATE", nullable = false, columnDefinition="TIMESTAMP")) })
     public JobHistoryPk getJobHistoryPK() {
         return jobHistoryPK;
     }
@@ -80,6 +80,9 @@ public class JobHistory {
         this.jobHistoryPK = jobHistoryPK;
     }
 
+    @MapsId("employeeId")
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "EMPLOYEE_ID", nullable = false)
     public Employee getEmployee() {
         return employee;
     }

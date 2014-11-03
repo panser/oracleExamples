@@ -30,7 +30,7 @@ public class Country{
     }
 
     @Id
-    @Column(name = "COUNTRY_ID", columnDefinition = "char", length = 2)
+    @Column(name = "COUNTRY_ID", columnDefinition = "CHAR", length = 2, unique = true, nullable = false)
     public String getId() {
         return id;
     }
@@ -58,8 +58,7 @@ public class Country{
         this.region = region;
     }
 
-    @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(mappedBy = "country", orphanRemoval = true)
+    @OneToMany(fetch= FetchType.LAZY, mappedBy = "country", orphanRemoval = true)
     public Set<Location> getLocations() {
         return locations;
     }

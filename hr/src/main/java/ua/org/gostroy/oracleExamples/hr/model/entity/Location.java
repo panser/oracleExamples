@@ -36,7 +36,7 @@ public class Location {
     }
 
     @Id
-    @Column(name = "LOCATION_ID", precision = 4)
+    @Column(name = "LOCATION_ID", precision = 4, unique = true, nullable = false)
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="LOC_SEQ")
     @SequenceGenerator(name="LOC_SEQ", sequenceName="LOCATIONS_SEQ")
     public Integer getId() {
@@ -93,8 +93,7 @@ public class Location {
         this.country = country;
     }
 
-    @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={}, mappedBy = "location")
+    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "location")
     public Set<Department> getDepartments() {
         return departments;
     }
