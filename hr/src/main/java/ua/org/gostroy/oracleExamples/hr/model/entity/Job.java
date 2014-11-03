@@ -19,7 +19,7 @@ public class Job {
     private Integer maxSalary;
 
     @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "job")
+    @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "job", orphanRemoval = true)
     private Set<Employee> employees;
     @ElementCollection(fetch= FetchType.LAZY)
     @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "job")
@@ -30,6 +30,13 @@ public class Job {
 
     public Job(String id) {
         this.id = id;
+    }
+
+    @PreRemove
+    private void preRemove() {
+        for(JobHistory jobHistory : jobHistories){
+            jobHistories = null;
+        }
     }
 
     public String getId() {

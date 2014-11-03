@@ -10,6 +10,8 @@ import java.util.Set;
 public class Location {
     @Id
     @Column(name = "LOCATION_ID", precision = 4)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="LOC_SEQ")
+    @SequenceGenerator(name="LOC_SEQ", sequenceName="LOCATIONS_SEQ")
     private Integer id;
     @Column(name = "STREET_ADDRESS", length = 40)
     private String streetAddress;
@@ -29,9 +31,15 @@ public class Location {
     public Location() {
     }
 
-    public Location(Integer id, String city) {
-        this.id = id;
+    public Location(String city) {
         this.city = city;
+    }
+
+    @PreRemove
+    private void preRemove() {
+        for (Department d : departments) {
+            d.setLocation(null);
+        }
     }
 
     public Integer getId() {

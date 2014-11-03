@@ -10,10 +10,12 @@ import java.util.Set;
 public class Department {
     @Id
     @Column(name = "DEPARTMENT_ID", precision = 4)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="DEP_SEQ")
+    @SequenceGenerator(name="DEP_SEQ", sequenceName="DEPARTMENTS_SEQ")
     private Integer id;
     @Column(name = "DEPARTMENT_NAME", length = 30, nullable = false)
     private String name;
-    @OneToOne(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
+    @OneToOne(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, orphanRemoval = true)
     @JoinColumn(name = "MANAGER_ID")
     private Employee manager;
     @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
@@ -21,7 +23,7 @@ public class Department {
     private Location location;
 
     @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "department")
+    @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "department", orphanRemoval = true)
     private Set<Employee> employees;
     @ElementCollection(fetch= FetchType.LAZY)
     @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "department")
@@ -30,9 +32,16 @@ public class Department {
     public Department() {
     }
 
-    public Department(Integer id, String name) {
-        this.id = id;
+    public Department(String name) {
         this.name = name;
+    }
+
+    @PreRemove
+    private void preRemove() {
+        location = null;
+        for(JobHistory jobHistory : jobHistories){
+            jobHistories = null;
+        }
     }
 
     public Integer getId() {

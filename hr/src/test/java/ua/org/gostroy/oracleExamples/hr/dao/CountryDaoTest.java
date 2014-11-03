@@ -54,7 +54,6 @@ public class CountryDaoTest {
     }
 
     @Test
-    @Ignore
     public void delete(){
         Country test = countryDao.findById(testCountryId);
         Integer sizeBeforeDelete = countryDao.findAll().size();

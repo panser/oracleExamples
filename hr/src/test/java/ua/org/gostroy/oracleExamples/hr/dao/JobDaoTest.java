@@ -54,7 +54,7 @@ public class JobDaoTest {
     }
 
     @Test
-    @Ignore
+//    @Ignore
     public void delete(){
         Job test = jobDao.findById(testJobId);
         Integer sizeBeforeDelete = jobDao.findAll().size();

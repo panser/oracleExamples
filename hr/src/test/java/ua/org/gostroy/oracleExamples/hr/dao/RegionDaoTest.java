@@ -54,7 +54,6 @@ public class RegionDaoTest {
     }
 
     @Test
-    @Ignore
     public void delete(){
         Region test = regionDao.findById(testRegionId);
         Integer sizeBeforeDelete = regionDao.findAll().size();

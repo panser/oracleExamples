@@ -38,6 +38,13 @@ public class JobHistory implements Serializable {
         this.job = job;
     }
 
+    @PreRemove
+    private void preRemove() {
+        employee = null;
+        job = null;
+        department = null;
+    }
+
     public Employee getEmployee() {
         return employee;
     }

@@ -40,7 +40,7 @@ public class LocationDaoTest {
 
     @Test
     public void save(){
-        Location test = new Location(987654, "TEST");
+        Location test = new Location("TEST");
         Location testNew = locationDao.save(test);
         Assert.assertNotNull(testNew.getId());
     }
@@ -54,7 +54,6 @@ public class LocationDaoTest {
     }
 
     @Test
-    @Ignore
     public void delete(){
         Location test = locationDao.findById(testLocationId);
         Integer sizeBeforeDelete = locationDao.findAll().size();

@@ -40,7 +40,7 @@ public class DepartmentDaoTest {
 
     @Test
     public void save(){
-        Department test = new Department(987654, "TEST");
+        Department test = new Department("TEST");
         Department testNew = departmentDao.save(test);
         Assert.assertNotNull(testNew.getId());
     }

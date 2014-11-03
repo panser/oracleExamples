@@ -15,7 +15,7 @@ public class Region {
     private String name;
 
     @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE}, mappedBy = "region")
+    @OneToMany(cascade={}, mappedBy = "region", orphanRemoval = true)
     private Set<Country> countries;
 
     public Region() {

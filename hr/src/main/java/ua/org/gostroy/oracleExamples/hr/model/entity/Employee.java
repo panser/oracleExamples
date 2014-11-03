@@ -12,6 +12,8 @@ import java.util.Set;
 public class Employee {
     @Id
     @Column(name = "EMPLOYEE_ID", precision = 6)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EMP_SEQ")
+    @SequenceGenerator(name="EMP_SEQ", allocationSize=10, sequenceName="EMPLOYEES_SEQ")
     private Integer id;
     @Column(name = "FIRST_NAME", length = 20)
     private String firstName;
@@ -26,7 +28,7 @@ public class Employee {
     @Column(name = "HIRE_DATE", nullable = false)
     private Date hireDate;
     @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.MERGE})
-    @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = true)
+    @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = false)
     private Job job;
     @Column(name = "SALARY", precision = 8, scale = 2)
     private BigDecimal salary;
@@ -48,11 +50,22 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Integer id, String lastName, String email, Date hireDate) {
-        this.id = id;
+    public Employee(String lastName, String email, Date hireDate, Job job) {
         this.lastName = lastName;
         this.email = email;
         this.hireDate = hireDate;
+        this.job = job;
+    }
+
+    @PreRemove
+    private void preRemove() {
+        job = null;
+        manager = null;
+        department = null;
+        managerOfDepartment = null;
+        for(JobHistory jobHistory : jobHistories){
+            jobHistories = null;
+        }
     }
 
     public Integer getId() {

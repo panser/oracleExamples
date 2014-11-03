@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Employee;
+import ua.org.gostroy.oracleExamples.hr.model.entity.Job;
 
 import java.util.Date;
 import java.util.List;
@@ -24,8 +25,11 @@ import java.util.List;
 public class EmployeeDaoTest {
 
     private Integer testEmployeeId = 198;
+    private String testJobId = "AD_PRES";
     @Autowired
     EmployeeDao employeeDao;
+    @Autowired
+    JobDao jobDao;
 
     @Test
     public void findById(){
@@ -41,7 +45,8 @@ public class EmployeeDaoTest {
 
     @Test
     public void save(){
-        Employee test = new Employee(987654, "TEST", "TEST@GMAIL.COM", new Date());
+        Job testJob = jobDao.findById(testJobId);
+        Employee test = new Employee("TEST", "TEST@GMAIL.COM", new Date(), testJob);
         Employee testNew = employeeDao.save(test);
         Assert.assertNotNull(testNew.getId());
     }
@@ -55,7 +60,6 @@ public class EmployeeDaoTest {
     }
 
     @Test
-    @Ignore
     public void delete(){
         Employee test = employeeDao.findById(testEmployeeId);
         Integer sizeBeforeDelete = employeeDao.findAll().size();
