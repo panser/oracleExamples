@@ -14,41 +14,20 @@ import java.util.Set;
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
-    @Id
-    @Column(name = "EMPLOYEE_ID", precision = 6)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EMP_SEQ")
-    @SequenceGenerator(name="EMP_SEQ", allocationSize=10, sequenceName="EMPLOYEES_SEQ")
     private Integer id;
-    @Column(name = "FIRST_NAME", length = 20)
     private String firstName;
-    @Column(name = "LAST_NAME", length = 25, nullable = false)
     private String lastName;
-    @Column(name = "EMAIL", length = 25, nullable = false, unique = true)
     private String email;
-    @Column(name = "PHONE_NUMBER", length = 20)
     private String phoneNumber;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "HIRE_DATE", nullable = false)
     private Date hireDate;
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
-    @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = false)
     private Job job;
-    @Column(name = "SALARY", precision = 8, scale = 2)
     private BigDecimal salary;
-    @Column(name = "COMMISSION_PCT", precision = 2, scale = 2)
     private BigDecimal commissionPct;
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
-    @JoinColumn(name = "MANAGER_ID", referencedColumnName = "EMPLOYEE_ID")
     private Employee manager;
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
-    @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID")
     private Department department;
 
-    @OneToOne(mappedBy = "manager", cascade={})
     private Department managerOfDepartment;
-    @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={}, mappedBy = "employee")
     private Set<JobHistory> jobHistories;
 
     public Employee() {
@@ -72,6 +51,10 @@ public class Employee {
         }
     }
 
+    @Id
+    @Column(name = "EMPLOYEE_ID", precision = 6)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EMP_SEQ")
+    @SequenceGenerator(name="EMP_SEQ", allocationSize=10, sequenceName="EMPLOYEES_SEQ")
     public Integer getId() {
         return id;
     }
@@ -80,6 +63,7 @@ public class Employee {
         this.id = id;
     }
 
+    @Column(name = "FIRST_NAME", length = 20)
     public String getFirstName() {
         return firstName;
     }
@@ -88,6 +72,7 @@ public class Employee {
         this.firstName = firstName;
     }
 
+    @Column(name = "LAST_NAME", length = 25, nullable = false)
     public String getLastName() {
         return lastName;
     }
@@ -96,6 +81,7 @@ public class Employee {
         this.lastName = lastName;
     }
 
+    @Column(name = "EMAIL", length = 25, nullable = false, unique = true)
     public String getEmail() {
         return email;
     }
@@ -104,6 +90,7 @@ public class Employee {
         this.email = email;
     }
 
+    @Column(name = "PHONE_NUMBER", length = 20)
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -112,6 +99,8 @@ public class Employee {
         this.phoneNumber = phoneNumber;
     }
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "HIRE_DATE", nullable = false)
     public Date getHireDate() {
         return hireDate;
     }
@@ -120,6 +109,8 @@ public class Employee {
         this.hireDate = hireDate;
     }
 
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
+    @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = false)
     public Job getJob() {
         return job;
     }
@@ -128,6 +119,7 @@ public class Employee {
         this.job = job;
     }
 
+    @Column(name = "SALARY", precision = 8, scale = 2)
     public BigDecimal getSalary() {
         return salary;
     }
@@ -136,6 +128,7 @@ public class Employee {
         this.salary = salary;
     }
 
+    @Column(name = "COMMISSION_PCT", precision = 2, scale = 2)
     public BigDecimal getCommissionPct() {
         return commissionPct;
     }
@@ -144,6 +137,8 @@ public class Employee {
         this.commissionPct = commissionPct;
     }
 
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
+    @JoinColumn(name = "MANAGER_ID", referencedColumnName = "EMPLOYEE_ID")
     public Employee getManager() {
         return manager;
     }
@@ -152,6 +147,8 @@ public class Employee {
         this.manager = manager;
     }
 
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
+    @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID")
     public Department getDepartment() {
         return department;
     }
@@ -160,6 +157,7 @@ public class Employee {
         this.department = department;
     }
 
+    @OneToOne(mappedBy = "manager", cascade={})
     public Department getManagerOfDepartment() {
         return managerOfDepartment;
     }
@@ -168,6 +166,8 @@ public class Employee {
         this.managerOfDepartment = managerOfDepartment;
     }
 
+    @ElementCollection(fetch= FetchType.LAZY)
+    @OneToMany(cascade={}, mappedBy = "employee")
     public Set<JobHistory> getJobHistories() {
         return jobHistories;
     }

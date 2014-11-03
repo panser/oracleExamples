@@ -43,6 +43,7 @@ public class JobHistory {
 
     @PreRemove
     private void preRemove() {
+        employee = null;
         job = null;
         department = null;
     }

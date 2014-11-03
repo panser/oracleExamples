@@ -12,25 +12,12 @@ import java.util.Set;
 @Entity
 @Table(name = "DEPARTMENTS")
 public class Department {
-    @Id
-    @Column(name = "DEPARTMENT_ID", precision = 4)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="DEP_SEQ")
-    @SequenceGenerator(name="DEP_SEQ", sequenceName="DEPARTMENTS_SEQ")
     private Integer id;
-    @Column(name = "DEPARTMENT_NAME", length = 30, nullable = false)
     private String name;
-    @OneToOne(cascade={}, orphanRemoval = true)
-    @JoinColumn(name = "MANAGER_ID")
     private Employee manager;
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
-    @JoinColumn(name = "LOCATION_ID", referencedColumnName = "LOCATION_ID")
     private Location location;
 
-    @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={}, mappedBy = "department", orphanRemoval = true)
     private Set<Employee> employees;
-    @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={}, mappedBy = "department")
     private Set<JobHistory> jobHistories;
 
     public Department() {
@@ -48,6 +35,10 @@ public class Department {
         }
     }
 
+    @Id
+    @Column(name = "DEPARTMENT_ID", precision = 4)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="DEP_SEQ")
+    @SequenceGenerator(name="DEP_SEQ", sequenceName="DEPARTMENTS_SEQ")
     public Integer getId() {
         return id;
     }
@@ -56,6 +47,7 @@ public class Department {
         this.id = id;
     }
 
+    @Column(name = "DEPARTMENT_NAME", length = 30, nullable = false)
     public String getName() {
         return name;
     }
@@ -64,6 +56,8 @@ public class Department {
         this.name = name;
     }
 
+    @OneToOne(cascade={}, orphanRemoval = true)
+    @JoinColumn(name = "MANAGER_ID")
     public Employee getManager() {
         return manager;
     }
@@ -72,6 +66,8 @@ public class Department {
         this.manager = manager;
     }
 
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
+    @JoinColumn(name = "LOCATION_ID", referencedColumnName = "LOCATION_ID")
     public Location getLocation() {
         return location;
     }
@@ -80,6 +76,8 @@ public class Department {
         this.location = location;
     }
 
+    @ElementCollection(fetch= FetchType.LAZY)
+    @OneToMany(cascade={}, mappedBy = "department", orphanRemoval = true)
     public Set<Employee> getEmployees() {
         return employees;
     }
@@ -88,6 +86,8 @@ public class Department {
         this.employees = employees;
     }
 
+    @ElementCollection(fetch= FetchType.LAZY)
+    @OneToMany(cascade={}, mappedBy = "department")
     public Set<JobHistory> getJobHistories() {
         return jobHistories;
     }

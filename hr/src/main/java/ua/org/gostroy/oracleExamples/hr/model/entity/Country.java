@@ -16,16 +16,9 @@ import java.util.Set;
 @Entity
 @Table(name = "COUNTRIES")
 public class Country{
-    @Id
-    @Column(name = "COUNTRY_ID", columnDefinition = "char", length = 2)
     private String id;
-    @Column(name = "COUNTRY_NAME", length = 40)
     private String name;
-    @ManyToOne(optional = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "REGION_ID", referencedColumnName = "REGION_ID")
     private Region region;
-    @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(mappedBy = "country", orphanRemoval = true)
     private Set<Location> locations;
 
     public Country() {
@@ -35,6 +28,8 @@ public class Country{
         this.id = id;
     }
 
+    @Id
+    @Column(name = "COUNTRY_ID", columnDefinition = "char", length = 2)
     public String getId() {
         return id;
     }
@@ -43,6 +38,7 @@ public class Country{
         this.id = id;
     }
 
+    @Column(name = "COUNTRY_NAME", length = 40)
     public String getName() {
         return name;
     }
@@ -51,6 +47,8 @@ public class Country{
         this.name = name;
     }
 
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "REGION_ID", referencedColumnName = "REGION_ID")
     public Region getRegion() {
         return region;
     }
@@ -59,6 +57,8 @@ public class Country{
         this.region = region;
     }
 
+    @ElementCollection(fetch= FetchType.LAZY)
+    @OneToMany(mappedBy = "country", orphanRemoval = true)
     public Set<Location> getLocations() {
         return locations;
     }

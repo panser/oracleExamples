@@ -12,24 +12,12 @@ import java.util.Set;
 @Entity
 @Table(name = "LOCATIONS")
 public class Location {
-    @Id
-    @Column(name = "LOCATION_ID", precision = 4)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="LOC_SEQ")
-    @SequenceGenerator(name="LOC_SEQ", sequenceName="LOCATIONS_SEQ")
     private Integer id;
-    @Column(name = "STREET_ADDRESS", length = 40)
     private String streetAddress;
-    @Column(name = "POSTAL_CODE", length = 12)
     private String postalCode;
-    @Column(name = "CITY", length = 30, nullable = false)
     private String city;
-    @Column(name = "STATE_PROVINCE", length = 25)
     private String stateProvince;
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
-    @JoinColumn(name = "COUNTRY_ID", referencedColumnName = "COUNTRY_ID")
     private Country country;
-    @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={}, mappedBy = "location")
     private Set<Department> departments;
 
     public Location() {
@@ -46,6 +34,10 @@ public class Location {
         }
     }
 
+    @Id
+    @Column(name = "LOCATION_ID", precision = 4)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="LOC_SEQ")
+    @SequenceGenerator(name="LOC_SEQ", sequenceName="LOCATIONS_SEQ")
     public Integer getId() {
         return id;
     }
@@ -54,6 +46,7 @@ public class Location {
         this.id = id;
     }
 
+    @Column(name = "STREET_ADDRESS", length = 40)
     public String getStreetAddress() {
         return streetAddress;
     }
@@ -62,6 +55,7 @@ public class Location {
         this.streetAddress = streetAddress;
     }
 
+    @Column(name = "POSTAL_CODE", length = 12)
     public String getPostalCode() {
         return postalCode;
     }
@@ -70,6 +64,7 @@ public class Location {
         this.postalCode = postalCode;
     }
 
+    @Column(name = "CITY", length = 30, nullable = false)
     public String getCity() {
         return city;
     }
@@ -78,6 +73,7 @@ public class Location {
         this.city = city;
     }
 
+    @Column(name = "STATE_PROVINCE", length = 25)
     public String getStateProvince() {
         return stateProvince;
     }
@@ -86,6 +82,8 @@ public class Location {
         this.stateProvince = stateProvince;
     }
 
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
+    @JoinColumn(name = "COUNTRY_ID", referencedColumnName = "COUNTRY_ID")
     public Country getCountry() {
         return country;
     }
@@ -94,6 +92,8 @@ public class Location {
         this.country = country;
     }
 
+    @ElementCollection(fetch= FetchType.LAZY)
+    @OneToMany(cascade={}, mappedBy = "location")
     public Set<Department> getDepartments() {
         return departments;
     }

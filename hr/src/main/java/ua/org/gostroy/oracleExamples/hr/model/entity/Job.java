@@ -12,21 +12,12 @@ import java.util.Set;
 @Entity
 @Table(name = "JOBS")
 public class Job {
-    @Id
-    @Column(name = "JOB_ID", length = 10)
     private String id;
-    @Column(name = "JOB_TITLE", length = 35)
     private String title;
-    @Column(name = "MIN_SALARY", precision = 6)
     private Integer minSalary;
-    @Column(name = "MAX_SALARY", precision = 6)
     private Integer maxSalary;
 
-    @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={}, mappedBy = "job", orphanRemoval = true)
     private Set<Employee> employees;
-    @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={}, mappedBy = "job")
     private Set<JobHistory> jobHistories;
 
     public Job() {
@@ -43,6 +34,8 @@ public class Job {
         }
     }
 
+    @Id
+    @Column(name = "JOB_ID", length = 10)
     public String getId() {
         return id;
     }
@@ -51,6 +44,7 @@ public class Job {
         this.id = id;
     }
 
+    @Column(name = "JOB_TITLE", length = 35)
     public String getTitle() {
         return title;
     }
@@ -59,6 +53,7 @@ public class Job {
         this.title = title;
     }
 
+    @Column(name = "MIN_SALARY", precision = 6)
     public Integer getMinSalary() {
         return minSalary;
     }
@@ -67,6 +62,7 @@ public class Job {
         this.minSalary = minSalary;
     }
 
+    @Column(name = "MAX_SALARY", precision = 6)
     public Integer getMaxSalary() {
         return maxSalary;
     }
@@ -75,6 +71,8 @@ public class Job {
         this.maxSalary = maxSalary;
     }
 
+    @ElementCollection(fetch= FetchType.LAZY)
+    @OneToMany(cascade={}, mappedBy = "job", orphanRemoval = true)
     public Set<Employee> getEmployees() {
         return employees;
     }
@@ -83,6 +81,8 @@ public class Job {
         this.employees = employees;
     }
 
+    @ElementCollection(fetch= FetchType.LAZY)
+    @OneToMany(cascade={}, mappedBy = "job")
     public Set<JobHistory> getJobHistories() {
         return jobHistories;
     }

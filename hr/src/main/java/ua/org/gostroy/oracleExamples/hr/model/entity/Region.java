@@ -12,14 +12,9 @@ import java.util.Set;
 @Entity
 @Table(name = "REGIONS")
 public class Region {
-    @Id
-    @Column(name = "REGION_ID")
     private Integer id;
-    @Column(name = "REGION_NAME", length = 25)
     private String name;
 
-    @ElementCollection(fetch= FetchType.LAZY)
-    @OneToMany(cascade={}, mappedBy = "region", orphanRemoval = true)
     private Set<Country> countries;
 
     public Region() {
@@ -29,6 +24,8 @@ public class Region {
         this.id = id;
     }
 
+    @Id
+    @Column(name = "REGION_ID")
     public Integer getId() {
         return id;
     }
@@ -37,6 +34,7 @@ public class Region {
         this.id = id;
     }
 
+    @Column(name = "REGION_NAME", length = 25)
     public String getName() {
         return name;
     }
@@ -45,6 +43,8 @@ public class Region {
         this.name = name;
     }
 
+    @ElementCollection(fetch= FetchType.LAZY)
+    @OneToMany(cascade={}, mappedBy = "region", orphanRemoval = true)
     public Set<Country> getCountries() {
         return countries;
     }
