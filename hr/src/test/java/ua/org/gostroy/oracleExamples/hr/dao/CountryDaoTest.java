@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Country;
+import ua.org.gostroy.oracleExamples.hr.model.entity.Region;
 
 import java.util.List;
 
@@ -23,9 +24,13 @@ import java.util.List;
 public class CountryDaoTest {
 
     private String testCountryId = "UK";
+    private Integer testRegionId = 3;
     private String testCountryName = "United Kingdom";
     @Autowired
     CountryDao countryDao;
+    @Autowired
+    RegionDao regionDao;
+
 
     @Test
     public void findById(){
@@ -67,6 +72,19 @@ public class CountryDaoTest {
     public void findByName(){
         Country test = countryDao.findByName(testCountryName);
         Assert.assertEquals(testCountryName, test.getName());
+    }
+
+    @Test
+    //it show that bi-direction links don't auto update
+    public void biDirectionList(){
+        Country testCountry = countryDao.findById(testCountryId);
+        Region testRegion = regionDao.findById(testRegionId);
+        Assert.assertNotEquals(testCountry.getRegion().getId(), testRegion.getId());
+
+        int countriesInRegion = testRegion.getCountries().size();
+        testCountry.setRegion(testRegion);
+        int countriesInRegionNew = testRegion.getCountries().size();
+        Assert.assertEquals(countriesInRegion, countriesInRegionNew);
     }
 
 }

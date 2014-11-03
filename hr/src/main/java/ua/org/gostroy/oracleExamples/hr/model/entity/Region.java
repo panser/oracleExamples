@@ -26,6 +26,7 @@ public class Region {
     }
 
     @Id
+//    @GeneratedValue(strategy=GenerationType.TABLE)
     @Column(name = "REGION_ID", unique = true, nullable = false)
     public Integer getId() {
         return id;
