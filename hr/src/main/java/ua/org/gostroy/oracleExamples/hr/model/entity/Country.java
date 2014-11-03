@@ -56,6 +56,9 @@ public class Country{
 
     public void setRegion(Region region) {
         this.region = region;
+//        if(!region.getCountries().contains(this)){
+//            region.getCountries().add(this);
+//        }
     }
 
     @OneToMany(fetch= FetchType.LAZY, mappedBy = "country", orphanRemoval = true)
