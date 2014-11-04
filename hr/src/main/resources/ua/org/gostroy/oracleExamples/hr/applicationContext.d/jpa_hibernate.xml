@@ -19,7 +19,7 @@
             </props>
         </property>
 -->
-        <property name="persistenceXmlLocation" value="classpath:ua/org/gostroy/oracleExamples/hr/applicationContext.d/persistence.xml" />
+        <property name="persistenceXmlLocation" value="classpath:ua/org/gostroy/oracleExamples/hr/jpa/persistence.xml" />
         <property name="persistenceUnitName" value="db_gostroy_oracle" />
     </bean>
 
