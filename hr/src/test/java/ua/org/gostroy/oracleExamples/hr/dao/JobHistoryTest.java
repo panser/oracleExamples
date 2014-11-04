@@ -10,10 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-import ua.org.gostroy.oracleExamples.hr.model.entity.Employee;
-import ua.org.gostroy.oracleExamples.hr.model.entity.Job;
-import ua.org.gostroy.oracleExamples.hr.model.entity.JobHistory;
-import ua.org.gostroy.oracleExamples.hr.model.entity.JobHistoryPk;
+import ua.org.gostroy.oracleExamples.hr.model.entity.*;
 
 import java.util.Date;
 import java.util.List;
@@ -76,5 +73,17 @@ public class JobHistoryTest {
         jobHistoryDao.delete(test);
         Integer sizeAfterDelete = jobHistoryDao.findAll().size();
         Assert.assertTrue(sizeBeforeDelete == sizeAfterDelete + 1);
+    }
+
+    @Test
+    public void findByEmployeeId(){
+        JobHistory jobHistory = jobHistoryDao.findByEmployeeId(testEmployeeId);
+        Assert.assertEquals(jobHistory.getJobHistoryPK().getEmployeeId(), testEmployeeId);
+    }
+
+    @Test
+    public void findByStartDate(){
+        JobHistory jobHistory = jobHistoryDao.findByStartDate(testJobHistoryId.getStartDate());
+        Assert.assertEquals(jobHistory.getJobHistoryPK().getStartDate(), testJobHistoryId.getStartDate());
     }
 }

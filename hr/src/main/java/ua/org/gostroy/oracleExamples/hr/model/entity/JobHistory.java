@@ -8,12 +8,14 @@ import java.util.Date;
  * Created by Panov Sergey on 11/1/2014.
  */
 @NamedQueries({
-        @NamedQuery(name = "JobHistory.findAll", query = "select o from JobHistory o")
+        @NamedQuery(name = "JobHistory.findAll", query = "select o from JobHistory o"),
+        @NamedQuery(name = "JobHistory.findByEmployeeId", query = "SELECT o FROM JobHistory o WHERE o.jobHistoryPK.employeeId = :employeeId"),
+        @NamedQuery(name = "JobHistory.findByStartDate", query = "SELECT o FROM JobHistory o WHERE o.jobHistoryPK.startDate = :startDate"),
 })
 @Entity
 @Table(name = "JOB_HISTORY")
 public class JobHistory {
-    protected JobHistoryPk jobHistoryPK;
+    private JobHistoryPk jobHistoryPK;
 
     private Employee employee;
 

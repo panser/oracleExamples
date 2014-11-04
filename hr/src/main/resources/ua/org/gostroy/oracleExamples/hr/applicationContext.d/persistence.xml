@@ -15,6 +15,7 @@
         <class>ua.org.gostroy.oracleExamples.hr.model.entity.JobHistory</class>
         <class>ua.org.gostroy.oracleExamples.hr.model.entity.Location</class>
         <class>ua.org.gostroy.oracleExamples.hr.model.entity.Region</class>
+        <class>ua.org.gostroy.oracleExamples.hr.model.entity.EmpDetailsView</class>
         <!--<class>ua.org.gostroy.oracleExamples.hr.model.entity</class>-->
         <!--<mapping-file>orm.xml</mapping-file>-->
         <properties>
