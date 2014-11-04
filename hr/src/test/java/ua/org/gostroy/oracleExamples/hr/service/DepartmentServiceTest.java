@@ -1,7 +1,6 @@
-package ua.org.gostroy.oracleExamples.hr.dao;
+package ua.org.gostroy.oracleExamples.hr.service;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,51 +13,57 @@ import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
 import java.util.List;
 
 /**
- * Created by Panov Sergey on 11/2/2014.
+ * Created by Panov Sergey on 11/4/2014.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/ua/org/gostroy/oracleExamples/hr/applicationContext.xml")
 @TransactionConfiguration(defaultRollback = true)
 @Transactional
-public class DepartmentDaoTest {
+public class DepartmentServiceTest {
 
-    private Integer testDepartmentId = 20;
+    private Integer testDepartmentId = 40;
     @Autowired
-    DepartmentDao departmentDao;
+    DepartmentService departmentService;
+
+    @Test
+    public void notNull(){
+        Assert.assertNotNull(departmentService);
+    }
 
     @Test
     public void findById(){
-        Department test = departmentDao.findById(testDepartmentId);
+        Department test = departmentService.findById(testDepartmentId);
         Assert.assertEquals(testDepartmentId, test.getId());
     }
 
     @Test
     public void findAll(){
-        List<Department> countries = departmentDao.findAll();
-        Assert.assertNotEquals(countries.size(),0);
+        List<Department> countries = departmentService.findAll();
+        Assert.assertNotEquals(countries.size(), 0);
     }
 
     @Test
     public void save(){
         Department test = new Department("TEST");
-        Department testNew = departmentDao.save(test);
+        Department testNew = departmentService.save(test);
         Assert.assertNotNull(testNew.getId());
     }
 
     @Test
     public void update(){
-        Department test = departmentDao.findById(testDepartmentId);
+        Department test = departmentService.findById(testDepartmentId);
         test.setName("TEST");
-        Department testNew = departmentDao.update(test);
+        Department testNew = departmentService.update(test);
         Assert.assertEquals(test, testNew);
     }
 
     @Test
     public void delete(){
-        Department test = departmentDao.findById(testDepartmentId);
-        Integer sizeBeforeDelete = departmentDao.findAll().size();
-        departmentDao.delete(test);
-        Integer sizeAfterDelete = departmentDao.findAll().size();
+        Department test = departmentService.findById(testDepartmentId);
+        Integer sizeBeforeDelete = departmentService.findAll().size();
+        departmentService.delete(test);
+        Integer sizeAfterDelete = departmentService.findAll().size();
         Assert.assertTrue(sizeBeforeDelete == sizeAfterDelete + 1);
     }
+
 }
