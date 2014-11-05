@@ -18,7 +18,7 @@ public class DepartmentApiController {
     @Autowired
     DepartmentService departmentService;
 
-    @RequestMapping(value = "/findAll.json")
+    @RequestMapping(value = "/")
     public List<Department> findAll(Model model){
         return departmentService.findAll();
     }
