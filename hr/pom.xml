@@ -31,6 +31,18 @@
             <artifactId>hibernate-entitymanager</artifactId>
         </dependency>
 
+        <!--web-->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
         <!--spring seb-->
         <dependency>
             <groupId>org.springframework</groupId>
