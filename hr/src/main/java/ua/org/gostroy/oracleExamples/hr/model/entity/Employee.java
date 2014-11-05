@@ -49,7 +49,7 @@ public class Employee {
         department = null;
         managerOfDepartment = null;
         for(Employee employee : employeesesOfThisManager){
-            employee = null;
+            employee.setManager(null);
         }
     }
 
