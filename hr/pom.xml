@@ -68,11 +68,6 @@
             <groupId>org.webjars</groupId>
             <artifactId>datatables</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>datatables-bootstrap</artifactId>
-        </dependency>
-
 
         <!-- the core, which includes Streaming API, shared low-level abstractions (but NOT data-binding) -->
         <dependency>
