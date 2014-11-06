@@ -29,10 +29,23 @@
         $(function () {
             $("#departments").dataTable({
                 "bServerSide": true
-                , "sAjaxSource": "${baseUrl}api/department/"
+                , "sAjaxSource": "/${baseUrl}api/department/"
                 , "bProcessing": true
                 , "sPaginationType": "full_numbers"
                 , "bJQueryUI": true
+                , "fnServerData": function ( sSource, aoData, fnCallback ) {
+                    $.ajax( {
+                        dataType: 'json',
+                        contentType: "application/json;charset=UTF-8",
+                        type: 'POST',
+                        url: sSource,
+                        data: stringify_aoData(aoData),
+                        success: fnCallback,
+                        error : function (e) {
+                            alert (e);
+                        }
+                    } );
+                }
             });
         });
     </script>

@@ -95,7 +95,6 @@
             <artifactId>jackson-module-jaxb-annotations</artifactId>
         </dependency>
 
-
     </dependencies>
 
 </project>
