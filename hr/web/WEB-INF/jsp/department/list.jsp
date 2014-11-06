@@ -1,24 +1,46 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" %>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <link rel='stylesheet' type='text/css' href='<c:url value="/webjars/bootstrap/3.3.0/css/bootstrap.css"/>'>
-    <link rel='stylesheet' type='text/css' href='<c:url value="/webjars/jquery-ui/1.11.1/jquery-ui.css"/>'>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/static/local.css"/>">
+    <jsp:include page="../../include/head.jsp" />
 
-    <script src="<c:url value="/webjars/jquery/2.1.1/jquery.js"/>"></script>
-    <script src="<c:url value="/webjars/jquery-ui/1.11.1/jquery-ui.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/static/local.js"/>"></script>
-
-    <title></title>
-</head>
 <body>
+
     <H1>
-        HI!!!
+        Department DataTables Grid
     </H1>
+
+    <table id="departments" class="display">
+        <thead>
+            <tr>
+                <th>Department Name</th>
+                <th>Department Manager</th>
+                <th>Department Location</th>
+            </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${departments}" var="department">
+            <tr>
+                <td>${department.name}</td>
+                <td>${department.manager.firstName} ${department.manager.lastName}</td>
+                <td>${department.location.city}, ${department.location.country.name}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+
+    <jsp:include page="../../include/foot.jsp" />
+    <script type="text/javascript">
+        $(function () {
+            $("#departments").dataTable({
+                "sPaginationType": "full_numbers",
+                "bJQueryUI": true
+            });
+        });
+    </script>
+
+
 </body>
 </html>

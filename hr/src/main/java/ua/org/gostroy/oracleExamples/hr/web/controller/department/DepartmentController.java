@@ -17,6 +17,9 @@ import java.util.List;
 @RequestMapping("/department")
 public class DepartmentController {
 
+    @Autowired
+    DepartmentService departmentService;
+
     @PostConstruct
     protected void beforeConstruct(){
         System.out.println(getClass() + " :post construct method invoked");
@@ -24,6 +27,7 @@ public class DepartmentController {
 
     @RequestMapping(value = "/")
     public String list(Model model){
+        model.addAttribute("departments", departmentService.findAll());
         return "department/list";
     }
 

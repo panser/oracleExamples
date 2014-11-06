@@ -147,6 +147,7 @@
         <mybatis-spring.version>1.2.2</mybatis-spring.version>
         <camel.version>2.14.0</camel.version>
         <javax.validation.version>1.1.0.Final</javax.validation.version>
+        <jackson2.version>2.3.3</jackson2.version>
     </properties>
 
     <dependencyManagement>
@@ -341,6 +342,48 @@
                 <artifactId>bootstrap</artifactId>
                 <version>3.3.0</version>
             </dependency>
+            <dependency>
+                <groupId>org.webjars</groupId>
+                <artifactId>datatables</artifactId>
+                <version>1.10.2-1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.webjars</groupId>
+                <artifactId>datatables-bootstrap</artifactId>
+                <version>2-20120202-2</version>
+            </dependency>
+
+            <!-- the core, which includes Streaming API, shared low-level abstractions (but NOT data-binding) -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson2.version}</version>
+            </dependency>
+            <!-- databinding; ObjectMapper, JsonNode and related classes are here -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-hibernate4</artifactId>
+                <version>${jackson2.version}</version>
+            </dependency>
+            <!-- Just the annotations; use this dependency if you want to attach annotations
+                 to classes without connecting them to the code. -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson2.version}</version>
+            </dependency>
+            <!-- Support for JAX-B annotations as additional configuration -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-module-jaxb-annotations</artifactId>
+                <version>${jackson2.version}</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>
