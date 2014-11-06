@@ -9,7 +9,7 @@
 <body>
 
     <H1>
-        Department DataTables Grid
+        DataTables Grid
     </H1>
 
     <table id="departments" class="display">
@@ -35,8 +35,8 @@
     <script type="text/javascript">
         $(function () {
             $("#departments").dataTable({
-                "sPaginationType": "full_numbers",
-                "bJQueryUI": true
+                "sPaginationType": "full_numbers"
+                , "bJQueryUI": true
             });
         });
     </script>

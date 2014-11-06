@@ -4,11 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
 import ua.org.gostroy.oracleExamples.hr.service.DepartmentService;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
 
 /**
  * Created by Panov Sergey on 11/4/2014.
@@ -25,10 +23,15 @@ public class DepartmentController {
         System.out.println(getClass() + " :post construct method invoked");
     }
 
-    @RequestMapping(value = "/")
-    public String list(Model model){
+    @RequestMapping(value = "/DataTablesList")
+    public String dataTablesList(Model model){
         model.addAttribute("departments", departmentService.findAll());
-        return "department/list";
+        return "department/DataTablesList";
+    }
+
+    @RequestMapping(value = "/DataTablesListAjax")
+    public String dataTablesListAjax(Model model){
+        return "department/DataTablesListAjax";
     }
 
 }
