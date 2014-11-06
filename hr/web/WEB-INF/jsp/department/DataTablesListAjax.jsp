@@ -20,16 +20,16 @@
                 <th>Department Location</th>
             </tr>
         </thead>
-        <tbody>
-        </tbody>
+        <tbody/>
     </table>
 
     <jsp:include page="../../include/foot.jsp" />
+
     <script type="text/javascript">
         $(function () {
             $("#departments").dataTable({
                 "bServerSide": true
-                , "sAjaxSource": "/api/department/"
+                , "sAjaxSource": "${baseUrl}api/department/"
                 , "bProcessing": true
                 , "sPaginationType": "full_numbers"
                 , "bJQueryUI": true
