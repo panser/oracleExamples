@@ -28,7 +28,7 @@
     </bean>
     <tx:annotation-driven transaction-manager="txManagerJPA"/>
 
-    <bean id="persistenceExceptionTranslationPostProcessor"
-          class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+    <!--<bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />-->
+    <bean class="org.springframework.orm.hibernate4.HibernateExceptionTranslator"/>
 
 </beans>

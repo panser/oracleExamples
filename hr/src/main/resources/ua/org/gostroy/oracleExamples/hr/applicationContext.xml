@@ -7,7 +7,7 @@
     <context:annotation-config/>
 
     <context:component-scan base-package="ua.org.gostroy.oracleExamples">
-        <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
+        <!--<context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>-->
     </context:component-scan>
 
     <context:property-placeholder location="classpath:/ua/org/gostroy/oracleExamples/hr/properties/db_gostroy_oracle.properties" />
@@ -15,5 +15,6 @@
     <import resource="applicationContext.d/dataSource.xml"/>
     <import resource="applicationContext.d/jpa_hibernate.xml"/>
     <import resource="applicationContext.d/beans.xml"/>
+    <import resource="servletContext.xml"/>
 
 </beans>
