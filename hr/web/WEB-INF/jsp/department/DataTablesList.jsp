@@ -13,6 +13,7 @@
         DataTables Grid
     </H1>
 
+
     <table id="departments" class="display">
         <thead>
             <tr>
@@ -35,10 +36,9 @@
     <jsp:include page="../../include/foot.jsp" />
     <script type="text/javascript">
         $(function () {
-            $("#departments").dataTable({
-                "sPaginationType": "full_numbers"
-                , "bJQueryUI": true
+            $("#departments").DataTable({
             });
+
         });
     </script>
 

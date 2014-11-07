@@ -7,7 +7,7 @@
     <link rel='stylesheet' type='text/css' href='${baseUrl}webjars/bootstrap/3.3.0/css/bootstrap.css'>
     <%--<link rel='stylesheet' type='text/css' href='${baseUrl}webjars/jquery-ui/1.11.1/jquery-ui.css'>--%>
     <link rel='stylesheet' type='text/css' href='${baseUrl}webjars/datatables/1.10.2/css/jquery.dataTables.css'>
-    <link rel='stylesheet' type='text/css' href='http://cdn.datatables.net/plug-ins/380cb78f450/integration/bootstrap/3/dataTables.bootstrap.css'>
+    <link rel='stylesheet' type='text/css' href='${baseUrl}static/datatebles/Plugins/integration/bootstrap/3/dataTables.bootstrap.css'>
     <link rel='stylesheet' type='text/css' href='${baseUrl}static/custom.css'>
 
     <title></title>

@@ -12,6 +12,8 @@
         DataTables Grid over AJAX
     </H1>
 
+    <div id="status"></div>
+
     <table id="departments" class="display">
         <thead>
             <tr>
@@ -27,12 +29,10 @@
 
     <script type="text/javascript">
         $(function () {
-            $("#departments").dataTable({
-                "bServerSide": true
-                , "sAjaxSource": "/${baseUrl}api/department/"
-                , "bProcessing": true
-                , "sPaginationType": "full_numbers"
-                , "bJQueryUI": true
+            $("#departments").DataTable({
+                "serverSide": true
+                , "ajaxSource": "/${baseUrl}api/department/"
+                , "processing": true
                 , "fnServerData": function ( sSource, aoData, fnCallback ) {
                     $.ajax( {
                         dataType: 'json',
@@ -48,6 +48,7 @@
                     } );
                 }
             });
+
         });
     </script>
 

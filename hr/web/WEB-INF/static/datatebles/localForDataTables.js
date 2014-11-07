@@ -1,3 +1,17 @@
+$.extend( $.fn.dataTable.defaults, {
+    "paginationType": "full_numbers"
+    , "jQueryUI": true
+    , stateSave: true
+    , "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
+} );
+
+/*
+//not work ???
+$(document).on('xhr.dt', function ( e, settings, json ) {
+    $('#status').html( json.status );
+} );
+*/
+
  var stringify_aoData = function (aoData) {
     var o = {};
     var modifiers = ['mDataProp_', 'sSearch_', 'iSortCol_', 'bSortable_', 'bRegex_', 'bSearchable_', 'sSortDir_'];
