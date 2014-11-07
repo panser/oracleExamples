@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/hr/hr.iml" filepath="$PROJECT_DIR$/hr/hr.iml" />
       <module fileurl="file://$PROJECT_DIR$/oracleExamples.iml" filepath="$PROJECT_DIR$/oracleExamples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/datatablepager/pagination.iml" filepath="$PROJECT_DIR$/datatablepager/pagination.iml" />
     </modules>
   </component>
 </project>

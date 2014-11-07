@@ -23,6 +23,7 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="hr" />
+        <module name="pagination" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
