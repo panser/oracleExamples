@@ -148,6 +148,7 @@
         <camel.version>2.14.0</camel.version>
         <javax.validation.version>1.1.0.Final</javax.validation.version>
         <jackson2.version>2.3.3</jackson2.version>
+        <servlet-api.version>3.1.0</servlet-api.version>
     </properties>
 
     <dependencyManagement>
@@ -324,6 +325,12 @@
                 <groupId>jstl</groupId>
                 <artifactId>jstl</artifactId>
                 <version>1.2</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${servlet-api.version}</version>
+                <scope>provided</scope>
             </dependency>
 
             <!--webjars-->

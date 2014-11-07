@@ -37,6 +37,7 @@
                     $.ajax( {
                         dataType: 'json',
                         contentType: "application/json;charset=UTF-8",
+//                        type: 'GET',
                         type: 'POST',
                         url: sSource,
                         data: stringify_aoData(aoData),
