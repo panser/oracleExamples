@@ -1,5 +1,7 @@
 package ua.org.gostroy.oracleExamples.hr.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -28,8 +30,11 @@ public class Employee {
     private Employee manager;
     private Department department;
 
+    @JsonIgnore
     private Department managerOfDepartment;
+    @JsonIgnore
     private Set<Employee> employeesesOfThisManager = new HashSet<>(0);
+    @JsonIgnore
     private Set<JobHistory> jobHistories = new HashSet<>(0);
 
     public Employee() {

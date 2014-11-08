@@ -88,7 +88,7 @@
     <orderEntry type="library" name="Maven: org.webjars:jquery:1.11.1" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:jquery-ui:1.11.1" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:bootstrap:3.3.0" level="project" />
-    <orderEntry type="library" name="Maven: org.webjars:datatables:1.9.4" level="project" />
+    <orderEntry type="library" name="Maven: org.webjars:datatables:1.10.2-1" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.3.3" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.3.3" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.3.3" level="project" />

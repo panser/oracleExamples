@@ -355,8 +355,8 @@
             <dependency>
                 <groupId>org.webjars</groupId>
                 <artifactId>datatables</artifactId>
-                <version>1.9.4</version>
-                <!--<version>1.10.2-1</version>-->
+                <!--<version>1.9.4</version>-->
+                <version>1.10.2-1</version>
             </dependency>
 
             <!-- the core, which includes Streaming API, shared low-level abstractions (but NOT data-binding) -->

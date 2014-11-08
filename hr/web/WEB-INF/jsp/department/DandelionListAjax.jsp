@@ -1,66 +1,44 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="dandelion" uri="http://github.com/dandelion" %>
 <%@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" %>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<dandelion:bundle excludes="jquery" />
+<dandelion:bundle excludes="datatables" />
+<%--
+<dandelion:bundle includes="jquery.local" />
+<dandelion:bundle includes="bootstrap3.local" />
+<dandelion:bundle includes="datatables.local" />
+<dandelion:bundle includes="datatables.bootstrap3.local" />
+<dandelion:bundle includes="local" />
+--%>
+
+<spring:url value="/" var="baseUrl" />
+
 <html>
-    <jsp:include page="../../include/head.jsp" />
+<jsp:include page="../../include/head.jsp" />
 
 <body>
-    <jsp:include page="../../include/navbar.jsp" />
+<jsp:include page="../../include/navbar.jsp" />
 
-    <div class="container">
-        <div class="row-fluid">
-            <div class="span12">
+<div class="container">
+    <div class="row-fluid">
+        <div class="span12">
 
-                <div class="h1">Dandelion Grid over AJAX</div>
+            <div class="h1">Dandelion Grid AJAX</div>
 
-                <div id="status"></div>
+            <datatables:table id="myTableId" url='${baseUrl}api/department/' serverSide="true" processing="true">
+                <datatables:column title="Department Name" property="name" />
+                <datatables:column title="Department Manager" property="manager.firstName" />
+                <datatables:column title="Department Location" property="location.city" />
+            </datatables:table>
 
-                <table id="departments" class="table table-striped table-bordered">
-
-                    <thead>
-                        <tr>
-                            <th>Department Name</th>
-                            <th>Department Manager</th>
-                            <th>Department Location</th>
-                        </tr>
-                    </thead>
-                    <tbody/>
-                </table>
-
-            </div>
         </div>
     </div>
+</div>
 
-    <jsp:include page="../../include/foot.jsp" />
-
-    <script type="text/javascript">
-        $(function () {
-            $("#departments").DataTable({
-                "serverSide": true
-                , "ajaxSource": "/${baseUrl}api/department/"
-                , "processing": true
-                , "fnServerData": function ( sSource, aoData, fnCallback ) {
-                    $.ajax( {
-                        dataType: 'json',
-                        contentType: "application/json;charset=UTF-8",
-//                        type: 'GET',
-                        type: 'POST',
-                        url: sSource,
-                        data: stringify_aoData(aoData),
-                        success: fnCallback,
-                        error : function (e) {
-                            alert (e);
-                        }
-                    } );
-                }
-            });
-
-        });
-    </script>
-
+<jsp:include page="../../include/foot.jsp" />
 
 </body>
 </html>

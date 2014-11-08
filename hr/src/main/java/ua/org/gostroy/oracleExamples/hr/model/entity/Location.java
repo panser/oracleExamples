@@ -1,5 +1,7 @@
 package ua.org.gostroy.oracleExamples.hr.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +21,7 @@ public class Location {
     private String city;
     private String stateProvince;
     private Country country;
+    @JsonIgnore
     private Set<Department> departments = new HashSet<>(0);
 
     public Location() {

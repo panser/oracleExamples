@@ -1,5 +1,7 @@
 package ua.org.gostroy.oracleExamples.hr.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,7 +20,9 @@ public class Job {
     private Integer minSalary;
     private Integer maxSalary;
 
+    @JsonIgnore
     private Set<Employee> employees = new HashSet<>(0);
+    @JsonIgnore
     private Set<JobHistory> jobHistories = new HashSet<>(0);
 
     public Job() {

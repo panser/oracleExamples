@@ -48,4 +48,6 @@ public class DepartmentService {
     public void delete(Department entity) throws DataIntegrityViolationException{
         departmentDao.delete(entity);
     }
+
+
 }

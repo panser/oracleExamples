@@ -3,6 +3,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<spring:url value="/" var="baseUrl" />
+
 <html>
     <jsp:include page="../../include/head.jsp" />
 
@@ -38,7 +41,7 @@
         $(function () {
             $("#departments").DataTable({
                 "serverSide": true
-                , "ajaxSource": "/${baseUrl}api/department/"
+                , "ajaxSource": "${baseUrl}api/department/"
                 , "processing": true
                 , "fnServerData": function ( sSource, aoData, fnCallback ) {
                     $.ajax( {
