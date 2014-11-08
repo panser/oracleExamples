@@ -4,7 +4,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import ua.org.gostroy.oracleExamples.hr.dao.EmployeeDao;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Employee;
-import ua.org.gostroy.oracleExamples.hr.model.entity.Employee;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +14,7 @@ import java.util.List;
  * Created by Panov Sergey on 11/1/2014.
  */
 @Repository
-public class EmployeeImpl implements EmployeeDao{
+public class EmployeeImpl implements EmployeeDao {
 
     @PersistenceContext
     private EntityManager em;

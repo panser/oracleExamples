@@ -8,9 +8,6 @@ import ua.org.gostroy.oracleExamples.hr.model.entity.Country;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.List;
 
 /**
@@ -57,7 +54,7 @@ public class CountryImpl implements CountryDao {
     public Country findByName(String name) {
         Query query = em.createNamedQuery("Country.findByName");
         query.setParameter("name", name);
-        Country country = (Country)query.getSingleResult();
+        Country country = (Country) query.getSingleResult();
         return country;
     }
 }

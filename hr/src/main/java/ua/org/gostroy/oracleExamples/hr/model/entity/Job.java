@@ -73,7 +73,7 @@ public class Job {
         this.maxSalary = maxSalary;
     }
 
-    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "job", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = {}, mappedBy = "job", orphanRemoval = true)
     public Set<Employee> getEmployees() {
         return employees;
     }
@@ -82,7 +82,7 @@ public class Job {
         this.employees = employees;
     }
 
-    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "job", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = {}, mappedBy = "job", orphanRemoval = true)
     public Set<JobHistory> getJobHistories() {
         return jobHistories;
     }

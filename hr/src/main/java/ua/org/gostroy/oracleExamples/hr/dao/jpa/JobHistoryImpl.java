@@ -3,8 +3,6 @@ package ua.org.gostroy.oracleExamples.hr.dao.jpa;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import ua.org.gostroy.oracleExamples.hr.dao.JobHistoryDao;
-import ua.org.gostroy.oracleExamples.hr.model.entity.EmpDetailsView;
-import ua.org.gostroy.oracleExamples.hr.model.entity.JobHistory;
 import ua.org.gostroy.oracleExamples.hr.model.entity.JobHistory;
 import ua.org.gostroy.oracleExamples.hr.model.entity.JobHistoryPk;
 
@@ -57,7 +55,7 @@ public class JobHistoryImpl implements JobHistoryDao {
     public JobHistory findByEmployeeId(Integer employeeId) {
         Query query = em.createNamedQuery("JobHistory.findByEmployeeId");
         query.setParameter("employeeId", employeeId);
-        JobHistory jobHistory = (JobHistory)query.getSingleResult();
+        JobHistory jobHistory = (JobHistory) query.getSingleResult();
         return jobHistory;
     }
 
@@ -65,7 +63,7 @@ public class JobHistoryImpl implements JobHistoryDao {
     public JobHistory findByStartDate(Date startDate) {
         Query query = em.createNamedQuery("JobHistory.findByStartDate");
         query.setParameter("startDate", startDate);
-        JobHistory jobHistory = (JobHistory)query.getSingleResult();
+        JobHistory jobHistory = (JobHistory) query.getSingleResult();
         return jobHistory;
     }
 

@@ -40,8 +40,8 @@ public class Location {
 
     @Id
     @Column(name = "LOCATION_ID", precision = 4, unique = true, nullable = false)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="LOC_SEQ")
-    @SequenceGenerator(name="LOC_SEQ", sequenceName="LOCATIONS_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LOC_SEQ")
+    @SequenceGenerator(name = "LOC_SEQ", sequenceName = "LOCATIONS_SEQ")
     public Integer getId() {
         return id;
     }
@@ -86,7 +86,7 @@ public class Location {
         this.stateProvince = stateProvince;
     }
 
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade = {})
     @JoinColumn(name = "COUNTRY_ID", referencedColumnName = "COUNTRY_ID")
     public Country getCountry() {
         return country;
@@ -96,7 +96,7 @@ public class Location {
         this.country = country;
     }
 
-    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "location")
+    @OneToMany(fetch = FetchType.LAZY, cascade = {}, mappedBy = "location")
     public Set<Department> getDepartments() {
         return departments;
     }

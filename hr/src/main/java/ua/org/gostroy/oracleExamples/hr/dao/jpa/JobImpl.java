@@ -4,7 +4,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import ua.org.gostroy.oracleExamples.hr.dao.JobDao;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Job;
-import ua.org.gostroy.oracleExamples.hr.model.entity.Job;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

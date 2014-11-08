@@ -48,7 +48,7 @@ public class Region {
         this.name = name;
     }
 
-    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "region", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = {}, mappedBy = "region", orphanRemoval = true)
     public Set<Country> getCountries() {
         return countries;
     }

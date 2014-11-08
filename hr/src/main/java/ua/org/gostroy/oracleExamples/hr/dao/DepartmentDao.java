@@ -10,8 +10,12 @@ import java.util.List;
  */
 public interface DepartmentDao {
     Department findById(Integer id);
+
     List<Department> findAll();
+
     Department save(Department entity) throws DataIntegrityViolationException;
+
     Department update(Department entity) throws DataIntegrityViolationException;
+
     void delete(Department entity) throws DataIntegrityViolationException;
 }

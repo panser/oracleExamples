@@ -32,8 +32,7 @@ public class DepartmentOverDatatablesImpl implements DepartmentOverDatatablesDao
     }
 
     /**
-     * @param maxResult
-     *            Max number of persons.
+     * @param maxResult Max number of persons.
      * @return a maxResult limited list of persons.
      */
     public List<Department> findLimited(int maxResult) {
@@ -43,12 +42,11 @@ public class DepartmentOverDatatablesImpl implements DepartmentOverDatatablesDao
     }
 
     /**
-     * <p>
+     * <p/>
      * Query used to populate the DataTables that display the list of persons.
      *
-     * @param criterias
-     *            The DataTables criterias used to filter the persons.
-     *            (maxResult, filtering, paging, ...)
+     * @param criterias The DataTables criterias used to filter the persons.
+     *                  (maxResult, filtering, paging, ...)
      * @return a filtered list of persons.
      */
     public List<Department> findDepartmentWithDatatablesCriterias(DatatablesCriterias criterias) {
@@ -94,12 +92,11 @@ public class DepartmentOverDatatablesImpl implements DepartmentOverDatatablesDao
     }
 
     /**
-     * <p>
+     * <p/>
      * Query used to return the number of filtered persons.
      *
-     * @param criterias
-     *            The DataTables criterias used to filter the persons.
-     *            (maxResult, filtering, paging, ...)
+     * @param criterias The DataTables criterias used to filter the persons.
+     *                  (maxResult, filtering, paging, ...)
      * @return the number of filtered persons.
      */
     public Long getFilteredCount(DatatablesCriterias criterias) {

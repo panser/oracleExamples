@@ -10,8 +10,12 @@ import java.util.List;
  */
 public interface JobDao {
     Job findById(String id);
+
     List<Job> findAll();
+
     Job save(Job entity) throws DataIntegrityViolationException;
+
     Job update(Job entity) throws DataIntegrityViolationException;
+
     void delete(Job entity) throws DataIntegrityViolationException;
 }

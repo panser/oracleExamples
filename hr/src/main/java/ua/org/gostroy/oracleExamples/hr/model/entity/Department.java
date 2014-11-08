@@ -17,9 +17,9 @@ import java.util.Set;
 public class Department {
     private Integer id;
     private String name;
-//    @JsonIgnore
+    //    @JsonIgnore
     private Employee manager;
-//    @JsonIgnore
+    //    @JsonIgnore
     private Location location;
 
     @JsonIgnore
@@ -41,8 +41,8 @@ public class Department {
 
     @Id
     @Column(name = "DEPARTMENT_ID", precision = 4, unique = true, nullable = false)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="DEP_SEQ")
-    @SequenceGenerator(name="DEP_SEQ", sequenceName="DEPARTMENTS_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DEP_SEQ")
+    @SequenceGenerator(name = "DEP_SEQ", sequenceName = "DEPARTMENTS_SEQ")
     public Integer getId() {
         return id;
     }
@@ -60,7 +60,7 @@ public class Department {
         this.name = name;
     }
 
-    @OneToOne(cascade={}, orphanRemoval = true)
+    @OneToOne(cascade = {}, orphanRemoval = true)
     @JoinColumn(name = "MANAGER_ID")
     public Employee getManager() {
         return manager;
@@ -70,7 +70,7 @@ public class Department {
         this.manager = manager;
     }
 
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade = {})
     @JoinColumn(name = "LOCATION_ID", referencedColumnName = "LOCATION_ID")
     public Location getLocation() {
         return location;
@@ -80,7 +80,7 @@ public class Department {
         this.location = location;
     }
 
-    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "department", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = {}, mappedBy = "department", orphanRemoval = true)
     public Set<Employee> getEmployees() {
         return employees;
     }
@@ -89,7 +89,7 @@ public class Department {
         this.employees = employees;
     }
 
-    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "department", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = {}, mappedBy = "department", orphanRemoval = true)
     public Set<JobHistory> getJobHistories() {
         return jobHistories;
     }

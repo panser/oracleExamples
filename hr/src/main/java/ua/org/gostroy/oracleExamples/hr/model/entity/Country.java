@@ -18,7 +18,7 @@ import java.util.Set;
 })
 @Entity
 @Table(name = "COUNTRIES")
-public class Country{
+public class Country {
     private String id;
     private String name;
     private Region region;
@@ -64,7 +64,7 @@ public class Country{
 //        }
     }
 
-    @OneToMany(fetch= FetchType.LAZY, mappedBy = "country", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "country", orphanRemoval = true)
     public Set<Location> getLocations() {
         return locations;
     }

@@ -6,9 +6,8 @@
 
     <context:annotation-config/>
 
-    <context:component-scan base-package="ua.org.gostroy.oracleExamples">
-        <!--<context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>-->
-    </context:component-scan>
+    <context:component-scan base-package="ua.org.gostroy.oracleExamples.hr"/>
+    <!--<context:component-scan base-package="ua.org.gostroy.oracleExamples.hr.dao, ua.org.gostroy.oracleExamples.hr.service"/>-->
 
     <context:property-placeholder location="classpath:/ua/org/gostroy/oracleExamples/hr/properties/db_gostroy_oracle.properties" />
 

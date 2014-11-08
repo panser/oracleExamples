@@ -10,9 +10,14 @@ import java.util.List;
  */
 public interface CountryDao {
     Country findById(String id);
+
     List<Country> findAll();
+
     Country save(Country entity) throws DataIntegrityViolationException;
+
     Country update(Country entity) throws DataIntegrityViolationException;
+
     void delete(Country entity) throws DataIntegrityViolationException;
+
     Country findByName(String name);
 }

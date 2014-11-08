@@ -53,15 +53,15 @@ public class Employee {
         manager = null;
         department = null;
         managerOfDepartment = null;
-        for(Employee employee : employeesesOfThisManager){
+        for (Employee employee : employeesesOfThisManager) {
             employee.setManager(null);
         }
     }
 
     @Id
     @Column(name = "EMPLOYEE_ID", precision = 6, unique = true, nullable = false)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EMP_SEQ")
-    @SequenceGenerator(name="EMP_SEQ", allocationSize=10, sequenceName="EMPLOYEES_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EMP_SEQ")
+    @SequenceGenerator(name = "EMP_SEQ", allocationSize = 10, sequenceName = "EMPLOYEES_SEQ")
     public Integer getId() {
         return id;
     }
@@ -116,7 +116,7 @@ public class Employee {
         this.hireDate = hireDate;
     }
 
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade = {})
     @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = false)
     public Job getJob() {
         return job;
@@ -144,7 +144,7 @@ public class Employee {
         this.commissionPct = commissionPct;
     }
 
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade = {})
     @JoinColumn(name = "MANAGER_ID", referencedColumnName = "EMPLOYEE_ID")
     public Employee getManager() {
         return manager;
@@ -154,7 +154,7 @@ public class Employee {
         this.manager = manager;
     }
 
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade = {})
     @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID")
     public Department getDepartment() {
         return department;
@@ -173,7 +173,7 @@ public class Employee {
         this.managerOfDepartment = managerOfDepartment;
     }
 
-    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "manager")
+    @OneToMany(fetch = FetchType.LAZY, cascade = {}, mappedBy = "manager")
     public Set<Employee> getEmployeesesOfThisManager() {
         return employeesesOfThisManager;
     }
@@ -182,7 +182,7 @@ public class Employee {
         this.employeesesOfThisManager = employeesesOfThisManager;
     }
 
-    @OneToMany(fetch= FetchType.LAZY, cascade={}, mappedBy = "employee", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = {}, mappedBy = "employee", orphanRemoval = true)
     public Set<JobHistory> getJobHistories() {
         return jobHistories;
     }

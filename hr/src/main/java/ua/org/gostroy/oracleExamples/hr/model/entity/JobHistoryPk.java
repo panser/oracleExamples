@@ -1,6 +1,8 @@
 package ua.org.gostroy.oracleExamples.hr.model.entity;
 
-import javax.persistence.*;
+import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
 

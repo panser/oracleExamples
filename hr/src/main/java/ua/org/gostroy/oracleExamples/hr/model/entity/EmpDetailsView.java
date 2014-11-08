@@ -1,7 +1,6 @@
 package ua.org.gostroy.oracleExamples.hr.model.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * Created by Panov Sergey on 11/4/2014.
@@ -34,7 +33,7 @@ public class EmpDetailsView {
             @AttributeOverride(name = "managerId", column = @Column(name = "MANAGER_ID", precision = 6, scale = 0)),
             @AttributeOverride(name = "departmentId", column = @Column(name = "DEPARTMENT_ID", precision = 4, scale = 0)),
             @AttributeOverride(name = "locationId", column = @Column(name = "LOCATION_ID", precision = 4, scale = 0)),
-            @AttributeOverride(name = "countryId", column = @Column(name = "COUNTRY_ID", length = 2, columnDefinition="CHAR")),
+            @AttributeOverride(name = "countryId", column = @Column(name = "COUNTRY_ID", length = 2, columnDefinition = "CHAR")),
             @AttributeOverride(name = "firstName", column = @Column(name = "FIRST_NAME", length = 20)),
             @AttributeOverride(name = "lastName", column = @Column(name = "LAST_NAME", nullable = false, length = 25)),
             @AttributeOverride(name = "salary", column = @Column(name = "SALARY", precision = 8)),
@@ -44,7 +43,7 @@ public class EmpDetailsView {
             @AttributeOverride(name = "city", column = @Column(name = "CITY", nullable = false, length = 30)),
             @AttributeOverride(name = "stateProvince", column = @Column(name = "STATE_PROVINCE", length = 25)),
             @AttributeOverride(name = "countryName", column = @Column(name = "COUNTRY_NAME", length = 40)),
-            @AttributeOverride(name = "regionName", column = @Column(name = "REGION_NAME", length = 25)) })
+            @AttributeOverride(name = "regionName", column = @Column(name = "REGION_NAME", length = 25))})
 
     public EmpDetailsViewId getEmpDetailsViewId() {
         return empDetailsViewId;

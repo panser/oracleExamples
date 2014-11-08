@@ -22,7 +22,7 @@ public class DepartmentController {
     DepartmentService departmentService;
 
     @PostConstruct
-    protected void beforeConstruct(){
+    protected void beforeConstruct() {
         System.out.println(getClass() + " :post construct method invoked");
     }
 
@@ -32,22 +32,22 @@ public class DepartmentController {
     }
 
     @RequestMapping(value = "/DataTablesList")
-    public String dataTablesList(Model model){
+    public String dataTablesList(Model model) {
         return "department/DataTablesList";
     }
 
     @RequestMapping(value = "/DataTablesListAjax")
-    public String dataTablesListAjax(Model model){
+    public String dataTablesListAjax(Model model) {
         return "department/DataTablesListAjax";
     }
 
     @RequestMapping(value = "/DandelionList")
-    public String dandelionList(Model model){
+    public String dandelionList(Model model) {
         return "department/DandelionList";
     }
 
     @RequestMapping(value = "/DandelionListAjax")
-    public String dandelionListAjax(Model model){
+    public String dandelionListAjax(Model model) {
         return "department/DandelionListAjax";
     }
 

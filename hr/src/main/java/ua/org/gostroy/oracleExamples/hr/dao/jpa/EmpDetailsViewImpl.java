@@ -2,9 +2,7 @@ package ua.org.gostroy.oracleExamples.hr.dao.jpa;
 
 import org.springframework.stereotype.Repository;
 import ua.org.gostroy.oracleExamples.hr.dao.EmpDetailsViewDao;
-import ua.org.gostroy.oracleExamples.hr.model.entity.Country;
 import ua.org.gostroy.oracleExamples.hr.model.entity.EmpDetailsView;
-import ua.org.gostroy.oracleExamples.hr.model.entity.EmpDetailsViewId;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,7 +21,7 @@ public class EmpDetailsViewImpl implements EmpDetailsViewDao {
     @Override
     public List<EmpDetailsView> findAll() {
         Query query = em.createNamedQuery("EmpDetailsView.findAll");
-        List<EmpDetailsView> empDetailsViews = (List<EmpDetailsView>)query.getResultList();
+        List<EmpDetailsView> empDetailsViews = (List<EmpDetailsView>) query.getResultList();
         return empDetailsViews;
     }
 
@@ -31,7 +29,7 @@ public class EmpDetailsViewImpl implements EmpDetailsViewDao {
     public List<EmpDetailsView> findByEmployeeId(Integer employeeId) {
         Query query = em.createNamedQuery("EmpDetailsView.findByEmployeeId");
         query.setParameter("employeeId", employeeId);
-        List<EmpDetailsView> empDetailsViewList = (List<EmpDetailsView>)query.getResultList();
+        List<EmpDetailsView> empDetailsViewList = (List<EmpDetailsView>) query.getResultList();
         return empDetailsViewList;
     }
 
@@ -39,7 +37,7 @@ public class EmpDetailsViewImpl implements EmpDetailsViewDao {
     public List<EmpDetailsView> findByJobId(String jobId) {
         Query query = em.createNamedQuery("EmpDetailsView.findByJobId");
         query.setParameter("jobId", jobId);
-        List<EmpDetailsView> empDetailsViewList = (List<EmpDetailsView>)query.getResultList();
+        List<EmpDetailsView> empDetailsViewList = (List<EmpDetailsView>) query.getResultList();
         return empDetailsViewList;
     }
 }

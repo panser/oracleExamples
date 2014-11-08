@@ -4,7 +4,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import ua.org.gostroy.oracleExamples.hr.dao.LocationDao;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Location;
-import ua.org.gostroy.oracleExamples.hr.model.entity.Location;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

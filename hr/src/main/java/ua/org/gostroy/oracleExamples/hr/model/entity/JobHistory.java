@@ -1,7 +1,6 @@
 package ua.org.gostroy.oracleExamples.hr.model.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -50,7 +49,7 @@ public class JobHistory {
         this.endDate = endDate;
     }
 
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade = {})
     @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID", nullable = false)
     public Job getJob() {
         return job;
@@ -60,7 +59,7 @@ public class JobHistory {
         this.job = job;
     }
 
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade={})
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade = {})
     @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID")
     public Department getDepartment() {
         return department;
@@ -73,7 +72,7 @@ public class JobHistory {
     @EmbeddedId
     @AttributeOverrides({
             @AttributeOverride(name = "employeeId", column = @Column(name = "EMPLOYEE_ID", nullable = false, precision = 6, scale = 0)),
-            @AttributeOverride(name = "startDate", column = @Column(name = "START_DATE", nullable = false, columnDefinition="TIMESTAMP")) })
+            @AttributeOverride(name = "startDate", column = @Column(name = "START_DATE", nullable = false, columnDefinition = "TIMESTAMP"))})
     public JobHistoryPk getJobHistoryPK() {
         return jobHistoryPK;
     }

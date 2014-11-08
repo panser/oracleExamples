@@ -14,12 +14,11 @@ import java.util.List;
 public class DepartmentOverDatatablesUtils {
 
     /**
-     *
      * @param select
      * @param criterias
      * @return
      */
-    public static StringBuilder getFilterQuery(DatatablesCriterias criterias){
+    public static StringBuilder getFilterQuery(DatatablesCriterias criterias) {
         StringBuilder queryBuilder = new StringBuilder();
         List<String> paramList = new ArrayList<String>();
 
@@ -51,20 +50,18 @@ public class DepartmentOverDatatablesUtils {
         if (criterias.hasOneFilterableColumn() && criterias.hasOneFilteredColumn()) {
             paramList = new ArrayList<String>();
 
-            if(!queryBuilder.toString().contains("WHERE")){
+            if (!queryBuilder.toString().contains("WHERE")) {
                 queryBuilder.append(" WHERE ");
-            }
-            else{
+            } else {
                 queryBuilder.append(" AND ");
             }
 
             for (ColumnDef columnDef : criterias.getColumnDefs()) {
-                if (columnDef.isFilterable()){
+                if (columnDef.isFilterable()) {
                     if (StringUtils.isNotBlank(columnDef.getSearchFrom())) {
                         if (columnDef.getName().equalsIgnoreCase("birthDate")) {
                             paramList.add("p." + columnDef.getName() + " >= '" + columnDef.getSearchFrom() + "'");
-                        }
-                        else {
+                        } else {
                             paramList.add("p." + columnDef.getName() + " >= " + columnDef.getSearchFrom());
                         }
                     }
@@ -72,13 +69,12 @@ public class DepartmentOverDatatablesUtils {
                     if (StringUtils.isNotBlank(columnDef.getSearchTo())) {
                         if (columnDef.getName().equalsIgnoreCase("birthDate")) {
                             paramList.add("p." + columnDef.getName() + " < '" + columnDef.getSearchTo() + "'");
-                        }
-                        else {
+                        } else {
                             paramList.add("p." + columnDef.getName() + " < " + columnDef.getSearchTo());
                         }
                     }
 
-                    if(StringUtils.isNotBlank(columnDef.getSearch())) {
+                    if (StringUtils.isNotBlank(columnDef.getSearch())) {
                         paramList.add(" LOWER(p." + columnDef.getName()
                                 + ") LIKE '%?%'".replace("?", columnDef.getSearch().toLowerCase()));
                     }

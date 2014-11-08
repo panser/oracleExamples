@@ -11,9 +11,13 @@ import java.util.List;
 public interface DepartmentOverDatatablesDao {
 
     public List<Department> findAll();
+
     public List<Department> findLimited(int maxResult);
+
     public List<Department> findDepartmentWithDatatablesCriterias(DatatablesCriterias criterias);
+
     public Long getFilteredCount(DatatablesCriterias criterias);
+
     public Long getTotalCount();
 
 }

@@ -5,17 +5,13 @@ import com.github.dandelion.datatables.core.ajax.DatatablesCriterias;
 import com.github.dandelion.datatables.core.ajax.DatatablesResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
 import ua.org.gostroy.oracleExamples.hr.service.DepartmentOverDatatablesService;
 import ua.org.gostroy.oracleExamples.hr.service.DepartmentService;
-import ua.org.gostroy.oracleExamples.hr.web.ajax.DataTableRequest;
-import ua.org.gostroy.oracleExamples.hr.web.ajax.DataTableResponse;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * Created by Panov Sergey on 11/5/2014.

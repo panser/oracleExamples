@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface EmpDetailsViewDao {
     List<EmpDetailsView> findAll();
+
     List<EmpDetailsView> findByEmployeeId(Integer employeeId);
+
     List<EmpDetailsView> findByJobId(String jobId);
 }
