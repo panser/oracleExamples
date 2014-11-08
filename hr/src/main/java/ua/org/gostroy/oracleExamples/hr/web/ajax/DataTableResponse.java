@@ -1,4 +1,4 @@
-package ua.org.gostroy.oracleExamples.hr.web.jquery;
+package ua.org.gostroy.oracleExamples.hr.web.ajax;
 
 
 import javax.xml.bind.annotation.XmlElement;

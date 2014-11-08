@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
 import ua.org.gostroy.oracleExamples.hr.service.DepartmentService;
-import ua.org.gostroy.oracleExamples.hr.web.jquery.DataTableRequest;
-import ua.org.gostroy.oracleExamples.hr.web.jquery.DataTableResponse;
+import ua.org.gostroy.oracleExamples.hr.web.ajax.DataTableRequest;
+import ua.org.gostroy.oracleExamples.hr.web.ajax.DataTableResponse;
 
 import java.util.List;
 

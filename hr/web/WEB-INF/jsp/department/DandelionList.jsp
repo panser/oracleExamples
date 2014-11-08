@@ -28,10 +28,14 @@
 
                 <div class="h1">Dandelion Grid</div>
 
-                <datatables:table id="myTableId" data="${departments}" >
+                <datatables:table id="myTableId" data="${departments}" row="department">
                     <datatables:column title="Department Name" property="name" />
-                    <datatables:column title="Department Manager" property="manager.firstName" />
-                    <datatables:column title="Department Location" property="location.city" />
+                    <datatables:column title="Department Manager">
+                        ${department.manager.firstName} ${department.manager.lastName}
+                    </datatables:column>
+                    <datatables:column title="Department Location">
+                        ${department.location.city}, ${department.location.country.name}
+                    </datatables:column>
                 </datatables:table>
 
             </div>
