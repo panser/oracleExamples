@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -13,11 +14,12 @@
         <div class="row-fluid">
             <div class="span12">
 
-                <div class="h1">DataTables Grid over AJAX</div>
+                <div class="h1">Dandelion Grid over AJAX</div>
 
                 <div id="status"></div>
 
                 <table id="departments" class="table table-striped table-bordered">
+
                     <thead>
                         <tr>
                             <th>Department Name</th>

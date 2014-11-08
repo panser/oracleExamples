@@ -1,0 +1,22 @@
+{
+    "bundle" : "local",
+    "dependencies": [ "jquery.local" ],
+    "assets": [
+        {
+            "name": "custom.css",
+            "version": "0.10.0",
+            "type": "css",
+            "locations": {
+                "webapp": "/static/custom.css"
+            }
+        },
+        {
+            "name": "custom.js",
+            "version": "0.10.0",
+            "type": "js",
+            "locations": {
+                "webapp": "/static/custom.js"
+            }
+        }
+    ]
+}

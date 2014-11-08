@@ -1,5 +1,5 @@
 $.extend( $.fn.dataTable.defaults, {
-    "paginationType": "full_numbers"
+    "sPaginationType": "full_numbers"
     , "jQueryUI": true
     , stateSave: true
     , "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]

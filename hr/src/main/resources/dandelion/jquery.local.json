@@ -1,0 +1,13 @@
+{
+    "bundle" : "jquery.local",
+    "assets": [
+        {
+            "name": "jquery.js",
+            "version": "1.11.1",
+            "type": "js",
+            "locations": {
+                "webapp": "/webjars/jquery/1.11.1/jquery.js"
+            }
+        }
+    ]
+}

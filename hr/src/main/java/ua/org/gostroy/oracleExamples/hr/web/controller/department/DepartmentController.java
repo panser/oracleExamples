@@ -41,4 +41,11 @@ public class DepartmentController {
         return "department/DataTablesListAjax";
     }
 
+
+    @RequestMapping(value = "/DandelionList")
+    public String dandelionList(Model model){
+        model.addAttribute("departments", departmentService.findAll());
+        return "department/DandelionList";
+    }
+
 }

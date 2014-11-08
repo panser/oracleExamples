@@ -1,0 +1,23 @@
+{
+    "bundle" : "datatables.local",
+    "dependencies": [ "jquery.local" ],
+    "assets": [
+        {
+            "name": "jquery.dataTables.css",
+            "version": "1.9.4",
+            "type": "css",
+            "locations": {
+                "webapp": "/webjars/datatables/1.9.4/media/css/jquery.dataTables.css"
+            }
+        },
+        {
+            "name": "jquery.dataTables.js",
+            "version": "1.9.4",
+            "type": "js",
+            "locations": {
+                "webapp": "/webjars/datatables/1.9.4/media/js/jquery.dataTables.js"
+            }
+        }
+
+    ]
+}
