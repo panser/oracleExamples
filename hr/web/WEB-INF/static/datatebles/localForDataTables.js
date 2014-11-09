@@ -16,7 +16,8 @@ $(document).on('xhr.dt', function ( e, settings, json ) {
 function myRequest(sSource, aoData, fnCallback, oSettings) {
     oSettings.jqXHR = $.ajax({
         "dataType" : 'json',
-        "type" : "POST",
+        "cache" : 'false',
+        "type" : "GET",
         "url" : sSource,
         "data" : aoData,
         "success" : function(json){
