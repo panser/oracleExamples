@@ -3,6 +3,7 @@ package ua.org.gostroy.oracleExamples.hr.web.controller.department;
 import com.github.dandelion.datatables.core.ajax.DataSet;
 import com.github.dandelion.datatables.core.ajax.DatatablesCriterias;
 import com.github.dandelion.datatables.core.ajax.DatatablesResponse;
+import com.github.dandelion.datatables.extras.spring3.ajax.DatatablesParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,18 +26,12 @@ public class DepartmentApiController {
     DepartmentOverDatatablesService departmentOverDatatablesService;
 
     @RequestMapping(value = "/")
-    @ResponseBody
-/*
-    public DataTableResponse findAll(@RequestBody DataTableRequest dataTableRequest){
-        List<Department> departments = departmentService.findAll();
-        return new DataTableResponse();
-    }
-*/
+    public @ResponseBody
+//    DatatablesResponse<Department> findAllForDataTablesFullSpring(@DatatablesParams DatatablesCriterias criterias) {
     DatatablesResponse<Department> findAllForDataTables(HttpServletRequest request) {
         DatatablesCriterias criterias = DatatablesCriterias.getFromRequest(request);
         DataSet<Department> departments = departmentOverDatatablesService.findDepartmentsWithDatatablesCriterias(criterias);
         return DatatablesResponse.build(departments, criterias);
     }
-
 
 }

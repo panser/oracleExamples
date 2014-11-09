@@ -56,6 +56,7 @@
                 "bServerSide": true
                 , "sAjaxSource": "${baseUrl}api/department/"
                 , "bProcessing": true
+                , "fnServerData":myRequest
                 , "aoColumns":[
                     {
                         "mData":"name",
