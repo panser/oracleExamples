@@ -83,10 +83,8 @@ public class DepartmentOverDatatablesImpl implements DepartmentOverDatatablesDao
         /**
          * Step 3: paging
          */
-        query.setFirstResult(1);
-//        query.setFirstResult(criterias.getDisplayStart());
-        query.setMaxResults(5);
-//        query.setMaxResults(criterias.getDisplaySize());
+        query.setFirstResult(criterias.getDisplayStart());
+        query.setMaxResults(criterias.getDisplaySize());
 
         return query.getResultList();
     }

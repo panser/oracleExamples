@@ -1,5 +1,8 @@
 package ua.org.gostroy.oracleExamples.hr.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -13,6 +16,7 @@ import java.util.Date;
 })
 @Entity
 @Table(name = "JOB_HISTORY")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class JobHistory {
     private JobHistoryPk jobHistoryPK;
 

@@ -28,6 +28,13 @@
                             <th>Department Location</th>
                         </tr>
                     </thead>
+                    <tfoot>
+                    <tr>
+                        <th>Department Name</th>
+                        <th>Department Manager</th>
+                        <th>Department Location</th>
+                    </tr>
+                    </tfoot>
                     <tbody/>
                 </table>
 
@@ -46,23 +53,23 @@
             } );
 
             var table = $("#departments").DataTable({
-                "serverSide": true
-                , "ajaxSource": "${baseUrl}api/department/"
-                , "processing": true
-                , "fnServerData": function ( sSource, aoData, fnCallback ) {
-                    $.ajax( {
-                        dataType: 'json',
-                        contentType: "application/json;charset=UTF-8",
-//                        type: 'GET',
-                        type: 'POST',
-                        url: sSource,
-                        data: stringify_aoData(aoData),
-                        success: fnCallback,
-                        error : function (e) {
-                            alert (e);
-                        }
-                    } );
-                }
+                "bServerSide": true
+                , "sAjaxSource": "${baseUrl}api/department/"
+                , "bProcessing": true
+                , "aoColumns":[
+                    {
+                        "mData":"name",
+                        "sDefaultContent":""
+                    },
+                    {
+                        "mData":"manager.firstName",
+                        "sDefaultContent":""
+                    },
+                    {
+                        "mData":"location.city",
+                        "sDefaultContent":""
+                    }
+                ]
             });
 //            table.columnFilter();
 

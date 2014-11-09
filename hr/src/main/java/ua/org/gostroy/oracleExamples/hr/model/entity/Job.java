@@ -1,6 +1,8 @@
 package ua.org.gostroy.oracleExamples.hr.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -14,15 +16,16 @@ import java.util.Set;
 })
 @Entity
 @Table(name = "JOBS")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Job {
     private String id;
     private String title;
     private Integer minSalary;
     private Integer maxSalary;
 
-    @JsonIgnore
+    @JsonBackReference
     private Set<Employee> employees = new HashSet<>(0);
-    @JsonIgnore
+    @JsonBackReference
     private Set<JobHistory> jobHistories = new HashSet<>(0);
 
     public Job() {

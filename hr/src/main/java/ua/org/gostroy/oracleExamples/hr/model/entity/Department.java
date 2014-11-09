@@ -1,6 +1,9 @@
 package ua.org.gostroy.oracleExamples.hr.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -14,17 +17,16 @@ import java.util.Set;
 })
 @Entity
 @Table(name = "DEPARTMENTS")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Department {
     private Integer id;
     private String name;
-    //    @JsonIgnore
     private Employee manager;
-    //    @JsonIgnore
     private Location location;
 
-    @JsonIgnore
+    @JsonBackReference
     private Set<Employee> employees = new HashSet<>(0);
-    @JsonIgnore
+    @JsonBackReference
     private Set<JobHistory> jobHistories = new HashSet<>(0);
 
     public Department() {
@@ -60,7 +62,7 @@ public class Department {
         this.name = name;
     }
 
-    @OneToOne(cascade = {}, orphanRemoval = true)
+    @OneToOne(cascade = {}, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "MANAGER_ID")
     public Employee getManager() {
         return manager;

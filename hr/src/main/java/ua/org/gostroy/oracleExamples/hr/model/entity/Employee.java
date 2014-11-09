@@ -1,6 +1,8 @@
 package ua.org.gostroy.oracleExamples.hr.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -16,6 +18,7 @@ import java.util.Set;
 })
 @Entity
 @Table(name = "EMPLOYEES")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Employee {
     private Integer id;
     private String firstName;
@@ -28,13 +31,14 @@ public class Employee {
     private BigDecimal salary;
     private BigDecimal commissionPct;
     private Employee manager;
+    @JsonBackReference
     private Department department;
 
-    @JsonIgnore
+    @JsonBackReference
     private Department managerOfDepartment;
-    @JsonIgnore
+    @JsonBackReference
     private Set<Employee> employeesesOfThisManager = new HashSet<>(0);
-    @JsonIgnore
+    @JsonBackReference
     private Set<JobHistory> jobHistories = new HashSet<>(0);
 
     public Employee() {

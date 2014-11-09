@@ -1,6 +1,8 @@
 package ua.org.gostroy.oracleExamples.hr.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -14,11 +16,12 @@ import java.util.Set;
 })
 @Entity
 @Table(name = "REGIONS")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Region {
     private Integer id;
     private String name;
 
-    @JsonIgnore
+    @JsonBackReference
     private Set<Country> countries = new HashSet<>(0);
 
     public Region() {
