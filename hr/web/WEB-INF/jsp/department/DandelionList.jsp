@@ -30,13 +30,13 @@
 
                 <datatables:table id="myTableId" data="${departments}" row="department">
                     <%--<datatables:column title="Department Name" property="name" />--%>
-                    <datatables:column title="Department Name">
+                    <datatables:column title="Department Name" filterable="true" filterMinLength="3">
                         ${department.name}
                     </datatables:column>
-                    <datatables:column title="Department Manager">
+                    <datatables:column title="Department Manager" filterable="true" filterMinLength="3">
                         ${department.manager.firstName} ${department.manager.lastName}
                     </datatables:column>
-                    <datatables:column title="Department Location">
+                    <datatables:column title="Department Location" filterable="true" filterMinLength="3">
                         ${department.location.city}, ${department.location.country.name}
                     </datatables:column>
                 </datatables:table>

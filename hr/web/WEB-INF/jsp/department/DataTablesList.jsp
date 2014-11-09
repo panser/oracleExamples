@@ -21,12 +21,19 @@
 
                 <table id="departments" class="table table-striped table-bordered">
                     <thead>
-                    <tr>
-                        <th>Department Name</th>
-                        <th>Department Manager</th>
-                        <th>Department Location</th>
-                    </tr>
+                        <tr>
+                            <th>Department Name</th>
+                            <th>Department Manager</th>
+                            <th>Department Location</th>
+                        </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Department Name</th>
+                            <th>Department Manager</th>
+                            <th>Department Location</th>
+                        </tr>
+                    </tfoot>
                     <tbody>
                     <c:forEach items="${departments}" var="department">
                         <tr>
@@ -46,8 +53,25 @@
     <jsp:include page="../../include/foot.jsp" />
     <script type="text/javascript">
         $(function () {
-            $("#departments").DataTable({
-            });
+            // Setup - add a text input to each footer cell
+            $('#departments tfoot th').each( function () {
+                var title = $('#departments thead th').eq( $(this).index() ).text();
+                $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+            } );
+
+            var table = $("#departments").DataTable({
+            })
+//            table.columnFilter();
+
+            // Apply the search
+            table.columns().eq( 0 ).each( function ( colIdx ) {
+                $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
+                    table
+                            .column( colIdx )
+                            .search( this.value )
+                            .draw();
+                } );
+            } );
 
         });
     </script>

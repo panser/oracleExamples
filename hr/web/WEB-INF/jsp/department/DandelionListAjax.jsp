@@ -29,9 +29,9 @@
             <div class="h1">Dandelion Grid AJAX</div>
 
             <datatables:table id="myTableId" url='${baseUrl}api/department/' serverSide="true" processing="true">
-                <datatables:column title="Department Name" property="name" />
-                <datatables:column title="Department Manager" property="manager.firstName" />
-                <datatables:column title="Department Location" property="location.city" />
+                <datatables:column title="Department Name" property="name" filterable="true" filterMinLength="3"/>
+                <datatables:column title="Department Manager" property="manager.firstName" filterable="true" filterMinLength="3"/>
+                <datatables:column title="Department Location" property="location.city" filterable="true" filterMinLength="3"/>
             </datatables:table>
 
         </div>

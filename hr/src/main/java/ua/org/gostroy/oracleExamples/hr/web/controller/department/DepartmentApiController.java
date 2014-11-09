@@ -34,8 +34,9 @@ public class DepartmentApiController {
 */
     DatatablesResponse<Department> findAllForDataTables(HttpServletRequest request) {
         DatatablesCriterias criterias = DatatablesCriterias.getFromRequest(request);
-        DataSet<Department> persons = departmentOverDatatablesService.findDepartmentsWithDatatablesCriterias(criterias);
-        return DatatablesResponse.build(persons, criterias);
+        DataSet<Department> departments = departmentOverDatatablesService.findDepartmentsWithDatatablesCriterias(criterias);
+//        return DatatablesResponse.build(departments, criterias);
+        return null;
     }
 
 

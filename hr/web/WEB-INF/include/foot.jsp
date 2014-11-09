@@ -7,6 +7,7 @@
 <%--<script src="${baseUrl}webjars/datatables/1.9.4/media/js/jquery.dataTables.js"></script>--%>
 <script src="${baseUrl}webjars/datatables/1.10.2/js/jquery.dataTables.js"></script>
 <script src="${baseUrl}static/datatebles/Plugins/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+<script src="${baseUrl}static/datatebles/filtering/filteringaddon.js"></script>
 <script src="${baseUrl}static/custom.js"></script>
 <script src="${baseUrl}static/datatebles/localForDataTables.js"></script>
 

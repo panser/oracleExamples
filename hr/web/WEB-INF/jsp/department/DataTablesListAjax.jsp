@@ -39,7 +39,13 @@
 
     <script type="text/javascript">
         $(function () {
-            $("#departments").DataTable({
+            // Setup - add a text input to each footer cell
+            $('#departments tfoot th').each( function () {
+                var title = $('#departments thead th').eq( $(this).index() ).text();
+                $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+            } );
+
+            var table = $("#departments").DataTable({
                 "serverSide": true
                 , "ajaxSource": "${baseUrl}api/department/"
                 , "processing": true
@@ -58,6 +64,18 @@
                     } );
                 }
             });
+//            table.columnFilter();
+
+            // Apply the search
+            table.columns().eq( 0 ).each( function ( colIdx ) {
+                $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
+                    table
+                            .column( colIdx )
+                            .search( this.value )
+                            .draw();
+                } );
+            } );
+
 
         });
     </script>
