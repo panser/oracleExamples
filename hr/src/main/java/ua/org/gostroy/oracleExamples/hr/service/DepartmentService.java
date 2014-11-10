@@ -48,5 +48,10 @@ public class DepartmentService {
         departmentDao.delete(entity);
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    public void delete(Integer id) throws DataIntegrityViolationException {
+        Department entity = findById(id);
+        departmentDao.delete(entity);
+    }
 
 }
