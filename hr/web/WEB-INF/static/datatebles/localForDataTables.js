@@ -29,11 +29,10 @@ function myRequest(sSource, aoData, fnCallback, oSettings) {
 }
 
 function makeActions(data, type, full) {
-//    <a onclick="alert('Department ' + ${department.id} + ' deleted !');" class="btn btn-mini" title="Remove"><span class="glyphicon glyphicon-trash"></span></a>
-//    <a onclick="alert('Department ' + ${department.id} + ' edited !');" class="btn btn-mini" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
-    return '<a href="mailto:' + data + '">' + data + '</a>';
+    return "<a onclick='alert(\"Department " + data + " deleted !\");' class='btn btn-mini' title='Remove'><span class='glyphicon glyphicon-trash'></span></a>" +
+            "<a onclick='alert(\"Department " + data + " edited !\");' class='btn btn-mini' title='Edit'><span class='glyphicon glyphicon-edit'></span></a>"
 }
 
 function makeInput(data, type, full) {
-    return '<a href="mailto:' + data + '">' + data + '</a>';
+    return "<input type='checkbox' value=" + data + " />"
 }

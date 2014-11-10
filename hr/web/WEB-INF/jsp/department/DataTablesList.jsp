@@ -113,7 +113,7 @@
                 var confirmDeleteModalObj = $('#confirmDeleteModal');
                 confirmDeleteModalObj.find('.modal-body span').text(id);
                 confirmDeleteModalObj.modal('toggle')
-                confirmDeleteModalObj.on('click', '#confirmDelete', function () {
+                confirmDeleteModalObj.unbind().on('click', '#confirmDelete', function () {
                     $.ajax({
                         type: 'GET',
                         url: "${baseUrl}api/department/" + id + "/delete",
