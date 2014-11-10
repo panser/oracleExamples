@@ -18,7 +18,7 @@
             <property name="hibernate.hbm2ddl.auto" value="validate"/>
             <!--<property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>-->
             <property name="hibernate.connection.charSet" value="UTF-8"/>
-            <property name="hibernate.jdbc.batch_size" value="100" />
+            <!--<property name="hibernate.jdbc.batch_size" value="100" />-->
             <!--<property name="jadira.usertype.autoRegisterUserTypes" value="true"/>-->
             <!--<property name="jadira.usertype.databaseZone" value="jvm"/>-->
         </properties>

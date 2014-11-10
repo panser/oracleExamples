@@ -1,5 +1,6 @@
 package ua.org.gostroy.oracleExamples.hr.service;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -44,12 +45,12 @@ public class DepartmentService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void delete(Department entity) throws DataIntegrityViolationException {
+    public void delete(Department entity) {
         departmentDao.delete(entity);
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void delete(Integer id) throws DataIntegrityViolationException {
+    public void delete(Integer id) {
         Department entity = findById(id);
         departmentDao.delete(entity);
     }

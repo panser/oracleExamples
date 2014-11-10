@@ -12,12 +12,15 @@
 
 <body>
     <jsp:include page="../../include/navbar.jsp" />
+    <jsp:include page="../../include/commonHtml.jsp" />
 
     <div class="container">
+        <div class="h1">DataTables Grid</div>
+
+        <div id="allertMessages"></div>
+
         <div class="row-fluid">
             <div class="span12">
-
-                <div class="h1">DataTables Grid</div>
 
                 <table id="departments" class="table table-striped table-bordered">
                     <thead>
@@ -46,8 +49,7 @@
                             <td>${department.manager.firstName} ${department.manager.lastName}</td>
                             <td>${department.location.city}, ${department.location.country.name}</td>
                             <td>
-                                <a id="delete" class="btn btn-mini" title="Remove" deleteId="${department.id}" ><span class="glyphicon glyphicon-trash"></span></a>
-                                <%--<a onclick="deleteAction(${department.id})" class="btn btn-mini" title="Remove"><span class="glyphicon glyphicon-trash"></span></a>--%>
+                                <a class="localDeleteAction btn btn-mini" title="Remove" deleteId="${department.id}" ><span class="glyphicon glyphicon-trash"></span></a>
                                 <a onclick="alert('Department ' + ${department.id} + ' edited !');" class="btn btn-mini" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
                             </td>
                         </tr>
@@ -105,27 +107,30 @@
             });
 
 
-            $('#departments tbody').on('click', '#delete', function () {
+            $('#departments tbody').on('click', '.localDeleteAction', function () {
                 var thisObj = $(this);
                 var id = thisObj.attr('deleteId');
-                $('#myModal .modal-body span').text(id);
-                $('#myModal').modal().on('click', '#confirmDelete', function () {
+                var confirmDeleteModalObj = $('#confirmDeleteModal');
+                confirmDeleteModalObj.find('.modal-body span').text(id);
+                confirmDeleteModalObj.modal('toggle')
+                confirmDeleteModalObj.on('click', '#confirmDelete', function () {
                     $.ajax({
                         type: 'GET',
                         url: "${baseUrl}api/department/" + id + "/delete",
                         async: 'false',
                         cache: 'false',
                         success: function (result) {
-//                            alert('Department ' + id + ' deleted !');
                             table
-                                    .row(thisObj.parents('tr'))
-                                    .remove()
+                                    .row(thisObj.parents('tr')).remove()
                                     .draw();
-                            $('#myModal').modal('hide')
+                            $('#confirmDeleteModal').modal('hide')
                         },
                         error: function (jqXHR) {
-//                            alert('Department ' + id + ' NOT deleted !');
-                            $('#myModal').modal('hide')
+                            var dangerBlock = $("#localAlertDangerBlock").clone().attr('id', '');
+                            dangerBlock.find('.localMessageDanger').text(jqXHR.responseText);
+                            dangerBlock.appendTo("#allertMessages");
+                            dangerBlock.show();
+                            $('#confirmDeleteModal').modal('hide')
                         }
                     });
                 });
@@ -135,7 +140,7 @@
     </script>
 
     <!-- Modal -->
-    <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade bs-example-modal-sm" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">

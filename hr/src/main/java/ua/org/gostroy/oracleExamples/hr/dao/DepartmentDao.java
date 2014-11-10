@@ -1,5 +1,6 @@
 package ua.org.gostroy.oracleExamples.hr.dao;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
 
@@ -17,5 +18,5 @@ public interface DepartmentDao {
 
     Department update(Department entity) throws DataIntegrityViolationException;
 
-    void delete(Department entity) throws DataIntegrityViolationException;
+    void delete(Department entity);
 }

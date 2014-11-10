@@ -1,5 +1,6 @@
 package ua.org.gostroy.oracleExamples.hr.dao.jpa;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import ua.org.gostroy.oracleExamples.hr.dao.DepartmentDao;
@@ -45,7 +46,7 @@ public class DepartmentImpl implements DepartmentDao {
     }
 
     @Override
-    public void delete(Department entity) throws DataIntegrityViolationException {
+    public void delete(Department entity) {
         em.remove(em.contains(entity) ? entity : em.merge(entity));
     }
 }
