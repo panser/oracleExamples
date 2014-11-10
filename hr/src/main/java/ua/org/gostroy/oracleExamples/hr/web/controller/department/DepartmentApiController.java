@@ -27,9 +27,9 @@ public class DepartmentApiController {
 
     @RequestMapping(value = "/")
     public @ResponseBody
-//    DatatablesResponse<Department> findAllForDataTablesFullSpring(@DatatablesParams DatatablesCriterias criterias) {
-    DatatablesResponse<Department> findAllForDataTables(HttpServletRequest request) {
-        DatatablesCriterias criterias = DatatablesCriterias.getFromRequest(request);
+    DatatablesResponse<Department> findAllForDataTablesFullSpring(@DatatablesParams DatatablesCriterias criterias) {
+//    DatatablesResponse<Department> findAllForDataTables(HttpServletRequest request) {
+//        DatatablesCriterias criterias = DatatablesCriterias.getFromRequest(request);
         DataSet<Department> departments = departmentOverDatatablesService.findDepartmentsWithDatatablesCriterias(criterias);
         return DatatablesResponse.build(departments, criterias);
     }

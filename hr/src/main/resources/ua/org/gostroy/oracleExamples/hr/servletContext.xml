@@ -14,6 +14,9 @@
                 </property>
             </bean>
         </mvc:message-converters>
+        <mvc:argument-resolvers>
+            <bean class="com.github.dandelion.datatables.extras.spring3.ajax.DatatablesCriteriasMethodArgumentResolver" />
+        </mvc:argument-resolvers>
     </mvc:annotation-driven>
     <mvc:view-controller path="/" view-name="redirect:/department/DandelionList"/>
     <!--<mvc:view-controller path="/department/DataTablesListAjax"/>-->
