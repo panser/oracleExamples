@@ -107,34 +107,40 @@
             });
 
 
+            removeDepartmentObg = null;
+            $('#confirmDeleteModal').on('click', '#confirmDelete', deleteDepartment);
             $('#departments tbody').on('click', '.localDeleteAction', function () {
-                var thisObj = $(this);
-                var id = thisObj.attr('deleteId');
+                removeDepartmentObg = $(this);
+                var id = removeDepartmentObg.attr('deleteId');
                 var confirmDeleteModalObj = $('#confirmDeleteModal');
                 confirmDeleteModalObj.find('.modal-body span').text(id);
-                confirmDeleteModalObj.modal('toggle')
-                confirmDeleteModalObj.unbind().on('click', '#confirmDelete', function () {
-                    $.ajax({
-                        type: 'GET',
-                        url: "${baseUrl}api/department/" + id + "/delete",
-                        async: 'false',
-                        cache: 'false',
-                        success: function (result) {
-                            table
-                                    .row(thisObj.parents('tr')).remove()
-                                    .draw();
-                            $('#confirmDeleteModal').modal('hide')
-                        },
-                        error: function (jqXHR) {
-                            var dangerBlock = $("#localAlertDangerBlock").clone().attr('id', '');
-                            dangerBlock.find('.localMessageDanger').text(jqXHR.responseText);
-                            dangerBlock.appendTo("#allertMessages");
-                            dangerBlock.show();
-                            $('#confirmDeleteModal').modal('hide')
-                        }
-                    });
-                });
+                confirmDeleteModalObj.modal('show');
             });
+
+            function deleteDepartment (event){
+                var id = $('#confirmDeleteModal').find('.modal-body span').text();
+                $.ajax({
+                    type: 'GET',
+                    url: "${baseUrl}api/department/" + id + "/delete",
+                    async: 'false',
+                    cache: 'false',
+                    success: function (result) {
+                        table
+                                .row(removeDepartmentObg.parents('tr')).remove()
+                                .draw();
+                        $('#confirmDeleteModal').modal('hide')
+                    },
+                    error: function (jqXHR) {
+                        var dangerBlock = $("#localAlertDangerBlock").clone().attr('id', '');
+                        dangerBlock.find('.localMessageDanger').text(jqXHR.responseText);
+                        dangerBlock.appendTo("#allertMessages");
+                        dangerBlock.show();
+                        $('#confirmDeleteModal').modal('hide');
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
+                    }
+                })
+            };
+
         });
 
     </script>
@@ -151,7 +157,7 @@
                     <p>You are going to delete item <span></span>. Are you sure?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button id="confirmDelete" type="button" class="btn btn-primary">Delete</button>
                 </div>
             </div><!-- /.modal-content -->
