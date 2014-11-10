@@ -23,16 +23,20 @@
                 <table id="departments" class="table table-striped table-bordered">
                     <thead>
                         <tr>
+                            <th><input type="checkbox" onclick="$('#departments').find(':checkbox').attr('checked', this.checked);" /></th>
                             <th>Department Name</th>
                             <th>Department Manager</th>
                             <th>Department Location</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tfoot>
                     <tr>
+                        <th></th>
                         <th>Department Name</th>
                         <th>Department Manager</th>
                         <th>Department Location</th>
+                        <th>Actions</th>
                     </tr>
                     </tfoot>
                     <tbody/>
@@ -46,18 +50,17 @@
 
     <script type="text/javascript">
         $(function () {
-            // Setup - add a text input to each footer cell
-            $('#departments tfoot th').each( function () {
-                var title = $('#departments thead th').eq( $(this).index() ).text();
-                $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-            } );
-
-            var table = $("#departments").DataTable({
+            var table = $("#departments").dataTable({
                 "bServerSide": true
                 , "sAjaxSource": "${baseUrl}api/department/"
                 , "bProcessing": true
                 , "fnServerData":myRequest
                 , "aoColumns":[
+                    {
+                        "mData":"id",
+                        "bSortable":false,
+                        "mRender":makeInput
+                    },
                     {
                         "mData":"name",
                         "sDefaultContent":""
@@ -69,20 +72,38 @@
                     {
                         "mData":"location.city",
                         "sDefaultContent":""
+                    },
+                    {
+                        "mData":"id",
+                        "bSortable":false,
+                        "mRender":makeActions
+                    }
+
+                ]
+            });
+            table.columnFilter({
+                "aoColumns":[
+                    {
+                        "type":"null"
+                    },
+                    {
+                        "type":"text",
+                        "iFilterLength":3
+                    },
+                    {
+                        "type":"text",
+                        "iFilterLength":3
+                    },
+                    {
+                        "type":"text",
+                        "iFilterLength":3
+                    },
+                    {
+                        "type":"null"
                     }
                 ]
             });
-//            table.columnFilter();
 
-            // Apply the search
-            table.columns().eq( 0 ).each( function ( colIdx ) {
-                $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
-                    table
-                            .column( colIdx )
-                            .search( this.value )
-                            .draw();
-                } );
-            } );
 
 
         });

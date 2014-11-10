@@ -22,24 +22,33 @@
                 <table id="departments" class="table table-striped table-bordered">
                     <thead>
                         <tr>
+                            <th><input type="checkbox" onclick="$('#departments').find(':checkbox').attr('checked', this.checked);" /></th>
                             <th>Department Name</th>
                             <th>Department Manager</th>
                             <th>Department Location</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
+                            <th></th>
                             <th>Department Name</th>
                             <th>Department Manager</th>
                             <th>Department Location</th>
+                            <th></th>
                         </tr>
                     </tfoot>
                     <tbody>
                     <c:forEach items="${departments}" var="department">
                         <tr>
+                            <td><input type="checkbox" value="${department.id}" /></td>
                             <td>${department.name}</td>
                             <td>${department.manager.firstName} ${department.manager.lastName}</td>
                             <td>${department.location.city}, ${department.location.country.name}</td>
+                            <td>
+                                <a onclick="alert('Department ' + ${department.id} + ' deleted !');" class="btn btn-mini" title="Remove"><span class="glyphicon glyphicon-trash"></span></a>
+                                <a onclick="alert('Department ' + ${department.id} + ' edited !');" class="btn btn-mini" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -53,25 +62,49 @@
     <jsp:include page="../../include/foot.jsp" />
     <script type="text/javascript">
         $(function () {
-            // Setup - add a text input to each footer cell
-            $('#departments tfoot th').each( function () {
-                var title = $('#departments thead th').eq( $(this).index() ).text();
-                $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-            } );
-
-            var table = $("#departments").DataTable({
+            var table = $("#departments").dataTable({
+                "aoColumns":[
+                    {
+                        "sDefaultContent":"",
+                        "bSortable":false
+                    },
+                    {
+                        "sDefaultContent":""
+                    },
+                    {
+                        "sDefaultContent":""
+                    },
+                    {
+                        "sDefaultContent":""
+                    },
+                    {
+                        "sDefaultContent":"",
+                        "bSortable":false
+                    }
+                ]
             })
-//            table.columnFilter();
-
-            // Apply the search
-            table.columns().eq( 0 ).each( function ( colIdx ) {
-                $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
-                    table
-                            .column( colIdx )
-                            .search( this.value )
-                            .draw();
-                } );
-            } );
+            table.columnFilter({
+                "aoColumns":[
+                    {
+                        "type":"null"
+                    },
+                    {
+                        "type":"text",
+                        "iFilterLength":3
+                    },
+                    {
+                        "type":"text",
+                        "iFilterLength":3
+                    },
+                    {
+                        "type":"text",
+                        "iFilterLength":3
+                    },
+                    {
+                        "type":"null"
+                    }
+                ]
+            });
 
         });
     </script>

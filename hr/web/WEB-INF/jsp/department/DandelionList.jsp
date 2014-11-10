@@ -29,6 +29,12 @@
                 <div class="h1">Dandelion Grid</div>
 
                 <datatables:table id="myTableId" data="${departments}" row="department">
+                    <datatables:column sortable="false" cssCellStyle="text-align:center;">
+                        <datatables:columnHead>
+                            <input type="checkbox" onclick="$('#myTableId').find(':checkbox').attr('checked', this.checked);" />
+                        </datatables:columnHead>
+                        <input type="checkbox" value="${department.id}" />
+                    </datatables:column>
                     <%--<datatables:column title="Department Name" property="name" />--%>
                     <datatables:column title="Department Name" filterable="true" filterMinLength="3">
                         ${department.name}
@@ -38,6 +44,10 @@
                     </datatables:column>
                     <datatables:column title="Department Location" filterable="true" filterMinLength="3">
                         ${department.location.city}, ${department.location.country.name}
+                    </datatables:column>
+                    <datatables:column title="Actions" sortable="false">
+                        <a onclick="alert('Department ' + ${department.id} + ' deleted !');" class="btn btn-mini" title="Remove"><span class="glyphicon glyphicon-trash"></span></a>
+                        <a onclick="alert('Department ' + ${department.id} + ' edited !');" class="btn btn-mini" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
                     </datatables:column>
                 </datatables:table>
 

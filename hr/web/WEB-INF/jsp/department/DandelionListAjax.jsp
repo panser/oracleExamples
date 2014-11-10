@@ -32,6 +32,10 @@
                 <datatables:column title="Department Name" property="name" filterable="true" filterMinLength="3"/>
                 <datatables:column title="Department Manager" property="manager.firstName" filterable="true" filterMinLength="3"/>
                 <datatables:column title="Department Location" property="location.city" filterable="true" filterMinLength="3"/>
+                <datatables:column title="Actions" sortable="false">
+                    <a onclick="alert('Department ' + ${department.id} + ' deleted !');" class="btn btn-mini" title="Remove"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a onclick="alert('Department ' + ${department.id} + ' edited !');" class="btn btn-mini" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+                </datatables:column>
             </datatables:table>
 
         </div>
