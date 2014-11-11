@@ -125,6 +125,13 @@
                     async: 'false',
                     cache: 'false',
                     success: function (result) {
+                        var error = result.error;
+                        if(error){
+                            parseJsonError(error);
+                            $('#confirmDeleteModal').modal('hide');
+                            $("html, body").animate({ scrollTop: 0 }, "slow");
+                            return;
+                        }
                         table
                                 .row(removeDepartmentObg.parents('tr')).remove()
                                 .draw();

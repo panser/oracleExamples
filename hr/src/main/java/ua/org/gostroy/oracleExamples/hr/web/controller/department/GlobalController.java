@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import ua.org.gostroy.oracleExamples.hr.model.JsonError;
+import ua.org.gostroy.oracleExamples.hr.model.MessageError;
 
 import java.util.ArrayList;
 
@@ -18,11 +20,11 @@ import java.util.ArrayList;
 public class GlobalController {
 
     @ExceptionHandler({JpaSystemException.class})
-    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public String handleJpaException(Exception e) {
-        String returnValue = e.toString();
-        return returnValue;
+    public JsonError handleJpaException(Exception e) {
+        MessageError messageError = new MessageError(e.toString(),HttpStatus.INTERNAL_SERVER_ERROR.value());
+        JsonError jsonError = new JsonError(messageError);
+        return jsonError;
     }
 
 }
