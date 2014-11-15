@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/hr/hr.iml" filepath="$PROJECT_DIR$/hr/hr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hr/hr_dao/hr_dao.iml" filepath="$PROJECT_DIR$/hr/hr_dao/hr_dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hr/hr_springmvc_datatables/hr_springmvc_datatables.iml" filepath="$PROJECT_DIR$/hr/hr_springmvc_datatables/hr_springmvc_datatables.iml" />
       <module fileurl="file://$PROJECT_DIR$/oracleExamples.iml" filepath="$PROJECT_DIR$/oracleExamples.iml" />
     </modules>
   </component>

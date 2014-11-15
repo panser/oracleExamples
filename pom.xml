@@ -132,6 +132,8 @@
             ../target-${target.directory.name}/src-${target.directory.name}/build-${build.id}
         </target.assembled.directory>
 
+        <hr_dao.version>1.0-SNAPSHOT</hr_dao.version>
+
         <hibernate.version>4.3.5.Final</hibernate.version>
         <spring.version>4.1.0.RELEASE</spring.version>
         <spring-data-jpa.version>1.7.0.RELEASE</spring-data-jpa.version>
@@ -155,6 +157,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>ua.org.gostroy</groupId>
+                <artifactId>hr_dao</artifactId>
+                <version>${hr_dao.version}</version>
+            </dependency>
+
+
             <!-- Spring -->
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -475,38 +484,6 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- Spring -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-        </dependency>
-
         <!-- Logging -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -538,10 +515,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
         </dependency>
 
         <!--Other-->
