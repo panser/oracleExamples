@@ -15,6 +15,7 @@
     <modules>
         <module>hr_dao</module>
         <module>hr_springmvc_datatables</module>
+        <module>hr_javafx</module>
     </modules>
 
     <dependencies>

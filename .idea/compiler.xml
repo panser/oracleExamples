@@ -23,12 +23,14 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="hr_dao" />
+        <module name="hr_javafx" />
         <module name="hr_springmvc_datatables" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="hr" target="1.7" />
       <module name="hr_dao" target="1.7" />
+      <module name="hr_javafx" target="1.7" />
       <module name="hr_springmvc_datatables" target="1.7" />
     </bytecodeTargetLevel>
   </component>
