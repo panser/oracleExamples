@@ -27,11 +27,11 @@
         <module name="hr_springmvc_datatables" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="hr" target="1.7" />
-      <module name="hr_dao" target="1.7" />
-      <module name="hr_javafx" target="1.7" />
-      <module name="hr_springmvc_datatables" target="1.7" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="hr" target="1.8" />
+      <module name="hr_dao" target="1.8" />
+      <module name="hr_javafx" target="1.8" />
+      <module name="hr_springmvc_datatables" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

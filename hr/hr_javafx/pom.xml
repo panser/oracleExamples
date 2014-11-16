@@ -34,4 +34,12 @@
 
     </build>
 
+    <dependencies>
+        <dependency>
+            <groupId>ua.org.gostroy</groupId>
+            <artifactId>hr_dao</artifactId>
+        </dependency>
+
+    </dependencies>
+
 </project>
