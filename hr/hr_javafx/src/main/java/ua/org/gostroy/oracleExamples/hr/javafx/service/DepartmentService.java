@@ -11,11 +11,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.org.gostroy.oracleExamples.hr.dao.DepartmentDao;
 import ua.org.gostroy.oracleExamples.hr.javafx.model.DepartmentFx;
+import ua.org.gostroy.oracleExamples.hr.javafx.model.EmployeeFx;
 import ua.org.gostroy.oracleExamples.hr.javafx.util.SpringContextUtil;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
+import ua.org.gostroy.oracleExamples.hr.model.entity.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Panov Sergey on 11/16/2014.
@@ -31,6 +34,19 @@ public class DepartmentService{
     public Department findById(Integer id) {
         Department result = departmentDao.findById(id);
         return result;
+    }
+
+    @Transactional(readOnly = true)
+    public List<EmployeeFx> findEmployeeFxById(Integer id) {
+        Department result = departmentDao.findById(id);
+        Set<Employee> employees = result.getEmployees();
+        EmployeeFx employeeFx;
+        List<EmployeeFx> employeeFxes = new ArrayList<>();
+        for(Employee employee: employees){
+            employeeFx = new EmployeeFx(employee);
+            employeeFxes.add(employeeFx);
+        }
+        return employeeFxes;
     }
 
     @Transactional(readOnly = true)

@@ -3,6 +3,8 @@ package ua.org.gostroy.oracleExamples.hr.dao.jpa;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import ua.org.gostroy.oracleExamples.hr.dao.EmployeeDao;
+import ua.org.gostroy.oracleExamples.hr.model.entity.Country;
+import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Employee;
 
 import javax.persistence.EntityManager;
@@ -47,5 +49,13 @@ public class EmployeeImpl implements EmployeeDao {
     @Override
     public void delete(Employee entity) throws DataIntegrityViolationException {
         em.remove(em.contains(entity) ? entity : em.merge(entity));
+    }
+
+    @Override
+    public List<Employee> findByDepartmentId(Integer departmentId) {
+        Query query = em.createNamedQuery("Employee.findByDepartmentId");
+        query.setParameter("departmentId", departmentId);
+        List employees = (List<Employee>) query.getResultList();
+        return employees;
     }
 }

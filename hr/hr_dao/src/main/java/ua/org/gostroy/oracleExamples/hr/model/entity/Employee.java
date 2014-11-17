@@ -14,7 +14,8 @@ import java.util.Set;
  * Created by Panov Sergey on 11/1/2014.
  */
 @NamedQueries({
-        @NamedQuery(name = "Employee.findAll", query = "select o from Employee o")
+        @NamedQuery(name = "Employee.findAll", query = "select o from Employee o"),
+        @NamedQuery(name = "Employee.findByDepartmentId", query = "SELECT o FROM Employee o WHERE o.department.id = :departmentId"),
 })
 @Entity
 @Table(name = "EMPLOYEES")

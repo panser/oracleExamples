@@ -1,12 +1,13 @@
 package ua.org.gostroy.oracleExamples.hr.javafx.model;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
+import javafx.collections.ObservableSet;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Employee;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Location;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Panov Sergey on 11/17/2014.

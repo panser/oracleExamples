@@ -39,7 +39,7 @@
                         <Label prefHeight="62.0" prefWidth="142.0" text="Department name" />
                         <Label fx:id="departmentNameLabel" prefHeight="74.0" prefWidth="142.0" text="Label" GridPane.columnIndex="1" />
                         <Label prefHeight="74.0" prefWidth="145.0" text="Department Employee" GridPane.rowIndex="1" />
-                        <TableView fx:id="EmployeeTable" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TableView fx:id="employeeTable" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <columns>
                                 <TableColumn fx:id="employeeName" prefWidth="139.0" text="Employee" />
                             </columns>

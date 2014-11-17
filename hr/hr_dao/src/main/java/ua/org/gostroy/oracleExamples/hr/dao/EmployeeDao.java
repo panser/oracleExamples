@@ -1,6 +1,7 @@
 package ua.org.gostroy.oracleExamples.hr.dao;
 
 import org.springframework.dao.DataIntegrityViolationException;
+import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Employee;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface EmployeeDao {
     Employee update(Employee entity) throws DataIntegrityViolationException;
 
     void delete(Employee entity) throws DataIntegrityViolationException;
+
+    List<Employee> findByDepartmentId(Integer departmentId);
 }
