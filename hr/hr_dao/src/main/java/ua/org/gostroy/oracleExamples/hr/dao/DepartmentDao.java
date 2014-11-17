@@ -2,6 +2,9 @@ package ua.org.gostroy.oracleExamples.hr.dao;
 
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
 
 import java.util.List;

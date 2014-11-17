@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by Panov Sergey on 11/8/2014.
  */
-@Repository
+@Repository(value = "departmentOverDatatablesDao")
 public class DepartmentOverDatatablesImpl implements DepartmentOverDatatablesDao {
 
     @PersistenceContext

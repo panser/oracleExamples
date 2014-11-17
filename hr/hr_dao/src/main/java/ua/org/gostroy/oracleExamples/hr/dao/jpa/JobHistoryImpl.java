@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by Panov Sergey on 11/1/2014.
  */
-@Repository
+@Repository(value = "jobHistoryDao")
 public class JobHistoryImpl implements JobHistoryDao {
 
     @PersistenceContext

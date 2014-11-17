@@ -1,10 +1,16 @@
 package ua.org.gostroy.oracleExamples.hr.javafx.service;
 
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.org.gostroy.oracleExamples.hr.dao.DepartmentDao;
+import ua.org.gostroy.oracleExamples.hr.javafx.util.SpringContextUtil;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
 
 import java.util.List;
@@ -14,7 +20,7 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class DepartmentService {
+public class DepartmentService{
 
     @Autowired
     DepartmentDao departmentDao;
@@ -53,5 +59,4 @@ public class DepartmentService {
         Department entity = findById(id);
         departmentDao.delete(entity);
     }
-
 }

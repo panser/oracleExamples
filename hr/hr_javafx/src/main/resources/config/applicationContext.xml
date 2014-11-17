@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+<!--
+    <context:component-scan base-package="ua.org.gostroy.oracleExamples.hr">
+        <context:exclude-filter expression="ua.org.gostroy.oracleExamples.hr.javafx.util.*" type="regex"/>
+    </context:component-scan>
+-->
+    <!--<context:component-scan base-package="ua.org.gostroy.oracleExamples.hr"/>-->
+    <!--<context:component-scan base-package="ua.org.gostroy.oracleExamples.hr.dao"/>-->
+    <context:component-scan base-package="ua.org.gostroy.oracleExamples.hr.dao, ua.org.gostroy.oracleExamples.hr.javafx.service"/>
+    <!--<context:component-scan base-package="ua.org.gostroy.oracleExamples.hr.dao, ua.org.gostroy.oracleExamples.hr.javafx.service, ua.org.gostroy.oracleExamples.hr.javafx.controller"/>-->
+
+    <context:property-placeholder location="classpath:/config/properties/db_gostroy_oracle.properties" />
+
+    <import resource="applicationContext.d/dataSource.xml"/>
+    <import resource="applicationContext.d/jpa_hibernate.xml"/>
+    <import resource="applicationContext.d/beans.xml"/>
+
+</beans>

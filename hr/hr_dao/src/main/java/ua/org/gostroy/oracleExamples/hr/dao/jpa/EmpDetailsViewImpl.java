@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Panov Sergey on 11/4/2014.
  */
-@Repository
+@Repository(value = "empDetailsViewDao")
 public class EmpDetailsViewImpl implements EmpDetailsViewDao {
 
     @PersistenceContext

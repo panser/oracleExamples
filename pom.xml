@@ -32,9 +32,9 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.1</version>
                     <configuration>
-                        <source>1.7</source>
-                        <target>1.7</target>
-                        <compilerVersion>1.7</compilerVersion>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                        <compilerVersion>1.8</compilerVersion>
                         <encoding>utf-8</encoding>
                         <useIncrementalCompilation>false</useIncrementalCompilation>
                         <showDeprecation>true</showDeprecation>
@@ -523,6 +523,13 @@
             <artifactId>commons-io</artifactId>
         </dependency>
 
+<!--
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
+-->
     </dependencies>
 
 

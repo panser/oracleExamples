@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Panov Sergey on 11/1/2014.
  */
-@Repository
+@Repository(value = "departmentDao")
 public class DepartmentImpl implements DepartmentDao {
 
     @PersistenceContext

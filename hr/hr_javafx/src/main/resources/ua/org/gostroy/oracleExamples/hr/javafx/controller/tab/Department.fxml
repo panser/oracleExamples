@@ -7,18 +7,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<AnchorPane centerShape="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane centerShape="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ua.org.gostroy.oracleExamples.hr.javafx.controller.tab.DepartmentController">
     <padding>
         <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
     </padding>
     <children>
         <SplitPane dividerPositions="0.7" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
-                <TableView>
+                <TableView fx:id="departmentTable">
                     <columns>
-                        <TableColumn prefWidth="75.0" text="Name" />
-                        <TableColumn prefWidth="75.0" text="Manager" />
-                        <TableColumn prefWidth="75.0" text="Location" />
+                        <TableColumn fx:id="departmentName" prefWidth="75.0" text="Name" />
+                        <TableColumn fx:id="departmentManager" prefWidth="75.0" text="Manager" />
+                        <TableColumn fx:id="departmentLocation" prefWidth="75.0" text="Location" />
                     </columns>
                 </TableView>
                 <GridPane hgap="14.0" vgap="14.0">
@@ -36,11 +36,11 @@
                     </rowConstraints>
                     <children>
                         <Label prefHeight="62.0" prefWidth="142.0" text="Department name" />
-                        <Label prefHeight="74.0" prefWidth="142.0" text="Label" GridPane.columnIndex="1" />
+                        <Label fx:id="departmentNameLabel" prefHeight="74.0" prefWidth="142.0" text="Label" GridPane.columnIndex="1" />
                         <Label prefHeight="74.0" prefWidth="145.0" text="Department Employee" GridPane.rowIndex="1" />
-                        <TableView GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TableView fx:id="EmployeeTable" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <columns>
-                                <TableColumn prefWidth="139.0" text="Employee" />
+                                <TableColumn fx:id="employeeName" prefWidth="139.0" text="Employee" />
                             </columns>
                         </TableView>
                     </children>
