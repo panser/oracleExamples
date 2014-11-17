@@ -31,17 +31,16 @@
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="174.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="315.0" minHeight="10.0" prefHeight="315.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Label prefHeight="62.0" prefWidth="142.0" text="Department name" />
-                        <Label fx:id="departmentNameLabel" prefHeight="74.0" prefWidth="142.0" text="Label" GridPane.columnIndex="1" />
-                        <Label prefHeight="74.0" prefWidth="145.0" text="Department Employee" GridPane.rowIndex="1" />
+                        <Label text="Department name" />
+                        <Label fx:id="departmentNameLabel" text="Label" GridPane.columnIndex="1" />
+                        <Label text="Department Employee" GridPane.rowIndex="1" />
                         <TableView fx:id="employeeTable" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <columns>
-                                <TableColumn fx:id="employeeName" prefWidth="139.0" text="Employee" />
+                                <TableColumn fx:id="employeeName" text="Employee" />
                             </columns>
                         </TableView>
                     </children>

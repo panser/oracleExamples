@@ -61,6 +61,7 @@ public class DepartmentController {
                         showPhonePrefixDetails(newValue);
                     }
                 });
+        departmentTable.getSelectionModel().selectFirst();
     }
 
     private void showPhonePrefixDetails(DepartmentFx departmentFx) {
