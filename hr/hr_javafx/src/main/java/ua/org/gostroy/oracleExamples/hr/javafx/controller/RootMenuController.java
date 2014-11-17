@@ -3,7 +3,7 @@ package ua.org.gostroy.oracleExamples.hr.javafx.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
-import ua.org.gostroy.oracleExamples.hr.javafx.model.TabProperties;
+import ua.org.gostroy.oracleExamples.hr.javafx.model.enums.TabProperties;
 
 import java.util.function.Consumer;
 

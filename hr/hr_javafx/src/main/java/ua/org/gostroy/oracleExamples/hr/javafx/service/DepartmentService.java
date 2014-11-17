@@ -10,9 +10,11 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.org.gostroy.oracleExamples.hr.dao.DepartmentDao;
+import ua.org.gostroy.oracleExamples.hr.javafx.model.DepartmentFx;
 import ua.org.gostroy.oracleExamples.hr.javafx.util.SpringContextUtil;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,9 +34,15 @@ public class DepartmentService{
     }
 
     @Transactional(readOnly = true)
-    public List<Department> findAll() {
+    public List<DepartmentFx> findAll() {
         List<Department> result = departmentDao.findAll();
-        return result;
+        DepartmentFx departmentFx;
+        List<DepartmentFx> departmentFxes = new ArrayList<>();
+        for(Department department : result){
+            departmentFx = new DepartmentFx(department);
+            departmentFxes.add(departmentFx);
+        }
+        return departmentFxes;
     }
 
     @Transactional(rollbackFor = Exception.class)

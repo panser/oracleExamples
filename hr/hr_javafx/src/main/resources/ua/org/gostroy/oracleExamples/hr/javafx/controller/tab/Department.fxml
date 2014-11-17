@@ -16,6 +16,7 @@
             <items>
                 <TableView fx:id="departmentTable">
                     <columns>
+                        <TableColumn fx:id="departmentId" prefWidth="75.0" text="Id" />
                         <TableColumn fx:id="departmentName" prefWidth="75.0" text="Name" />
                         <TableColumn fx:id="departmentManager" prefWidth="75.0" text="Manager" />
                         <TableColumn fx:id="departmentLocation" prefWidth="75.0" text="Location" />

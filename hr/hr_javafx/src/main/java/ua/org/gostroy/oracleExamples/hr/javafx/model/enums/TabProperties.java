@@ -1,4 +1,4 @@
-package ua.org.gostroy.oracleExamples.hr.javafx.model;
+package ua.org.gostroy.oracleExamples.hr.javafx.model.enums;
 
 /**
  * Created by Panov Sergey on 11/16/2014.

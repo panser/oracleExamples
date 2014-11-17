@@ -6,8 +6,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import ua.org.gostroy.oracleExamples.hr.javafx.model.TabProperties;
+import ua.org.gostroy.oracleExamples.hr.javafx.model.enums.TabProperties;
 
 import java.io.IOException;
 
