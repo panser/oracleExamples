@@ -12,41 +12,53 @@
         <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
     </padding>
     <children>
-        <SplitPane dividerPositions="0.7" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <items>
-                <TableView fx:id="departmentTable">
-                    <columns>
-                        <TableColumn fx:id="departmentId" prefWidth="75.0" text="Id" />
-                        <TableColumn fx:id="departmentName" prefWidth="75.0" text="Name" />
-                        <TableColumn fx:id="departmentManager" prefWidth="75.0" text="Manager" />
-                        <TableColumn fx:id="departmentLocation" prefWidth="75.0" text="Location" />
-                    </columns>
-                </TableView>
-                <GridPane hgap="14.0" vgap="14.0">
-                    <padding>
-                        <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
-                    </padding>
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="174.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="315.0" minHeight="10.0" prefHeight="315.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                    <children>
-                        <Label text="Department name" />
-                        <Label fx:id="departmentNameLabel" text="Label" GridPane.columnIndex="1" />
-                        <Label text="Department Employee" GridPane.rowIndex="1" />
-                        <TableView fx:id="employeeTable" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                            <columns>
-                                <TableColumn fx:id="employeeName" text="Employee" />
-                            </columns>
-                        </TableView>
-                    </children>
-                </GridPane>
-            </items>
-        </SplitPane>
+      <VBox>
+         <children>
+            <HBox>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#addDepartment" text="Add Department" />
+               </children>
+                <children>
+                    <Button mnemonicParsing="false" onAction="#editDepartment" text="Edit Department" />
+                </children>
+            </HBox>
+              <SplitPane dividerPositions="0.7">
+                  <items>
+                      <TableView fx:id="departmentTable">
+                          <columns>
+                              <TableColumn fx:id="departmentId" prefWidth="75.0" text="Id" />
+                              <TableColumn fx:id="departmentName" prefWidth="75.0" text="Name" />
+                              <TableColumn fx:id="departmentManager" prefWidth="75.0" text="Manager" />
+                              <TableColumn fx:id="departmentLocation" prefWidth="75.0" text="Location" />
+                          </columns>
+                      </TableView>
+                      <GridPane hgap="14.0" vgap="14.0">
+                          <padding>
+                              <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+                          </padding>
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints maxHeight="174.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="315.0" minHeight="10.0" prefHeight="315.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                          <children>
+                              <Label text="Department name" />
+                              <Label fx:id="departmentNameLabel" text="Label" GridPane.columnIndex="1" />
+                              <Label text="Department Employee" GridPane.rowIndex="1" />
+                              <TableView fx:id="employeeTable" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                  <columns>
+                                      <TableColumn fx:id="employeeName" text="Employee" />
+                                  </columns>
+                              </TableView>
+                          </children>
+                      </GridPane>
+                  </items>
+              </SplitPane>
+         </children>
+      </VBox>
     </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />

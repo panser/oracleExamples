@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="14.0" layoutY="14.0" prefHeight="178.0" prefWidth="578.0">
+         <children>
+            <Label prefHeight="48.0" prefWidth="399.0" text="Department Edit" />
+            <HBox prefHeight="37.0" prefWidth="578.0">
+               <children>
+                  <Label prefHeight="34.0" prefWidth="111.0" text="Name" />
+                  <TextField prefHeight="36.0" prefWidth="149.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="37.0" prefWidth="578.0">
+               <children>
+                  <Label prefHeight="34.0" prefWidth="111.0" text="Manager" />
+                  <ChoiceBox prefHeight="39.0" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="37.0" prefWidth="578.0">
+               <children>
+                  <Label prefHeight="34.0" prefWidth="111.0" text="Location" />
+                  <ChoiceBox prefHeight="39.0" prefWidth="150.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox alignment="TOP_RIGHT" layoutX="11.0" layoutY="349.0" prefHeight="37.0" prefWidth="578.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="115.0" text="Cancel" />
+            <Button contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="39.0" prefWidth="115.0" text="Edit" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

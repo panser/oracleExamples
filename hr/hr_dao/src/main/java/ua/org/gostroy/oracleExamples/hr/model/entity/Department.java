@@ -73,7 +73,7 @@ public class Department {
         this.manager = manager;
     }
 
-    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade = {})
+    @ManyToOne(optional = true, fetch = FetchType.EAGER, cascade = {})
     @JoinColumn(name = "LOCATION_ID", referencedColumnName = "LOCATION_ID")
     public Location getLocation() {
         return location;

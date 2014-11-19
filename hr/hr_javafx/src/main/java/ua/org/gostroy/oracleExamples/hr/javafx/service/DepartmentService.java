@@ -50,8 +50,10 @@ public class DepartmentService{
     }
 
     @Transactional(readOnly = true)
-    public List<DepartmentFx> findAll() {
+    public List<Department> findAll() {
+//    public List<DepartmentFx> findAll() {
         List<Department> result = departmentDao.findAll();
+/*
         DepartmentFx departmentFx;
         List<DepartmentFx> departmentFxes = new ArrayList<>();
         for(Department department : result){
@@ -59,6 +61,8 @@ public class DepartmentService{
             departmentFxes.add(departmentFx);
         }
         return departmentFxes;
+*/
+        return result;
     }
 
     @Transactional(rollbackFor = Exception.class)
