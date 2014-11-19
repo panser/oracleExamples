@@ -1,12 +1,20 @@
 package ua.org.gostroy.oracleExamples.hr.dao;
 
+import config.DBUnitConfig;
+import org.dbunit.Assertion;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Country;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Region;
@@ -20,7 +28,12 @@ import java.util.List;
 @ContextConfiguration("classpath:/config/applicationContext.xml")
 @TransactionConfiguration(defaultRollback = true)
 @Transactional
+//@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
+//                        TransactionalTestExecutionListener.class,
+//                        RollbackTransactionalDataSetTestExecutionListener.class})
+//@DataSet
 public class CountryDaoTest {
+//public class CountryDaoTest extends DBUnitConfig {
 
     private String testCountryId = "UK";
     private Integer testRegionId = 3;
@@ -30,6 +43,16 @@ public class CountryDaoTest {
     @Autowired
     RegionDao regionDao;
 
+/*
+    @Before
+    public void setUp() throws Exception {
+        super.setUp();
+        beforeData = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("ua/org/gostroy/oracleExamples/hr/dao/country-data.xml"));
+
+        tester.setDataSet(beforeData);
+        tester.onSetup();
+    }
+*/
 
     @Test
     public void findById(){
@@ -38,9 +61,16 @@ public class CountryDaoTest {
     }
 
     @Test
-    public void findAll(){
+    public void findAll() throws Exception{
         List<Country> countries = countryDao.findAll();
         Assert.assertNotEquals(countries.size(),0);
+
+/*
+        IDataSet expectedData = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("ua/org/gostroy/oracleExamples/hr/dao/country-data.xml"));
+        IDataSet actualData = tester.getConnection().createDataSet();
+        Assertion.assertEquals(expectedData, actualData);
+        Assert.assertEquals(expectedData.getTable("person").getRowCount(), countries.size());
+*/
     }
 
     @Test
@@ -85,5 +115,6 @@ public class CountryDaoTest {
         int countriesInRegionNew = testRegion.getCountries().size();
         Assert.assertEquals(countriesInRegion, countriesInRegionNew);
     }
+
 
 }
