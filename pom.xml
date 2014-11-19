@@ -141,6 +141,10 @@
         <tomcat-jdbc.version>7.0.52</tomcat-jdbc.version>
         <logback.version>1.0.10</logback.version>
         <junit.version>4.11</junit.version>
+        <dbunit.version>2.5.0</dbunit.version>
+        <mockito.version>1.8.4</mockito.version>
+        <powermock.version>1.5.6</powermock.version>
+
         <mysql-connector.version>5.1.33</mysql-connector.version>
         <eclipse.javax.persistence.version>2.1.0</eclipse.javax.persistence.version>
         <eclipse.persistence.jpa.version>2.5.2</eclipse.persistence.jpa.version>
@@ -289,9 +293,25 @@
             <dependency>
                 <groupId>org.dbunit</groupId>
                 <artifactId>dbunit</artifactId>
-                <version>2.5.0</version>
+                <version>${dbunit.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>${mockito.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-module-junit4</artifactId>
+                <version>${powermock.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-api-mockito</artifactId>
+                <version>${powermock.version}</version>
+                <scope>test</scope>
+            </dependency>
 
             <!--Other-->
             <dependency>
