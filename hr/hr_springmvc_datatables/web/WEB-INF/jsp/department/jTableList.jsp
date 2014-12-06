@@ -46,8 +46,11 @@
                 },
                 fields: {
                     id: {
+                        title: 'Id',
                         key: true,
-                        list: false
+                        list: true,
+                        create: false,
+                        edit: false
                     },
                     name: {
                         title: 'Department Name',
@@ -55,26 +58,28 @@
                     },
                     manager: {
                         title: 'Department Manager',
-//                        options: 'datatable/manageres',
-                        width: '20%',
-                        create: false,
-                        edit: false
+                        options: '/api/department/jTable/List/Managers',
+                        width: '20%'
+//                        create: false
+//                        edit: false
                     },
                     location: {
                         title: 'Department Location',
-                        width: '30%',
-                        create: false,
-                        edit: false
-                    },
-                    //Register to selectionChanged event to hanlde events
-                    recordAdded: function(event, data){
-                        //after record insertion, reload the records
-                        $('#departments').jtable('load');
-                    },
-                    recordUpdated: function(event, data){
-                        //after record updation, reload the records
-                        $('#departments').jtable('load');
+                        options: '/api/department/jTable/List/Locations',
+                        width: '30%'
+//                        create: false
+//                        edit: false
                     }
+                },
+
+                //Register to selectionChanged event to hanlde events
+                recordAdded: function(event, data){
+                    //after record insertion, reload the records
+                    $('#departments').jtable('load');
+                },
+                recordUpdated: function(event, data){
+                    //after record updation, reload the records
+                    $('#departments').jtable('load');
                 }
             });
 
