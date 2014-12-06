@@ -70,10 +70,12 @@ public class JTableService {
         return result;
     }
 
+    @Transactional(readOnly = true)
     public Long getCount(){
         return departmentDao.getCount();
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public void save(JsonDepartment jsonDepartment) {
         Department department = new Department();
         department.setName(jsonDepartment.getName());
@@ -82,11 +84,18 @@ public class JTableService {
         departmentDao.save(department);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public void update(JsonDepartment jsonDepartment) {
         Department department = departmentDao.findById(jsonDepartment.getId());
         department.setName(jsonDepartment.getName());
 //        department.setManager();
 //        department.setLocation();
         departmentDao.update(department);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void delete(Integer id) {
+        Department department = departmentDao.findById(id);
+        departmentDao.delete(department);
     }
 }

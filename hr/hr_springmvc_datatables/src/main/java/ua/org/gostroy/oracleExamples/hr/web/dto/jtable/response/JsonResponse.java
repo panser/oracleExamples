@@ -11,6 +11,10 @@ public class JsonResponse<T> {
     private T records;
     private String message;
 
+    public JsonResponse(String result) {
+        this.result = result;
+    }
+
     public JsonResponse(String result, T records) {
         this.result = result;
         this.records = records;

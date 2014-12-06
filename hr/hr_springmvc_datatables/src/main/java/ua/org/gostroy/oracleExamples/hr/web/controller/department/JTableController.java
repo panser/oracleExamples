@@ -101,4 +101,18 @@ public class JTableController {
         }
         return jsonResponse;
     }
+
+    /*CRUD operation - Delete */
+    @RequestMapping(value = "/Delete", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResponse deleteDepartment(@RequestParam Integer id) {
+        JsonResponse jsonResponse;
+        try {
+            jTableService.delete(id);
+            jsonResponse = new JsonResponse("OK");
+        } catch (Exception e) {
+            jsonResponse = new JsonResponse("ERROR",e.getMessage());
+        }
+        return jsonResponse;
+    }
 }
