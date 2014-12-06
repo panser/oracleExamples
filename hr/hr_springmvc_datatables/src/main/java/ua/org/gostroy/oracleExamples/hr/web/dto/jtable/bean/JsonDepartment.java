@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Created by Panov Sergey on 12/6/2014.
  */
-public class JtableDepartment {
+public class JsonDepartment {
     private Integer id;
     private String name;
     private String manager;

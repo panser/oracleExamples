@@ -1,12 +1,14 @@
 package ua.org.gostroy.oracleExamples.hr.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ua.org.gostroy.oracleExamples.hr.dao.DepartmentDao;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Employee;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Location;
-import ua.org.gostroy.oracleExamples.hr.web.dto.jtable.bean.JtableDepartment;
+import ua.org.gostroy.oracleExamples.hr.web.dto.jtable.bean.JsonDepartment;
 import ua.org.gostroy.oracleExamples.hr.web.dto.jtable.response.JsonOptionsBean;
 
 import java.util.ArrayList;
@@ -27,11 +29,11 @@ public class JTableService {
     @Autowired
     LocationService locationService;
 
-    public List<JtableDepartment> findWithPagination(int start, int size) {
+    public List<JsonDepartment> findWithPagination(int start, int size) {
         List<Department> departments = departmentService.findWithPagination(start, size);
-        List<JtableDepartment> result = new ArrayList<JtableDepartment>();
+        List<JsonDepartment> result = new ArrayList<JsonDepartment>();
         for(Department department : departments){
-            JtableDepartment jtableDepartment = new JtableDepartment();
+            JsonDepartment jtableDepartment = new JsonDepartment();
             jtableDepartment.setId(department.getId());
             jtableDepartment.setName(department.getName());
             jtableDepartment.setManager((department.getManager() != null) ? department.getManager().getFirstName() : "");
@@ -70,5 +72,13 @@ public class JTableService {
 
     public Long getCount(){
         return departmentDao.getCount();
+    }
+
+    public void save(JsonDepartment jsonDepartment) {
+        Department department = new Department();
+        department.setName(jsonDepartment.getName());
+//        department.setManager();
+//        department.setLocation();
+        departmentDao.save(department);
     }
 }
