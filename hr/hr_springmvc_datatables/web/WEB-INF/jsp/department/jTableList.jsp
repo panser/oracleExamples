@@ -31,11 +31,39 @@
 
     <jsp:include page="../../include/foot_jTable.jsp" />
     <script type="text/javascript">
-        $(function () {
-
+        $(document).ready(function () {
+            $('#departments').jtable({
+                title: 'Departments from HR table',
+                actions: {
+                    listAction: '/GettingStarted/PersonList',
+                    createAction: '/GettingStarted/CreatePerson',
+                    updateAction: '/GettingStarted/UpdatePerson',
+                    deleteAction: '/GettingStarted/DeletePerson'
+                },
+                fields: {
+                    PersonId: {
+                        key: true,
+                        list: false
+                    },
+                    Name: {
+                        title: 'Department Name',
+                        width: '40%'
+                    },
+                    Manager: {
+                        title: 'Department Manager',
+                        width: '20%',
+                        create: false,
+                        edit: false
+                    },
+                    Location: {
+                        title: 'Department Location',
+                        width: '30%',
+                        create: false,
+                        edit: false
+                    }
+                }
+            });
         });
-
     </script>
-
 </body>
 </html>

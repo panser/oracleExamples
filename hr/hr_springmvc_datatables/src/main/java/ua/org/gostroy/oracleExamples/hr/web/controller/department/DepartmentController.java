@@ -51,4 +51,13 @@ public class DepartmentController {
         return "department/DandelionListAjax";
     }
 
+    @RequestMapping(value = "/jTable")
+    public String jTableList(Model model) {
+        return "department/jTableList";
+    }
+
+    @RequestMapping(value = "/jTableAjax")
+    public String jTableListAjax(Model model) {
+        return "department/jTableList";
+    }
 }
