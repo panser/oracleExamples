@@ -24,6 +24,7 @@ import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
 /**
@@ -63,12 +64,13 @@ public class DepartmentMockDaoTest {
         department.setId(testDepartmentId);
         List<Department> departments = new ArrayList<>();
         departments.add(department);
-        when(em.createNamedQuery("Department.findAll")).thenReturn(query);
+        when(em.createNamedQuery(anyString())).thenReturn(query);
+//        when(em.createNamedQuery("Department.findAll")).thenReturn(query);
         when(query.getResultList()).thenReturn(departments);
 
         List<Department> countries = departmentImpl.findAll();
 
-        assertNotEquals(countries.size(),0);
+        assertNotEquals(countries.size(), 0);
         assertThat(countries.get(0).getId(), is(testDepartmentId));
     }
 

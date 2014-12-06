@@ -33,6 +33,13 @@
                         <li><a href="${baseUrl}department/DandelionListAjax">AJAX</a></li>
                     </ul>
                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">jTable<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="${baseUrl}department/jTable">DOM</a></li>
+                        <li><a href="${baseUrl}department/jTableAjax">AJAX</a></li>
+                    </ul>
+                </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

@@ -17,7 +17,7 @@
 <spring:url value="/" var="baseUrl" />
 
 <html>
-<jsp:include page="../../include/head.jsp" />
+<jsp:include page="../../include/head_datatables.jsp" />
 
 <body>
 <jsp:include page="../../include/navbar.jsp" />
@@ -42,7 +42,7 @@
     </div>
 </div>
 
-<jsp:include page="../../include/foot.jsp" />
+<jsp:include page="../../include/foot_datatables.jsp" />
 
 </body>
 </html>
