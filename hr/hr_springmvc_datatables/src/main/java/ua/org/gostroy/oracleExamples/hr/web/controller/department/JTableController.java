@@ -26,7 +26,7 @@ public class JTableController {
     /*Table data load - This loads the data for the table*/
     @RequestMapping(value = "/List")
     @ResponseBody
-    public JsonListResponse jTableList(@RequestParam int jtStartIndex, @RequestParam int jtPageSize) {
+    public JsonListResponse list(@RequestParam int jtStartIndex, @RequestParam int jtPageSize) {
         JsonListResponse jstr;
 
         try {
@@ -43,7 +43,7 @@ public class JTableController {
     /*Cascaded drop down*/
     @RequestMapping(value = "/List/Managers")
     @ResponseBody
-    public JsonOptionsResponse jTableListGetManagers(){
+    public JsonOptionsResponse getManagers(){
         JsonOptionsResponse jstr;
         try {
             List<JsonOptionsBean> employees = jTableService.findAllEmployee();
@@ -57,7 +57,7 @@ public class JTableController {
     /*Cascaded drop down*/
     @RequestMapping(value = "/List/Locations")
     @ResponseBody
-    public JsonOptionsResponse jTableListGetLocations(){
+    public JsonOptionsResponse getLocations(){
         JsonOptionsResponse jstr;
         try {
             List<JsonOptionsBean> locations = jTableService.findAllLocation();
@@ -71,13 +71,30 @@ public class JTableController {
     /*CRUD operation - Add */
     @RequestMapping(value = "/Create", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResponse insertGroup(@ModelAttribute JsonDepartment jsonDepartment, BindingResult result) {
+    public JsonResponse addDepartment(@ModelAttribute JsonDepartment jsonDepartment, BindingResult result) {
         JsonResponse jsonResponse;
         if (result.hasErrors()) {
             jsonResponse = new JsonResponse("ERROR","Form invalid");
         }
         try {
             jTableService.save(jsonDepartment);
+            jsonResponse = new JsonResponse("OK",jsonDepartment);
+        } catch (Exception e) {
+            jsonResponse = new JsonResponse("ERROR",e.getMessage());
+        }
+        return jsonResponse;
+    }
+
+    /*CRUD operation - Update */
+    @RequestMapping(value = "/Update", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResponse updateDepartment(@ModelAttribute JsonDepartment jsonDepartment, BindingResult result) {
+        JsonResponse jsonResponse;
+        if (result.hasErrors()) {
+            jsonResponse = new JsonResponse("ERROR","Form invalid");
+        }
+        try {
+            jTableService.update(jsonDepartment);
             jsonResponse = new JsonResponse("OK",jsonDepartment);
         } catch (Exception e) {
             jsonResponse = new JsonResponse("ERROR",e.getMessage());

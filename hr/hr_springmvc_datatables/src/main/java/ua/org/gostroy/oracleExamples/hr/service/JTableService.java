@@ -81,4 +81,12 @@ public class JTableService {
 //        department.setLocation();
         departmentDao.save(department);
     }
+
+    public void update(JsonDepartment jsonDepartment) {
+        Department department = departmentDao.findById(jsonDepartment.getId());
+        department.setName(jsonDepartment.getName());
+//        department.setManager();
+//        department.setLocation();
+        departmentDao.update(department);
+    }
 }
