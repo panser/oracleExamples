@@ -22,4 +22,8 @@ public interface DepartmentDao {
     Department update(Department entity) throws DataIntegrityViolationException;
 
     void delete(Department entity);
+
+    Long getCount();
+
+    List<Department> findWithPagination(int start, int size);
 }

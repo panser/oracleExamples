@@ -34,6 +34,10 @@
         $(document).ready(function () {
             $('#departments').jtable({
                 title: 'Departments from HR table',
+                selecting: true, //Enable selecting
+                paging: true, //Enable paging
+                pageSize: 10, //Set page size (default: 10)
+                sorting: true, //Enable sorting
                 actions: {
                     listAction: '/api/department/jTable/List',
                     createAction: '/api/department/jTable/Create',
@@ -51,6 +55,7 @@
                     },
                     manager: {
                         title: 'Department Manager',
+//                        options: 'datatable/manageres',
                         width: '20%',
                         create: false,
                         edit: false
@@ -60,6 +65,15 @@
                         width: '30%',
                         create: false,
                         edit: false
+                    },
+                    //Register to selectionChanged event to hanlde events
+                    recordAdded: function(event, data){
+                        //after record insertion, reload the records
+                        $('#departments').jtable('load');
+                    },
+                    recordUpdated: function(event, data){
+                        //after record updation, reload the records
+                        $('#departments').jtable('load');
                     }
                 }
             });

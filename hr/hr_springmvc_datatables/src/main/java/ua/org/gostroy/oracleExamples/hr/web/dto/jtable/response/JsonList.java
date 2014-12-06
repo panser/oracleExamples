@@ -12,10 +12,10 @@ public class JsonList<T> {
 
     private String result;
     private List<T> records;
-    private int totalRecordCount;
+    private Long totalRecordCount;
     private String message;
 
-    public JsonList(String result, List<T> records, int totalRecordCount) {
+    public JsonList(String result, List<T> records, Long totalRecordCount) {
         this.result = result;
         this.records = records;
         this.totalRecordCount = totalRecordCount;
@@ -45,7 +45,7 @@ public class JsonList<T> {
     }
 
     @JsonProperty("TotalRecordCount")
-    public int getTotalRecordCount() {
+    public Long getTotalRecordCount() {
         return totalRecordCount;
     }
 

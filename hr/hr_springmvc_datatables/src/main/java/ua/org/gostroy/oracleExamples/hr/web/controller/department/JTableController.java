@@ -3,6 +3,7 @@ package ua.org.gostroy.oracleExamples.hr.web.controller.department;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ua.org.gostroy.oracleExamples.hr.web.dto.jtable.bean.JtableDepartment;
 import ua.org.gostroy.oracleExamples.hr.service.JTableService;
@@ -22,14 +23,12 @@ public class JTableController {
 
     @RequestMapping(value = "/List")
     @ResponseBody
-//    public JsonDepartmentList jTableList(@RequestParam int jtStartIndex, @RequestParam int jtPageSize) {
-    public JsonList jTableList() {
+    public JsonList jTableList(@RequestParam int jtStartIndex, @RequestParam int jtPageSize) {
         JsonList jstr;
 
         try {
-            int departmCount = jTableService.getCount();
-//            depList = jTableService.findAll(jtStartIndex,jtPageSize);
-            List<JtableDepartment> depList = jTableService.findAll();
+            Long departmCount = jTableService.getCount();
+            List<JtableDepartment> depList = jTableService.findWithPagination(jtStartIndex,jtPageSize);
             jstr = new JsonList("OK",depList,departmCount);
         } catch (Exception e) {
             jstr = new JsonList("ERROR",e.getMessage());

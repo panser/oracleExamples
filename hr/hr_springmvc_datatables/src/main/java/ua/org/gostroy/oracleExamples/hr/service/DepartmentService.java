@@ -55,4 +55,10 @@ public class DepartmentService {
         departmentDao.delete(entity);
     }
 
+    @Transactional(readOnly = true)
+    public List<Department> findWithPagination(int start, int size) {
+        List<Department> result = departmentDao.findWithPagination(start, size);
+        return result;
+    }
+
 }

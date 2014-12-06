@@ -2,6 +2,7 @@ package ua.org.gostroy.oracleExamples.hr.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ua.org.gostroy.oracleExamples.hr.dao.DepartmentDao;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
 import ua.org.gostroy.oracleExamples.hr.web.dto.jtable.bean.JtableDepartment;
 
@@ -15,10 +16,12 @@ import java.util.List;
 public class JTableService {
 
     @Autowired
+    DepartmentDao departmentDao;
+    @Autowired
     DepartmentService departmentService;
 
-    public List<JtableDepartment> findAll() {
-        List<Department> departments = departmentService.findAll();
+    public List<JtableDepartment> findWithPagination(int start, int size) {
+        List<Department> departments = departmentService.findWithPagination(start, size);
         List<JtableDepartment> result = new ArrayList<JtableDepartment>();
         for(Department department : departments){
             JtableDepartment jtableDepartment = new JtableDepartment();
@@ -32,7 +35,7 @@ public class JTableService {
         return result;
     }
 
-    public int getCount(){
-        return findAll().size();
+    public Long getCount(){
+        return departmentDao.getCount();
     }
 }
