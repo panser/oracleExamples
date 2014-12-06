@@ -35,27 +35,27 @@
             $('#departments').jtable({
                 title: 'Departments from HR table',
                 actions: {
-                    listAction: '/GettingStarted/PersonList',
-                    createAction: '/GettingStarted/CreatePerson',
-                    updateAction: '/GettingStarted/UpdatePerson',
-                    deleteAction: '/GettingStarted/DeletePerson'
+                    listAction: '/api/department/jTable/List',
+                    createAction: '/api/department/jTable/Create',
+                    updateAction: '/api/department/jTable/Update',
+                    deleteAction: '/api/department/jTable/Delete'
                 },
                 fields: {
-                    PersonId: {
+                    id: {
                         key: true,
                         list: false
                     },
-                    Name: {
+                    name: {
                         title: 'Department Name',
                         width: '40%'
                     },
-                    Manager: {
+                    manager: {
                         title: 'Department Manager',
                         width: '20%',
                         create: false,
                         edit: false
                     },
-                    Location: {
+                    location: {
                         title: 'Department Location',
                         width: '30%',
                         create: false,
@@ -63,6 +63,8 @@
                     }
                 }
             });
+
+            $('#departments').jtable('load');
         });
     </script>
 </body>
