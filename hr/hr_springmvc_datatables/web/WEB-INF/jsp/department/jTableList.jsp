@@ -81,19 +81,28 @@
                     },
                     name: {
                         title: 'Department Name',
-                        width: '40%'
+                        width: '40%',
+                        display: function (data) {
+                            return '<b>' + data.record.name + '</b>';
+                        }
                     },
                     manager: {
                         title: 'Department Manager',
                         options: '/api/department/jTable/List/Managers',
-                        width: '20%'
+                        width: '20%',
+                        display: function (data) {
+                            return data.record.manager;
+                        }
 //                        create: false
 //                        edit: false
                     },
                     location: {
                         title: 'Department Location',
                         options: '/api/department/jTable/List/Locations',
-                        width: '30%'
+                        width: '30%',
+                        display: function (data) {
+                            return data.record.location;
+                        }
 //                        create: false
 //                        edit: false
                     }
