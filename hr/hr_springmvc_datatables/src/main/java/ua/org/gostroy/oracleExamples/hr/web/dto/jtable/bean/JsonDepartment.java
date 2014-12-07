@@ -8,8 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class JsonDepartment {
     private Integer id;
     private String name;
-    private String manager;
-    private String location;
+    private Integer manager;
+    private Integer location;
 
     public Integer getId() {
         return id;
@@ -27,19 +27,19 @@ public class JsonDepartment {
         this.name = name;
     }
 
-    public String getManager() {
+    public Integer getManager() {
         return manager;
     }
 
-    public void setManager(String manager) {
+    public void setManager(Integer manager) {
         this.manager = manager;
     }
 
-    public String getLocation() {
+    public Integer getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(Integer location) {
         this.location = location;
     }
 

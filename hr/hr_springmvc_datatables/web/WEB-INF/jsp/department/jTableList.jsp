@@ -89,20 +89,14 @@
                     manager: {
                         title: 'Department Manager',
                         options: '/api/department/jTable/List/Managers',
-                        width: '20%',
-                        display: function (data) {
-                            return data.record.manager;
-                        }
+                        width: '20%'
 //                        create: false
 //                        edit: false
                     },
                     location: {
                         title: 'Department Location',
                         options: '/api/department/jTable/List/Locations',
-                        width: '30%',
-                        display: function (data) {
-                            return data.record.location;
-                        }
+                        width: '30%'
 //                        create: false
 //                        edit: false
                     }

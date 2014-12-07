@@ -36,8 +36,8 @@ public class JTableService {
             JsonDepartment jtableDepartment = new JsonDepartment();
             jtableDepartment.setId(department.getId());
             jtableDepartment.setName(department.getName());
-            jtableDepartment.setManager((department.getManager() != null) ? department.getManager().getFirstName() : "");
-            jtableDepartment.setLocation((department.getLocation() != null) ? department.getLocation().getCity() : "");
+            jtableDepartment.setManager((department.getManager() != null) ? department.getManager().getId() : 0);
+            jtableDepartment.setLocation((department.getLocation() != null) ? department.getLocation().getId() : 0);
 
             result.add(jtableDepartment);
         }
