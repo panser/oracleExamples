@@ -8,7 +8,9 @@
 
     <link rel='stylesheet' type='text/css' href='${baseUrl}webjars/bootstrap/3.3.0/css/bootstrap.css'>
     <link rel='stylesheet' type='text/css' href='${baseUrl}webjars/jquery-ui/1.11.1/jquery-ui.css'>
+    <link rel='stylesheet' type='text/css' href='${baseUrl}webjars/jquery-ui-themes/1.11.0/redmond/jquery-ui.css'>
     <link href="${baseUrl}static/jtable.2.4.0/themes/lightcolor/blue/jtable.css" rel="stylesheet" type="text/css" />
+    <link href="${baseUrl}static/jtable.2.4.0/themes/jqueryui/jtable_jqueryui.css" rel="stylesheet" type="text/css" />
     <link rel='stylesheet' type='text/css' href='${baseUrl}static/custom.css'>
 
     <title></title>

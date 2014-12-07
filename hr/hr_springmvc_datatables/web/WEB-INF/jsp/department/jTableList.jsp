@@ -12,7 +12,7 @@
 
 <body>
     <jsp:include page="../../include/navbar.jsp" />
-    <jsp:include page="../../include/commonHtml.jsp" />
+    <%--<jsp:include page="../../include/commonHtml.jsp" />--%>
 
     <div class="container">
         <div class="h1">jTable Grid</div>
@@ -34,15 +34,42 @@
         $(document).ready(function () {
             $('#departments').jtable({
                 title: 'Departments from HR table',
+                tableId: 'departments',
+                jqueryuiTheme: true,
+//                showCloseButton: true,
                 selecting: true, //Enable selecting
+                multiselect: true,
+                selectingCheckboxes: true,
                 paging: true, //Enable paging
                 pageSize: 10, //Set page size (default: 10)
+                pageSizes:[ 10,20,50,100,500],
                 sorting: true, //Enable sorting
+                defaultSorting: 'Name ASC', //Set default sorting
+                multiSorting: true,
                 actions: {
                     listAction: '/api/department/jTable/List',
                     createAction: '/api/department/jTable/Create',
                     updateAction: '/api/department/jTable/Update',
                     deleteAction: '/api/department/jTable/Delete'
+                },
+                toolbar: {
+//                    hoverAnimation: true, //Enable/disable small animation on mouse hover to a toolbar item.
+//                    hoverAnimationDuration: 60, //Duration of the hover animation.
+//                    hoverAnimationEasing: undefined, //Easing of the hover animation. Uses jQuery's default animation ('swing') if set to undefined.
+                    items: [{
+                        icon: '${baseUrl}static/images/excel.png',
+                        text: 'Export to Excel',
+                        click: function () {
+                            //perform your custom job...
+                        }
+                    },
+                    {
+                        icon: '${baseUrl}static/images/pdf.png',
+                        text: 'Export to Pdf',
+                        click: function () {
+                            //perform your custom job...
+                        }
+                    }]
                 },
                 fields: {
                     id: {
@@ -70,8 +97,8 @@
 //                        create: false
 //                        edit: false
                     }
-                },
-
+                }
+/*
                 //Register to selectionChanged event to hanlde events
                 recordAdded: function(event, data){
                     //after record insertion, reload the records
@@ -81,6 +108,7 @@
                     //after record updation, reload the records
                     $('#departments').jtable('load');
                 }
+*/
             });
 
             $('#departments').jtable('load');
