@@ -41,11 +41,10 @@ public class JTableService {
                         sortOrders.add("name " + str[1]);
                         break;
                     case "manager":
-//                        sortOrders.add("manager.lastName " + str[1]);
-                        sortOrders.add("manager " + str[1]);
+                        sortOrders.add("manager.lastName " + str[1]);
                         break;
                     case "location":
-                        sortOrders.add("location " + str[1]);
+                        sortOrders.add("location.city " + str[1]);
                         break;
                 }
             }
