@@ -29,7 +29,7 @@ public class JTableService {
     @Autowired
     LocationService locationService;
 
-    public List<JsonDepartment> findWithPagination(int start, int size) {
+    public List<JsonDepartment> findWithPagination(Long start, Long size) {
         List<Department> departments = departmentService.findWithPagination(start, size);
         List<JsonDepartment> result = new ArrayList<JsonDepartment>();
         for(Department department : departments){

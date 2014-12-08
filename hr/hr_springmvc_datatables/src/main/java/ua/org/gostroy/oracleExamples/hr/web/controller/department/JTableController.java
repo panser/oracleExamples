@@ -26,11 +26,15 @@ public class JTableController {
     /*Table data load - This loads the data for the table*/
     @RequestMapping(value = "/List")
     @ResponseBody
-    public JsonListResponse list(@RequestParam int jtStartIndex, @RequestParam int jtPageSize) {
+    public JsonListResponse list(@RequestParam(required = false) Long jtStartIndex, @RequestParam(required = false) Long jtPageSize, @RequestParam(required = false) String jtSorting) {
         JsonListResponse jstr;
 
         try {
             Long departmCount = jTableService.getCount();
+            if(jtPageSize == null) {
+                jtStartIndex = 0L;
+                jtPageSize = departmCount;
+            }
             List<JsonDepartment> depList = jTableService.findWithPagination(jtStartIndex, jtPageSize);
             jstr = new JsonListResponse("OK",depList,departmCount);
         } catch (Exception e) {

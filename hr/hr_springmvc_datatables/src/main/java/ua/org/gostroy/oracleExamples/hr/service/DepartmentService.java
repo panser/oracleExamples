@@ -56,8 +56,14 @@ public class DepartmentService {
     }
 
     @Transactional(readOnly = true)
-    public List<Department> findWithPagination(int start, int size) {
-        List<Department> result = departmentDao.findWithPagination(start, size);
+    public List<Department> findWithPagination(Long start, Long size) {
+        List<Department> result = null;
+        if(start < Integer.MAX_VALUE || size < Integer.MAX_VALUE) {
+            result = departmentDao.findWithPagination(Integer.parseInt(start.toString()), Integer.parseInt(size.toString()));
+        }
+        else{
+            result = departmentDao.findAll();
+        }
         return result;
     }
 
