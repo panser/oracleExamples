@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class JsonOptionsBean {
 
     private Integer id;
-    private String displayText;
+    private Object displayText;
 
     @JsonProperty("Value")
     public Integer getId() {
@@ -20,11 +20,11 @@ public class JsonOptionsBean {
     }
 
     @JsonProperty("DisplayText")
-    public String getDisplayText() {
+    public Object getDisplayText() {
         return displayText;
     }
 
-    public void setDisplayText(String displayText) {
+    public void setDisplayText(Object displayText) {
         this.displayText = displayText;
     }
 

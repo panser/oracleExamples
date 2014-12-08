@@ -29,28 +29,13 @@ public class JTableService {
     @Autowired
     LocationService locationService;
 
-    public List<JsonDepartment> findWithPagination(Long start, Long size) {
-        List<Department> departments = departmentService.findWithPagination(start, size);
-        List<JsonDepartment> result = new ArrayList<JsonDepartment>();
-        for(Department department : departments){
-            JsonDepartment jtableDepartment = new JsonDepartment();
-            jtableDepartment.setId(department.getId());
-            jtableDepartment.setName(department.getName());
-            jtableDepartment.setManager((department.getManager() != null) ? department.getManager().getId() : 0);
-            jtableDepartment.setLocation((department.getLocation() != null) ? department.getLocation().getId() : 0);
-
-            result.add(jtableDepartment);
-        }
-        return result;
-    }
-
     public List<JsonOptionsBean> findAllEmployee(){
         List<Employee> employees = employeeService.findAll();
         List<JsonOptionsBean> result = new ArrayList<JsonOptionsBean>();
         for(Employee employee : employees){
             JsonOptionsBean jsonOptionsBean = new JsonOptionsBean();
             jsonOptionsBean.setId(employee.getId());
-            jsonOptionsBean.setDisplayText(employee.getFirstName() + " " + employee.getLastName());
+            jsonOptionsBean.setDisplayText(employee);
 
             result.add(jsonOptionsBean);
         }
@@ -63,7 +48,7 @@ public class JTableService {
         for(Location location : locations){
             JsonOptionsBean jsonOptionsBean = new JsonOptionsBean();
             jsonOptionsBean.setId(location.getId());
-            jsonOptionsBean.setDisplayText(location.getCity());
+            jsonOptionsBean.setDisplayText(location);
 
             result.add(jsonOptionsBean);
         }

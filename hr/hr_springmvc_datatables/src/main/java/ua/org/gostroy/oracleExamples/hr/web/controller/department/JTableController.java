@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
+import ua.org.gostroy.oracleExamples.hr.service.DepartmentService;
 import ua.org.gostroy.oracleExamples.hr.web.dto.jtable.bean.JsonDepartment;
 import ua.org.gostroy.oracleExamples.hr.service.JTableService;
 import ua.org.gostroy.oracleExamples.hr.web.dto.jtable.response.JsonResponse;
@@ -22,6 +24,8 @@ public class JTableController {
 
     @Autowired
     JTableService jTableService;
+    @Autowired
+    DepartmentService departmentService;
 
     /*Table data load - This loads the data for the table*/
     @RequestMapping(value = "/List")
@@ -35,7 +39,7 @@ public class JTableController {
                 jtStartIndex = 0L;
                 jtPageSize = departmCount;
             }
-            List<JsonDepartment> depList = jTableService.findWithPagination(jtStartIndex, jtPageSize);
+            List<Department> depList = departmentService.findWithPagination(jtStartIndex, jtPageSize);
             jstr = new JsonListResponse("OK",depList,departmCount);
         } catch (Exception e) {
             jstr = new JsonListResponse("ERROR",e.getMessage());
