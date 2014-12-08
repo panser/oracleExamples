@@ -10,6 +10,14 @@ public class JsonOptionsBean {
     private Integer id;
     private String displayText;
 
+    public JsonOptionsBean() {
+    }
+
+    public JsonOptionsBean(Integer id, String displayText) {
+        this.id = id;
+        this.displayText = displayText;
+    }
+
     @JsonProperty("Value")
     public Integer getId() {
         return id;

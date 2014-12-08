@@ -67,6 +67,8 @@ public class JTableService {
     public List<JsonOptionsBean> findAllEmployee(){
         List<Employee> employees = employeeService.findAll();
         List<JsonOptionsBean> result = new ArrayList<JsonOptionsBean>();
+        JsonOptionsBean nullJsonOptionsBean = new JsonOptionsBean(0, "");
+        result.add(nullJsonOptionsBean);
         for(Employee employee : employees){
             JsonOptionsBean jsonOptionsBean = new JsonOptionsBean();
             jsonOptionsBean.setId(employee.getId());
@@ -105,7 +107,9 @@ public class JTableService {
     public void update(JsonDepartment jsonDepartment) {
         Department department = departmentService.findById(jsonDepartment.getId());
         department.setName(jsonDepartment.getName());
+        if(jsonDepartment.getManager() != 0) {
 //        department.setManager();
+        }
 //        department.setLocation();
         departmentService.update(department);
     }
