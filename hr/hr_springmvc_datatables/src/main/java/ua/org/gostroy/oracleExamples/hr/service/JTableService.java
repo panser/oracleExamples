@@ -21,16 +21,36 @@ import java.util.List;
 public class JTableService {
 
     @Autowired
-    DepartmentDao departmentDao;
-    @Autowired
     DepartmentService departmentService;
     @Autowired
     EmployeeService employeeService;
     @Autowired
     LocationService locationService;
 
-    public List<JsonDepartment> findWithPagination(Long start, Long size) {
-        List<Department> departments = departmentService.findWithPagination(start, size);
+    public List<JsonDepartment> findWithPaginationAndSorting(Long jtStartIndex, Long jtPageSize, String jtSorting) {
+        List<String> sortOrders = new ArrayList<>();
+        if(jtSorting != null) {
+            String[] orders = jtSorting.split(",");
+            for (String order : orders) {
+                String[] str = order.split(" ");
+                switch (str[0]) {
+                    case "id":
+                        sortOrders.add("id " + str[1]);
+                        break;
+                    case "name":
+                        sortOrders.add("name " + str[1]);
+                        break;
+                    case "manager":
+                        sortOrders.add("manager " + str[1]);
+                        break;
+                    case "location":
+                        sortOrders.add("location " + str[1]);
+                        break;
+                }
+            }
+        }
+        List<Department> departments = departmentService.findWithPagination(jtStartIndex, jtPageSize, sortOrders);
+
         List<JsonDepartment> result = new ArrayList<JsonDepartment>();
         for(Department department : departments){
             JsonDepartment jtableDepartment = new JsonDepartment();
@@ -70,32 +90,28 @@ public class JTableService {
         return result;
     }
 
-    @Transactional(readOnly = true)
     public Long getCount(){
-        return departmentDao.getCount();
+        return departmentService.getCount();
     }
 
-    @Transactional(rollbackFor = Exception.class)
     public void save(JsonDepartment jsonDepartment) {
         Department department = new Department();
         department.setName(jsonDepartment.getName());
 //        department.setManager();
 //        department.setLocation();
-        departmentDao.save(department);
+        departmentService.save(department);
     }
 
-    @Transactional(rollbackFor = Exception.class)
     public void update(JsonDepartment jsonDepartment) {
-        Department department = departmentDao.findById(jsonDepartment.getId());
+        Department department = departmentService.findById(jsonDepartment.getId());
         department.setName(jsonDepartment.getName());
 //        department.setManager();
 //        department.setLocation();
-        departmentDao.update(department);
+        departmentService.update(department);
     }
 
-    @Transactional(rollbackFor = Exception.class)
     public void delete(Integer id) {
-        Department department = departmentDao.findById(id);
-        departmentDao.delete(department);
+        Department department = departmentService.findById(id);
+        departmentService.delete(department);
     }
 }

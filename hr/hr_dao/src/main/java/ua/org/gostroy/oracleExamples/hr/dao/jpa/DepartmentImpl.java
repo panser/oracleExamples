@@ -62,10 +62,20 @@ public class DepartmentImpl implements DepartmentDao {
     }
 
     @Override
-    public List<Department> findWithPagination(int start, int size) {
-        Query query = em.createNamedQuery("Department.findAll");
-        query.setFirstResult(start);
-        query.setMaxResults(size);
+    public List<Department> findWithPaginationAndSorting(Long start, Long size, List<String> sortOrder) {
+        StringBuilder queryString = new StringBuilder("select o from Department o");
+        if(sortOrder.size() != 0){
+            queryString.append(" ORDER BY");
+            for(String order : sortOrder){
+                queryString.append(" ").append("o.").append(order).append(",");
+            }
+            queryString.deleteCharAt(queryString.length() - 1);
+        }
+        Query query = em.createQuery(queryString.toString());
+        if(start < Integer.MAX_VALUE && size < Integer.MAX_VALUE) {
+            query.setFirstResult(Integer.parseInt(start.toString()));
+            query.setMaxResults(Integer.parseInt(size.toString()));
+        }
         List departments = (List<Department>) query.getResultList();
         return departments;
     }

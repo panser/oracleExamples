@@ -25,5 +25,5 @@ public interface DepartmentDao {
 
     Long getCount();
 
-    List<Department> findWithPagination(int start, int size);
+    List<Department> findWithPaginationAndSorting(Long start, Long size, List<String> sortOrder);
 }

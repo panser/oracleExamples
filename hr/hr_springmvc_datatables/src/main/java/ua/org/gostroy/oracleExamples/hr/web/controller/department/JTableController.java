@@ -35,7 +35,7 @@ public class JTableController {
                 jtStartIndex = 0L;
                 jtPageSize = departmCount;
             }
-            List<JsonDepartment> depList = jTableService.findWithPagination(jtStartIndex, jtPageSize);
+            List<JsonDepartment> depList = jTableService.findWithPaginationAndSorting(jtStartIndex, jtPageSize, jtSorting);
             jstr = new JsonListResponse("OK",depList,departmCount);
         } catch (Exception e) {
             jstr = new JsonListResponse("ERROR",e.getMessage());

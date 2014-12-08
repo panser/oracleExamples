@@ -1,6 +1,5 @@
 package ua.org.gostroy.oracleExamples.hr.service;
 
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -8,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.org.gostroy.oracleExamples.hr.dao.DepartmentDao;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -56,15 +56,13 @@ public class DepartmentService {
     }
 
     @Transactional(readOnly = true)
-    public List<Department> findWithPagination(Long start, Long size) {
-        List<Department> result = null;
-        if(start < Integer.MAX_VALUE || size < Integer.MAX_VALUE) {
-            result = departmentDao.findWithPagination(Integer.parseInt(start.toString()), Integer.parseInt(size.toString()));
-        }
-        else{
-            result = departmentDao.findAll();
-        }
+    public List<Department> findWithPagination(Long start, Long size, List<String> sortOrder) {
+        List<Department> result = departmentDao.findWithPaginationAndSorting(start, size, sortOrder);
         return result;
     }
 
+    @Transactional(readOnly = true)
+    public Long getCount(){
+        return departmentDao.getCount();
+    }
 }
