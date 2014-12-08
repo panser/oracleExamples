@@ -99,8 +99,13 @@ public class JTableService {
     public void save(JsonDepartment jsonDepartment) {
         Department department = new Department();
         department.setName(jsonDepartment.getName());
-//        department.setManager();
-//        department.setLocation();
+        if(jsonDepartment.getManager() != 0) {
+            Employee manager = employeeService.findById(jsonDepartment.getManager());
+            department.setManager(manager);
+        }
+        Location location = locationService.findById(jsonDepartment.getLocation());
+        department.setLocation(location);
+
         departmentService.save(department);
     }
 
@@ -108,9 +113,12 @@ public class JTableService {
         Department department = departmentService.findById(jsonDepartment.getId());
         department.setName(jsonDepartment.getName());
         if(jsonDepartment.getManager() != 0) {
-//        department.setManager();
+            Employee manager = employeeService.findById(jsonDepartment.getManager());
+            department.setManager(manager);
         }
-//        department.setLocation();
+        Location location = locationService.findById(jsonDepartment.getLocation());
+        department.setLocation(location);
+
         departmentService.update(department);
     }
 
