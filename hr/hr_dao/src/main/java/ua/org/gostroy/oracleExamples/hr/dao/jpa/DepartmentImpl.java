@@ -56,23 +56,17 @@ public class DepartmentImpl implements DepartmentDao {
 
     @Override
     public Long getCount() {
-        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-        CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
-        countQuery.select(criteriaBuilder.count(countQuery.from(Department.class)));
-        Long count = em.createQuery(countQuery).getSingleResult();
+        Query query = em.createNamedQuery("Department.count");
+        Long count = (Long)query.getSingleResult();
         return count;
     }
 
     @Override
     public List<Department> findWithPagination(int start, int size) {
-        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-        CriteriaQuery<Department> criteriaQuery = criteriaBuilder.createQuery(Department.class);
-        Root<Department> from = criteriaQuery.from(Department.class);
-        CriteriaQuery<Department> select = criteriaQuery.select(from);
-        TypedQuery<Department> typedQuery = em.createQuery(select);
-        typedQuery.setFirstResult(start);
-        typedQuery.setMaxResults(size);
-        List<Department> list = typedQuery.getResultList();
-        return list;
+        Query query = em.createNamedQuery("Department.findAll");
+        query.setFirstResult(start);
+        query.setMaxResults(size);
+        List departments = (List<Department>) query.getResultList();
+        return departments;
     }
 }
