@@ -82,6 +82,8 @@ public class JTableService {
     public List<JsonOptionsBean> findAllLocation(){
         List<Location> locations = locationService.findAll();
         List<JsonOptionsBean> result = new ArrayList<JsonOptionsBean>();
+        JsonOptionsBean nullJsonOptionsBean = new JsonOptionsBean(0, "");
+        result.add(nullJsonOptionsBean);
         for(Location location : locations){
             JsonOptionsBean jsonOptionsBean = new JsonOptionsBean();
             jsonOptionsBean.setId(location.getId());

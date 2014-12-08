@@ -26,7 +26,9 @@ public class JTableController {
     /*Table data load - This loads the data for the table*/
     @RequestMapping(value = "/List")
     @ResponseBody
-    public JsonListResponse list(@RequestParam(required = false) Long jtStartIndex, @RequestParam(required = false) Long jtPageSize, @RequestParam(required = false) String jtSorting) {
+    public JsonListResponse list(@RequestParam(required = false) Long jtStartIndex, @RequestParam(required = false) Long jtPageSize, @RequestParam(required = false) String jtSorting,
+                                 @RequestParam(required = false) String name, @RequestParam(required = false) Long managerId, @RequestParam(required = false) Long locationId
+                                 ) {
         JsonListResponse jstr;
 
         try {

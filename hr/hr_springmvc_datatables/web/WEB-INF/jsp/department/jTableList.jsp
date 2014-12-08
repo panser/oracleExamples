@@ -22,6 +22,14 @@
         <div class="row-fluid">
             <div class="span12">
 
+                <div class="filtering">
+                    <form>
+                        Name: <input type="text" id="name" />
+                        Manager: <select id="managerId"></select>
+                        Location: <select id="locationId"></select>
+                        <button type="submit" id="LoadRecordsButton">Load records</button>
+                    </form>
+                </div>
                 <div id="departments"></div>
 
             </div>
@@ -38,7 +46,7 @@
                 jqueryuiTheme: true,
 //                showCloseButton: true,
                 selecting: true, //Enable selecting
-                multiselect: true,
+//                multiselect: true,
                 selectingCheckboxes: true,
                 paging: true, //Enable paging
                 pageSize: 10, //Set page size (default: 10)
@@ -47,10 +55,10 @@
                 defaultSorting: 'Name ASC', //Set default sorting
                 multiSorting: true,
                 actions: {
-                    listAction: '/api/department/jTable/List',
-                    createAction: '/api/department/jTable/Create',
-                    updateAction: '/api/department/jTable/Update',
-                    deleteAction: '/api/department/jTable/Delete'
+                    listAction: '${baseUrl}api/department/jTable/List',
+                    createAction: '${baseUrl}api/department/jTable/Create',
+                    updateAction: '${baseUrl}api/department/jTable/Update',
+                    deleteAction: '${baseUrl}api/department/jTable/Delete'
                 },
                 toolbar: {
 //                    hoverAnimation: true, //Enable/disable small animation on mouse hover to a toolbar item.
@@ -88,14 +96,14 @@
                     },
                     manager: {
                         title: 'Department Manager',
-                        options: '/api/department/jTable/List/Managers',
+                        options: '${baseUrl}api/department/jTable/List/Managers',
                         width: '20%'
 //                        create: false
 //                        edit: false
                     },
                     location: {
                         title: 'Department Location',
-                        options: '/api/department/jTable/List/Locations',
+                        options: '${baseUrl}api/department/jTable/List/Locations',
                         width: '30%'
 //                        create: false
 //                        edit: false
@@ -115,6 +123,44 @@
             });
 
             $('#departments').jtable('load');
+
+            $.ajax({
+                type: "POST",
+                url:"${baseUrl}api/department/jTable/List/Managers",
+                dataType: "json",
+                success: function (data) {
+                    $.each(data.Options,function(i,obj)
+                    {
+                        var div_data="<option value="+obj.Value+">"+obj.DisplayText+"</option>";
+                        $(div_data).appendTo('#managerId');
+                    });
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url:"${baseUrl}api/department/jTable/List/Locations",
+                dataType: "json",
+                success: function (data) {
+                    $.each(data.Options,function(i,obj)
+                    {
+                        var div_data="<option value="+obj.Value+">"+obj.DisplayText+"</option>";
+                        $(div_data).appendTo('#locationId');
+                    });
+                }
+            });
+
+            //Re-load records when user click 'load records' button.
+            $('#LoadRecordsButton').click(function (e) {
+                e.preventDefault();
+                $('#departments').jtable('load', {
+                    name: $('#name').val(),
+                    managerId: $('#managerId').val(),
+                    locationId: $('#locationId').val()
+                });
+            });
+
+            //Load all records when page is first shown
+//            $('#LoadRecordsButton').click();
         });
     </script>
 </body>
