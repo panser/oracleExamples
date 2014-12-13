@@ -28,4 +28,6 @@ public interface DepartmentDao {
     Long getCount();
 
     List<Department> findWithPaginationAndSortingAndFiltering(Long start, Long size, List<String> sortOrder, String name, String manager, String location);
+
+    Long findCountWithFiltering(String name, String manager, String location);
 }

@@ -69,6 +69,13 @@ public class DepartmentService {
     }
 
     @Transactional(readOnly = true)
+    public Long findCountWithFiltering(String name, String manager, String location) {
+
+        Long result = departmentDao.findCountWithFiltering(name, manager, location);
+        return result;
+    }
+
+    @Transactional(readOnly = true)
     public Long getCount(){
         return departmentDao.getCount();
     }

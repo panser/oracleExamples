@@ -27,7 +27,7 @@
                         Name: <input type="text" id="name" />
                         Manager: <input type="text" id="manager" />
                         Location: <input type="text" id="location" />
-                        <button type="submit" id="LoadRecordsButton">Load records</button>
+                        <button type="submit" id="LoadRecordsButton" style="display: none;">Load records</button>
                     </form>
                 </div>
                 <div id="departments"></div>
@@ -122,7 +122,7 @@
 */
             });
 
-            $('#departments').jtable('load');
+//            $('#departments').jtable('load');
 
             //Re-load records when user click 'load records' button.
             $('#LoadRecordsButton').click(function (e) {
@@ -134,8 +134,19 @@
                 });
             });
 
+
+            $( "#name" ).keyup(function() {
+                $('#LoadRecordsButton').click();
+            });
+            $( "#manager" ).keyup(function() {
+                $('#LoadRecordsButton').click();
+            });
+            $( "#location" ).keyup(function() {
+                $('#LoadRecordsButton').click();
+            });
+
             //Load all records when page is first shown
-//            $('#LoadRecordsButton').click();
+            $('#LoadRecordsButton').click();
         });
     </script>
 </body>

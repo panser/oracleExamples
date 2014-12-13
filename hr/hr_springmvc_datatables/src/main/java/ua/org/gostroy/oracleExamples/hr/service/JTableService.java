@@ -66,6 +66,15 @@ public class JTableService {
         return result;
     }
 
+    public Long findCountWithFiltering(String name, String manager, String location){
+        name = (name != null && name.isEmpty()) ? null : name;
+        manager = (manager != null && manager.isEmpty()) ? null : manager;
+        location = (location != null && location.isEmpty()) ? null : location;
+
+        Long count = departmentService.findCountWithFiltering(name, manager, location);
+        return count;
+    }
+
     public List<JsonOptionsBean> findAllEmployee(){
         List<Employee> employees = employeeService.findAll();
         List<JsonOptionsBean> result = new ArrayList<JsonOptionsBean>();

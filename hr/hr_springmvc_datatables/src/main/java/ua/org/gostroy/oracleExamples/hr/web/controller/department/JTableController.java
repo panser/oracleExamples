@@ -32,7 +32,7 @@ public class JTableController {
         JsonListResponse jstr;
 
         try {
-            Long departmCount = jTableService.getCount();
+            Long departmCount = jTableService.findCountWithFiltering(name, manager, location);
             if(jtPageSize == null) {
                 jtStartIndex = 0L;
                 jtPageSize = departmCount;

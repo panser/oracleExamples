@@ -91,4 +91,21 @@ public class DepartmentImpl implements DepartmentDao {
         List departments = (List<Department>) query.getResultList();
         return departments;
     }
+
+    @Override
+    public Long findCountWithFiltering(String name, String manager, String location) {
+        StringBuilder queryString = new StringBuilder("select COUNT(o.name) from Department o");
+        queryString.append(" where 1=1");
+        if(name != null) queryString.append(" and LOWER(o.name) like :name");
+        if(manager != null) queryString.append(" and (LOWER(o.manager.lastName) like :manager OR LOWER(o.manager.firstName) like :manager)");
+        if(location != null) queryString.append(" and LOWER(o.location.city) like :location");
+
+        Query query = em.createQuery(queryString.toString());
+        if(name != null) query.setParameter("name",'%' + name.toLowerCase() + '%');
+        if(manager != null) query.setParameter("manager",'%' + manager.toLowerCase() + '%');
+        if(location != null) query.setParameter("location",'%' + location.toLowerCase() + '%');
+
+        Long count = (Long) query.getSingleResult();
+        return count;
+    }
 }
