@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.org.gostroy.oracleExamples.hr.dao.DepartmentDao;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
+import ua.org.gostroy.oracleExamples.hr.model.entity.Employee;
+import ua.org.gostroy.oracleExamples.hr.model.entity.Location;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,10 @@ public class DepartmentService {
 
     @Autowired
     DepartmentDao departmentDao;
+    @Autowired
+    EmployeeService employeeService;
+    @Autowired
+    LocationService locationService;
 
     @Transactional(readOnly = true)
     public Department findById(Integer id) {
@@ -56,8 +62,9 @@ public class DepartmentService {
     }
 
     @Transactional(readOnly = true)
-    public List<Department> findWithPagination(Long start, Long size, List<String> sortOrder) {
-        List<Department> result = departmentDao.findWithPaginationAndSorting(start, size, sortOrder);
+    public List<Department> findWithPaginationAndFiltering(Long start, Long size, List<String> sortOrder, String name, String manager, String location) {
+
+        List<Department> result = departmentDao.findWithPaginationAndSortingAndFiltering(start, size, sortOrder, name, manager, location);
         return result;
     }
 

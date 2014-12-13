@@ -5,6 +5,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import ua.org.gostroy.oracleExamples.hr.dao.DepartmentDao;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
+import ua.org.gostroy.oracleExamples.hr.model.entity.Employee;
+import ua.org.gostroy.oracleExamples.hr.model.entity.Location;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -62,8 +64,13 @@ public class DepartmentImpl implements DepartmentDao {
     }
 
     @Override
-    public List<Department> findWithPaginationAndSorting(Long start, Long size, List<String> sortOrder) {
+    public List<Department> findWithPaginationAndSortingAndFiltering(Long start, Long size, List<String> sortOrder, String name, String manager, String location) {
         StringBuilder queryString = new StringBuilder("select o from Department o");
+        queryString.append(" where 1=1");
+        if(name != null) queryString.append(" and LOWER(o.name) like :name");
+        if(manager != null) queryString.append(" and (LOWER(o.manager.lastName) like :manager OR LOWER(o.manager.firstName) like :manager)");
+        if(location != null) queryString.append(" and LOWER(o.location.city) like :location");
+
         if(sortOrder.size() != 0){
             queryString.append(" ORDER BY");
             for(String order : sortOrder){
@@ -71,7 +78,12 @@ public class DepartmentImpl implements DepartmentDao {
             }
             queryString.deleteCharAt(queryString.length() - 1);
         }
+
         Query query = em.createQuery(queryString.toString());
+        if(name != null) query.setParameter("name",'%' + name.toLowerCase() + '%');
+        if(manager != null) query.setParameter("manager",'%' + manager.toLowerCase() + '%');
+        if(location != null) query.setParameter("location",'%' + location.toLowerCase() + '%');
+
         if(start < Integer.MAX_VALUE && size < Integer.MAX_VALUE) {
             query.setFirstResult(Integer.parseInt(start.toString()));
             query.setMaxResults(Integer.parseInt(size.toString()));

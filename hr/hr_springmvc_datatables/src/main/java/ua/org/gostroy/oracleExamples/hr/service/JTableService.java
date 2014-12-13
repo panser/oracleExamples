@@ -1,10 +1,7 @@
 package ua.org.gostroy.oracleExamples.hr.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import ua.org.gostroy.oracleExamples.hr.dao.DepartmentDao;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Employee;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Location;
@@ -27,7 +24,8 @@ public class JTableService {
     @Autowired
     LocationService locationService;
 
-    public List<JsonDepartment> findWithPaginationAndSorting(Long jtStartIndex, Long jtPageSize, String jtSorting) {
+    public List<JsonDepartment> findWithPaginationAndSortingAndFiltering(Long jtStartIndex, Long jtPageSize, String jtSorting,
+                                                                         String name, String manager, String location) {
         List<String> sortOrders = new ArrayList<>();
         if(jtSorting != null) {
             String[] orders = jtSorting.split(",");
@@ -49,7 +47,11 @@ public class JTableService {
                 }
             }
         }
-        List<Department> departments = departmentService.findWithPagination(jtStartIndex, jtPageSize, sortOrders);
+        name = (name != null && name.isEmpty()) ? null : name;
+        manager = (manager != null && manager.isEmpty()) ? null : manager;
+        location = (location != null && location.isEmpty()) ? null : location;
+        List<Department> departments = departmentService.findWithPaginationAndFiltering(jtStartIndex, jtPageSize, sortOrders,
+                name, manager, location);
 
         List<JsonDepartment> result = new ArrayList<JsonDepartment>();
         for(Department department : departments){
@@ -82,8 +84,6 @@ public class JTableService {
     public List<JsonOptionsBean> findAllLocation(){
         List<Location> locations = locationService.findAll();
         List<JsonOptionsBean> result = new ArrayList<JsonOptionsBean>();
-        JsonOptionsBean nullJsonOptionsBean = new JsonOptionsBean(0, "");
-        result.add(nullJsonOptionsBean);
         for(Location location : locations){
             JsonOptionsBean jsonOptionsBean = new JsonOptionsBean();
             jsonOptionsBean.setId(location.getId());

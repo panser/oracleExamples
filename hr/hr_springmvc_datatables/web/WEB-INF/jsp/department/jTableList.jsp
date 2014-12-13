@@ -25,8 +25,8 @@
                 <div class="filtering">
                     <form>
                         Name: <input type="text" id="name" />
-                        Manager: <select id="managerId"></select>
-                        Location: <select id="locationId"></select>
+                        Manager: <input type="text" id="manager" />
+                        Location: <input type="text" id="location" />
                         <button type="submit" id="LoadRecordsButton">Load records</button>
                     </form>
                 </div>
@@ -124,38 +124,13 @@
 
             $('#departments').jtable('load');
 
-            $.ajax({
-                type: "POST",
-                url:"${baseUrl}api/department/jTable/List/Managers",
-                dataType: "json",
-                success: function (data) {
-                    $.each(data.Options,function(i,obj)
-                    {
-                        var div_data="<option value="+obj.Value+">"+obj.DisplayText+"</option>";
-                        $(div_data).appendTo('#managerId');
-                    });
-                }
-            });
-            $.ajax({
-                type: "POST",
-                url:"${baseUrl}api/department/jTable/List/Locations",
-                dataType: "json",
-                success: function (data) {
-                    $.each(data.Options,function(i,obj)
-                    {
-                        var div_data="<option value="+obj.Value+">"+obj.DisplayText+"</option>";
-                        $(div_data).appendTo('#locationId');
-                    });
-                }
-            });
-
             //Re-load records when user click 'load records' button.
             $('#LoadRecordsButton').click(function (e) {
                 e.preventDefault();
                 $('#departments').jtable('load', {
                     name: $('#name').val(),
-                    managerId: $('#managerId').val(),
-                    locationId: $('#locationId').val()
+                    manager: $('#manager').val(),
+                    location: $('#location').val()
                 });
             });
 

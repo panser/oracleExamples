@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import ua.org.gostroy.oracleExamples.hr.model.entity.Department;
+import ua.org.gostroy.oracleExamples.hr.model.entity.Employee;
+import ua.org.gostroy.oracleExamples.hr.model.entity.Location;
 
 import java.util.List;
 
@@ -25,5 +27,5 @@ public interface DepartmentDao {
 
     Long getCount();
 
-    List<Department> findWithPaginationAndSorting(Long start, Long size, List<String> sortOrder);
+    List<Department> findWithPaginationAndSortingAndFiltering(Long start, Long size, List<String> sortOrder, String name, String manager, String location);
 }

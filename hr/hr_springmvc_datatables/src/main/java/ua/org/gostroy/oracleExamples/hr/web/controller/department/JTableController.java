@@ -27,7 +27,7 @@ public class JTableController {
     @RequestMapping(value = "/List")
     @ResponseBody
     public JsonListResponse list(@RequestParam(required = false) Long jtStartIndex, @RequestParam(required = false) Long jtPageSize, @RequestParam(required = false) String jtSorting,
-                                 @RequestParam(required = false) String name, @RequestParam(required = false) Long managerId, @RequestParam(required = false) Long locationId
+                                 @RequestParam(required = false) String name, @RequestParam(required = false) String manager, @RequestParam(required = false) String location
                                  ) {
         JsonListResponse jstr;
 
@@ -37,7 +37,7 @@ public class JTableController {
                 jtStartIndex = 0L;
                 jtPageSize = departmCount;
             }
-            List<JsonDepartment> depList = jTableService.findWithPaginationAndSorting(jtStartIndex, jtPageSize, jtSorting);
+            List<JsonDepartment> depList = jTableService.findWithPaginationAndSortingAndFiltering(jtStartIndex, jtPageSize, jtSorting, name, manager, location);
             jstr = new JsonListResponse("OK",depList,departmCount);
         } catch (Exception e) {
             jstr = new JsonListResponse("ERROR",e.getMessage());
