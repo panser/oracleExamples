@@ -195,7 +195,15 @@
                     "alertText2": "Expected Format: ",
                     "alertText3": "mm/dd/yyyy hh:mm:ss AM|PM or ", 
                     "alertText4": "yyyy-mm-dd hh:mm:ss AM|PM"
-	            }
+	            },
+                "checkManager": {
+                    "url": "/api/department/jTable/Validate/Manager",
+//                    "extraDataDynamic": ['#user_id', '#user_email'],
+                    "alertText": "* This user is already taken",
+                    "alertTextOk": "All good!",
+                    "alertTextLoad": "* Validating, please wait"
+                }
+
             };
             
         }

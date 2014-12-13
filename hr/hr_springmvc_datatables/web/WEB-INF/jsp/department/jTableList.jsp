@@ -101,6 +101,7 @@
                         width: '20%'
 //                        create: false
 //                        edit: false
+                        ,inputClass: 'validate[ajax[checkManager]]'
                     },
                     location: {
                         title: 'Department Location',
@@ -112,11 +113,14 @@
                 },
                 //Initialize validation logic when a form is created
                 formCreated: function (event, data) {
-                    data.form.validationEngine();
+//                data.form.validationEngine();
                 },
                 //Validate form when it is being submitted
                 formSubmitting: function (event, data) {
-                    return data.form.validationEngine('validate');
+                    return data.form.validationEngine('validate', {
+                        ajaxFormValidation: false
+                        <%--,ajaxFormValidationURL: "${baseUrl}api/department/jTable/Validate/form"--%>
+                    });
                 },
                 //Dispose validation logic when form is closed
                 formClosed: function (event, data) {
@@ -161,6 +165,7 @@
 
             //Load all records when page is first shown
             $('#LoadRecordsButton').click();
+
         });
     </script>
 </body>

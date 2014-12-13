@@ -1,6 +1,7 @@
 package ua.org.gostroy.oracleExamples.hr.web.controller.department;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,8 @@ import ua.org.gostroy.oracleExamples.hr.web.dto.jtable.response.JsonResponse;
 import ua.org.gostroy.oracleExamples.hr.web.dto.jtable.response.JsonListResponse;
 import ua.org.gostroy.oracleExamples.hr.web.dto.jtable.response.JsonOptionsBean;
 import ua.org.gostroy.oracleExamples.hr.web.dto.jtable.response.JsonOptionsResponse;
+import ua.org.gostroy.oracleExamples.hr.web.dto.validationEngine.ValidationRequest;
+import ua.org.gostroy.oracleExamples.hr.web.dto.validationEngine.ValidationResponse;
 
 import java.util.List;
 
@@ -121,4 +124,13 @@ public class JTableController {
         }
         return jsonResponse;
     }
+
+    @RequestMapping(value = "/Validate/Manager")
+    @ResponseBody
+    public Object validateManager(@ModelAttribute ValidationRequest validationRequest){
+//        ValidationResponse validationResponse = new ValidationResponse(validationRequest.getFieldId(), false, "error error error");
+        ValidationResponse validationResponse = new ValidationResponse(validationRequest.getFieldId(), true, "No error");
+        return validationResponse.asAnswer();
+    }
+
 }
