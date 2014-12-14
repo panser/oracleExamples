@@ -38,6 +38,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="${baseUrl}department/jTableAjax">jTable + jQueryValidationEngine over AJAX</a></li>
                         <li><a href="${baseUrl}department/jTableAjaxWithjqBootstrapValidation">jTable + jqBootstrapValidation over AJAX</a></li>
+                        <li><a href="${baseUrl}department/jTableAjaxWithjQueryValidation">jTable + jQueryValidation over AJAX</a></li>
                     </ul>
                 </li>
             </ul>

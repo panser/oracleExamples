@@ -60,4 +60,9 @@ public class DepartmentController {
     public String jTableAjaxWithjqBootstrapValidation(Model model) {
         return "department/jTableList_jqBootstrapValidation";
     }
+
+    @RequestMapping(value = "/jTableAjaxWithjQueryValidation")
+    public String jTableAjaxWithjQueryValidation(Model model) {
+        return "department/jTableList_jqueryvalidation";
+    }
 }

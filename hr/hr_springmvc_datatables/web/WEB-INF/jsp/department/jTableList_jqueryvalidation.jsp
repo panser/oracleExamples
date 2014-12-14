@@ -37,11 +37,12 @@
 
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="h1 col-md-12">jTable Grid</div>
+            <div class="h1">jTable Grid</div>
         </div>
 
+
         <div class="row-fluid">
-            <form class="form-inline col-md-12" role="form">
+            <form class="form-inline" role="form">
                 <div class="form-group">
                     <div class="input-group">
                         <label class="sr-only" for="name">Name:</label>
@@ -63,8 +64,9 @@
                 <button type="submit" class="btn btn-default" id="LoadRecordsButton" style="display: none;">Load records</button>
             </form>
         </div>
+
         <div class="row-fluid">
-            <div id="departments" class="col-md-12"></div>
+            <div id="departments"></div>
         </div>
     </div>
 
@@ -72,8 +74,8 @@
     <script src="${baseUrl}webjars/jquery/1.11.1/jquery.js"></script>
     <script src="${baseUrl}webjars/bootstrap/3.3.0/js/bootstrap.js"></script>
     <script src="${baseUrl}webjars/jquery-ui/1.11.1/jquery-ui.js"></script>
-    <script src="${baseUrl}webjars/jqbootstrapvalidation/1.3.6/jqBootstrapValidation.js"></script>
     <script src="${baseUrl}static/jtable.2.4.0/jquery.jtable.js"></script>
+    <script src="${baseUrl}static/jquery-validation-1.13.1/lib/jquery.form.js" type="text/javascript" charset="utf-8"></script>
     <script src="${baseUrl}static/custom.js"></script>
 
     <script type="text/javascript">
@@ -120,7 +122,6 @@
                 fields: {
                     id: {
                         title: 'Id',
-                        width: '10%',
                         key: true,
                         list: true,
                         create: false,
@@ -128,15 +129,15 @@
                     },
                     name: {
                         title: 'Department Name',
-                        width: '30%',
+                        width: '40%',
                         display: function (data) {
                             return '<b>' + data.record.name + '</b>';
-                        }
+                        },
                     },
                     manager: {
                         title: 'Department Manager',
                         options: '${baseUrl}api/department/jTable/List/Managers',
-                        width: '30%'
+                        width: '20%'
 //                        create: false
 //                        edit: false
                     },
@@ -148,28 +149,28 @@
 //                        edit: false
                     }
                 },
-                //Initialize validation logic when a form is created
-                formCreated: function (event, data) {
-                    data.form.find('input[name="name"]').prop("required", true);
-//                    data.form.find('input[name="name"]').addClass('validated');
-                },
                 //Validate form when it is being submitted
                 formSubmitting: function (event, data) {
-                    $(".validated").jqBootstrapValidation();
-//                    $(".validated").validate();
+                    $("#jtable-edit-form").validate({
+                        rules: {
+                            name: "required"
+                        }
+                    });
+                },
+                //Dispose validation logic when form is closed
+                formClosed: function (event, data) {
                 }
-
-                /*
-                                //Register to selectionChanged event to hanlde events
-                                recordAdded: function(event, data){
-                                    //after record insertion, reload the records
-                                    $('#departments').jtable('load');
-                                },
-                                recordUpdated: function(event, data){
-                                    //after record updation, reload the records
-                                    $('#departments').jtable('load');
-                                }
-                */
+/*
+                //Register to selectionChanged event to hanlde events
+                recordAdded: function(event, data){
+                    //after record insertion, reload the records
+                    $('#departments').jtable('load');
+                },
+                recordUpdated: function(event, data){
+                    //after record updation, reload the records
+                    $('#departments').jtable('load');
+                }
+*/
             });
 
 //            $('#departments').jtable('load');
@@ -197,8 +198,6 @@
 
             //Load all records when page is first shown
             $('#LoadRecordsButton').click();
-
-            $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
 
         });
     </script>
