@@ -35,14 +35,28 @@
         <div class="row-fluid">
             <div class="span12">
 
-                <div class="filtering">
-                    <form>
-                        Name: <input type="text" id="name" />
-                        Manager: <input type="text" id="manager" />
-                        Location: <input type="text" id="location" />
-                        <button type="submit" id="LoadRecordsButton" style="display: none;">Load records</button>
-                    </form>
-                </div>
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label class="sr-only" for="name">Name:</label>
+                            <input type="search" class="form-control" id="name" placeholder="Enter name" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label class="sr-only" for="name">Manager:</label>
+                            <input type="search" class="form-control" id="manager" placeholder="Enter manager" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label class="sr-only" for="name">Location:</label>
+                            <input type="search" class="form-control" id="location" placeholder="Enter location" required />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default" id="LoadRecordsButton" style="display: none;">Load records</button>
+                </form>
+
                 <div id="departments"></div>
 
             </div>

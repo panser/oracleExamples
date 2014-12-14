@@ -34,14 +34,28 @@
         <div class="row-fluid">
             <div class="span12">
 
-                <div class="filtering">
-                    <form>
-                        Name: <input type="text" id="name" />
-                        Manager: <input type="text" id="manager" />
-                        Location: <input type="text" id="location" />
-                        <button type="submit" id="LoadRecordsButton" style="display: none;">Load records</button>
-                    </form>
-                </div>
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label class="sr-only" for="name">Name:</label>
+                            <input type="search" class="form-control" id="name" placeholder="Enter name" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label class="sr-only" for="name">Manager:</label>
+                            <input type="search" class="form-control" id="manager" placeholder="Enter manager" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label class="sr-only" for="name">Location:</label>
+                            <input type="search" class="form-control" id="location" placeholder="Enter location" required />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default" id="LoadRecordsButton" style="display: none;">Load records</button>
+                </form>
+
                 <div id="departments"></div>
 
             </div>
@@ -52,6 +66,7 @@
     <script src="${baseUrl}webjars/jquery/1.11.1/jquery.js"></script>
     <script src="${baseUrl}webjars/bootstrap/3.3.0/js/bootstrap.js"></script>
     <script src="${baseUrl}webjars/jquery-ui/1.11.1/jquery-ui.js"></script>
+    <script src="${baseUrl}webjars/jqbootstrapvalidation/1.3.6/jqBootstrapValidation.js"></script>
     <script src="${baseUrl}static/jtable.2.4.0/jquery.jtable.js"></script>
     <script src="${baseUrl}static/custom.js"></script>
 
@@ -125,6 +140,13 @@
 //                        create: false
 //                        edit: false
                     }
+                },
+                //Initialize validation logic when a form is created
+                formCreated: function (event, data) {
+//                    data.form.find('input[name="name"]').prop("required", true);
+                    data.form.find('input[name="name"]').addClass('validated');
+
+                    $(function(){$(".validated").jqBootstrapValidation();});
                 }
 /*
                 //Register to selectionChanged event to hanlde events
@@ -164,6 +186,8 @@
 
             //Load all records when page is first shown
             $('#LoadRecordsButton').click();
+
+            $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
 
         });
     </script>
