@@ -10,7 +10,11 @@
 <html lang="en">
 
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title></title>
 
     <link rel='stylesheet' type='text/css' href='${baseUrl}webjars/bootstrap/3.3.0/css/bootstrap.css'>
     <link rel='stylesheet' type='text/css' href='${baseUrl}webjars/jquery-ui/1.11.1/jquery-ui.css'>
@@ -19,46 +23,48 @@
     <link href="${baseUrl}static/jtable.2.4.0/themes/jqueryui/jtable_jqueryui.css" rel="stylesheet" type="text/css" />
     <link rel='stylesheet' type='text/css' href='${baseUrl}static/custom.css'>
 
-    <title></title>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body>
     <jsp:include page="../../include/navbar.jsp" />
     <%--<jsp:include page="../../include/commonHtml.jsp" />--%>
 
-    <div class="container">
-        <div class="h1">jTable Grid</div>
-
-        <div id="allertMessages"></div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="h1 col-md-12">jTable Grid</div>
+        </div>
 
         <div class="row-fluid">
-            <div class="span12">
-
-                <form class="form-inline" role="form">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <label class="sr-only" for="name">Name:</label>
-                            <input type="search" class="form-control" id="name" placeholder="Enter name" required />
-                        </div>
+            <form class="form-inline col-md-12" role="form">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label class="sr-only" for="name">Name:</label>
+                        <input type="search" class="form-control" id="name" placeholder="Enter name" required />
                     </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <label class="sr-only" for="name">Manager:</label>
-                            <input type="search" class="form-control" id="manager" placeholder="Enter manager" required />
-                        </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <label class="sr-only" for="name">Manager:</label>
+                        <input type="search" class="form-control" id="manager" placeholder="Enter manager" required />
                     </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <label class="sr-only" for="name">Location:</label>
-                            <input type="search" class="form-control" id="location" placeholder="Enter location" required />
-                        </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <label class="sr-only" for="name">Location:</label>
+                        <input type="search" class="form-control" id="location" placeholder="Enter location" required />
                     </div>
-                    <button type="submit" class="btn btn-default" id="LoadRecordsButton" style="display: none;">Load records</button>
-                </form>
-
-                <div id="departments"></div>
-
-            </div>
+                </div>
+                <button type="submit" class="btn btn-default" id="LoadRecordsButton" style="display: none;">Load records</button>
+            </form>
+        </div>
+        <div class="row-fluid">
+            <div id="departments" class="col-md-12"></div>
         </div>
     </div>
 
@@ -114,6 +120,7 @@
                 fields: {
                     id: {
                         title: 'Id',
+                        width: '10%',
                         key: true,
                         list: true,
                         create: false,
@@ -121,7 +128,7 @@
                     },
                     name: {
                         title: 'Department Name',
-                        width: '40%',
+                        width: '30%',
                         display: function (data) {
                             return '<b>' + data.record.name + '</b>';
                         }
@@ -129,7 +136,7 @@
                     manager: {
                         title: 'Department Manager',
                         options: '${baseUrl}api/department/jTable/List/Managers',
-                        width: '20%'
+                        width: '30%'
 //                        create: false
 //                        edit: false
                     },
