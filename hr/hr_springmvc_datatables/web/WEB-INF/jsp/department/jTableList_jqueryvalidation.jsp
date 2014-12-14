@@ -42,7 +42,7 @@
 
 
         <div class="row-fluid">
-            <form class="form-inline" role="form">
+            <form id="filter" class="form-inline" role="form">
                 <div class="form-group">
                     <div class="input-group">
                         <label class="sr-only" for="name">Name:</label>
@@ -61,6 +61,7 @@
                         <input type="search" class="form-control" id="location" placeholder="Enter location" required />
                     </div>
                 </div>
+                <%--<button type="submit" class="btn btn-default" id="LoadRecordsButton">Load records</button>--%>
                 <button type="submit" class="btn btn-default" id="LoadRecordsButton" style="display: none;">Load records</button>
             </form>
         </div>
@@ -75,7 +76,7 @@
     <script src="${baseUrl}webjars/bootstrap/3.3.0/js/bootstrap.js"></script>
     <script src="${baseUrl}webjars/jquery-ui/1.11.1/jquery-ui.js"></script>
     <script src="${baseUrl}static/jtable.2.4.0/jquery.jtable.js"></script>
-    <script src="${baseUrl}static/jquery-validation-1.13.1/lib/jquery.form.js" type="text/javascript" charset="utf-8"></script>
+    <script src="${baseUrl}static/jquery-validation-1.13.1/dist/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
     <script src="${baseUrl}static/custom.js"></script>
 
     <script type="text/javascript">
@@ -132,7 +133,7 @@
                         width: '40%',
                         display: function (data) {
                             return '<b>' + data.record.name + '</b>';
-                        },
+                        }
                     },
                     manager: {
                         title: 'Department Manager',
@@ -156,6 +157,13 @@
                             name: "required"
                         }
                     });
+
+                    $("#jtable-create-form").validate({
+                        rules: {
+                            name: "required"
+                        }
+                    });
+
                 },
                 //Dispose validation logic when form is closed
                 formClosed: function (event, data) {
