@@ -1,0 +1,24 @@
+{
+    "bundle" : "dataTables.bootstrap",
+    "dependencies": [ "jquery" ],
+    "dependencies": [ "datatables" ],
+    "dependencies": [ "bootstrap3" ],
+    "assets": [
+        {
+            "name": "dataTables.bootstrap.css",
+            "version": "3",
+            "type": "css",
+            "locations": {
+                "webapp": "/static/datatebles/Plugins/integration/bootstrap/3/dataTables.bootstrap.css"
+            }
+        },
+        {
+            "name": "dataTables.bootstrap.js",
+            "version": "3",
+            "type": "js",
+            "locations": {
+                "webapp": "/static/datatebles/Plugins/integration/bootstrap/3/dataTables.bootstrap.js"
+            }
+        }
+    ]
+}
