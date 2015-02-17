@@ -3,6 +3,9 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/hr/hr_springmvc_datatables" />
+  </component>
   <component name="IdProvider" IDEtalkID="A8D31CA71C05538314DA484742996CE3" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">

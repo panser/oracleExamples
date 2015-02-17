@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>hr_springmvc_datatables</artifactId>
+    <packaging>war</packaging>
 
     <dependencies>
         <dependency>
