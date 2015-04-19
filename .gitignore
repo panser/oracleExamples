@@ -1,4 +1,5 @@
-
-oracleExamples.iml
-hr/hr.iml
-.idea
+**/*.iml
+**/.idea
+**/target
+out/
+**/var/
